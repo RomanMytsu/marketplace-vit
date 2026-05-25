@@ -1,0 +1,8 @@
+@use "sass:map";
+@use "./breakpoints.scss" as *;
+
+@mixin max-width($breakpoint) {
+  @media (max-width: #{map.get($breakpoints, $breakpoint)}) {
+    @content;
+  }
+}

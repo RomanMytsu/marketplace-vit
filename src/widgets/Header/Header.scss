@@ -1,0 +1,52 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  height: globalFunctions.fluidValue(55px, 50px, 320px, 1920px);
+  padding-top: globalFunctions.fluidValue(15px, 30px, 320px, 1920px);
+
+  .container {
+    padding-inline: globalFunctions.fluidValue(20px, 35px, 320px, 1920px);
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+  }
+
+  
+
+  
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  &__quiz-link {
+    border-radius: 100px;
+    background: globalVariables.$main-orange;
+    border: 1px solid globalVariables.$main-orange;
+    font-family: globalVariables.$second-family;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    color: #fff;
+    padding: 15px 30px;
+    transition: all 0.4s ease-in;
+
+    &:hover {
+      background: 0 0;
+      color: #ff7d4e;
+    }
+  }
+}
