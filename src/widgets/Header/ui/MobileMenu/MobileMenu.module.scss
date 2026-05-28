@@ -1,0 +1,144 @@
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  z-index: 1000;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  padding: 19px 20px 19px 27px;
+}
+
+.headerSub {
+  position: relative;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 23px 28px 19px 26px;
+}
+
+.back {
+  position: absolute;
+  left: 20px;
+  top: 57%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 34px;
+}
+
+.title {
+  font-family: globalVariables.$second-family;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 40px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  flex-grow: 1;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-family: globalVariables.$second-family;
+  font-weight: 500;
+  font-size: 20px;
+  color: #000;
+}
+
+.itemAccent {
+  color: globalVariables.$main-orange;
+}
+
+.subitem {
+  font-family: globalVariables.$second-family;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.subitemAccent {
+  color: globalVariables.$red;
+}
+
+.quizBanner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.quizBannerTitle {
+  font-family: globalVariables.$second-family;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.quizBannerText {
+  font-size: 14px;
+  text-align: center;
+  color: #000;
+  opacity: 0.5;
+  margin-bottom: 25px;
+}
+
+.bannerBtn {
+  display: block;
+  border-radius: 100px;
+  background: globalVariables.$main-orange;
+  border: 1px solid globalVariables.$main-orange;
+  font-family: globalVariables.$second-family;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+  padding: 18px 0;
+  width: 100%;
+  max-width: 335px;
+  margin: 0 auto;
+}
+
+.footer {
+  margin-top: 40px;
+  padding: 0 20px 103px;
+}
+
+.email {
+  font-size: 14px;
+  color: #000;
+  opacity: 0.5;
+}
+
+.copyright {
+  font-size: 12px;
+  color: #000;
+  opacity: 0.3;
+  margin-top: 15px;
+}

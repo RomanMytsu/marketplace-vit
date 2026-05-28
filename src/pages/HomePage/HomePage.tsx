@@ -1,5 +1,7 @@
+import Hero from "./ui/Hero/Hero"
+
 const HomePage = () => {
-  return <h1>Home Page</h1>
+  return <Hero />
 }
 
 export default HomePage

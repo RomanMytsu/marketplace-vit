@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom"
 import Logo from "@/shared/assets/icons/logo.svg"
 import Icon from "@/shared/ui/Icon/Icon"
-import "./Header.scss"
 import { useState } from "react"
 import { MobileMenu } from "./ui/MobileMenu/MobileMenu"
+import QuizLink from "@/shared/ui/QuizLink/QuizLink"
+import s from "./Header.module.scss"
+import clsx from "clsx"
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -17,11 +19,11 @@ const Header = () => {
   }
 
   return (
-    <header className="header">
-      <div className="header__container container">
-        <div className="header__content">
+    <header className={s.header}>
+      <div className={clsx(s.container)}>
+        <div className={s.content}>
           <button
-            className={`header__burger ${isMenuOpen ? "header__burger--active" : ""}`}
+            className={clsx(s.burger, isMenuOpen && s.burgerActive)}
             onClick={handleToggleMenu}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMenuOpen}
@@ -33,31 +35,24 @@ const Header = () => {
               height={18}
             />
           </button>
-          <div className="header__logo-wrapper">
-            <Link to="/" className="header__link" aria-label="Go to homepage">
-              <img src={Logo} alt="Logo" className="header__logo" />
+          <div className={s.logoWrapper}>
+            <Link to="/" className={s.link} aria-label="Go to homepage">
+              <img src={Logo} alt="Logo" className={s.logo} />
             </Link>
           </div>
-          <nav className="header__actions">
+          <nav className={s.actions}>
             <Link to="/login" aria-label="Profile">
               <Icon
                 name="profile"
                 width={32}
                 height={32}
-                className="header__icon-profile"
+                className={s.iconProfile}
               />
             </Link>
-            <Link to="/cart" className="header__cart" aria-label="Cart">
-              <Icon
-                name="cart"
-                width={32}
-                height={32}
-                className="header__icon-cart"
-              />
+            <Link to="/cart" className={s.cart} aria-label="Cart">
+              <Icon name="cart" width={32} height={32} className={s.iconCart} />
             </Link>
-            <Link to="/quiz" className="header__quiz-link">
-              Take the quiz
-            </Link>
+            <QuizLink />
           </nav>
         </div>
       </div>

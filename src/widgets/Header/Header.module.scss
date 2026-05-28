@@ -1,0 +1,69 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  height: globalFunctions.fluidValue(55px, 50px, 320px, 1920px);
+  padding-top: globalFunctions.fluidValue(15px, 30px, 320px, 1920px);
+}
+
+.container {
+  padding-inline: globalFunctions.fluidValue(20px, 35px, 320px, 1920px);
+  margin: 0 auto;
+  min-width: 320px;
+  max-width: 1920px;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include globalMixins.max-width(tablet) {
+    display: grid;
+    grid-template-columns: 32px 1fr 32px;
+  }
+}
+
+.burger {
+  display: none;
+  @include globalMixins.max-width(tablet) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.logoWrapper {
+  @include globalMixins.max-width(tablet) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.logo {
+  width: globalFunctions.fluidValue(34px, 42px, 320px, 1920px);
+  height: globalFunctions.fluidValue(40px, 50px, 320px, 1920px);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  @include globalMixins.max-width(tablet) {
+    justify-content: flex-end;
+
+    a:not(.cart) {
+      display: none;
+    }
+  }
+}
