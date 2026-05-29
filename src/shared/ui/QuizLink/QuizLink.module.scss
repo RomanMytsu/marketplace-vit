@@ -38,8 +38,8 @@
 }
 
 .lg {
-  padding-inline: globalFunctions.fluidValue(30px, 63px, 320px, 1920px);
-  height: globalFunctions.fluidValue(50px, 74px, 320px, 1920px);
-  font-size: globalFunctions.fluidValue(16px, 20px, 320px, 1920px);
+  width: globalFunctions.fluidValue(154px, 260px, 320px, 1800px);
+  height: globalFunctions.fluidValue(50px, 74px, 320px, 1800px);
+  font-size: globalFunctions.fluidValue(16px, 20px, 320px, 1800px);
   line-height: 1.63;
 }

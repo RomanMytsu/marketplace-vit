@@ -8,6 +8,11 @@
   padding-top: globalFunctions.fluidValue(15px, 30px, 320px, 1920px);
 }
 
+.headerScrolled {
+  background-color: rgb(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+}
+
 .container {
   padding-inline: globalFunctions.fluidValue(20px, 35px, 320px, 1920px);
   margin: 0 auto;

@@ -1,14 +1,29 @@
 import { Link } from "react-router-dom"
 import Logo from "@/shared/assets/icons/logo.svg"
 import Icon from "@/shared/ui/Icon/Icon"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { MobileMenu } from "./ui/MobileMenu/MobileMenu"
 import QuizLink from "@/shared/ui/QuizLink/QuizLink"
 import s from "./Header.module.scss"
 import clsx from "clsx"
 
+const HEADER_HEIGHT = 55
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > HEADER_HEIGHT)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   const handleToggleMenu = () => {
     setIsMenuOpen((prev) => !prev)
@@ -19,7 +34,7 @@ const Header = () => {
   }
 
   return (
-    <header className={s.header}>
+    <header className={clsx(s.header, isScrolled && s.headerScrolled)}>
       <div className={clsx(s.container)}>
         <div className={s.content}>
           <button
