@@ -1,0 +1,151 @@
+.about {
+  overflow: hidden;
+  position: relative;
+  height: 1330px;
+  margin: 0 auto;
+  max-width: 1800px;
+  @include globalMixins.max-width(laptop) {
+    padding-top: 20%;
+  }
+  @include globalMixins.max-width(tablet) {
+    height: 964px;
+  }
+  @include globalMixins.max-width(mobile) {
+    padding-top: 66px;
+    margin-top: -172px;
+    height: 764px;
+  }
+
+  &__wrapper {
+    display: flex;
+    aspect-ratio: 15 / 8;
+    @include globalMixins.max-width(laptop) {
+      flex-direction: column;
+    }
+  }
+
+  &__content {
+    background-image: url(@/shared/assets/images/about-abs.webp);
+    max-width: 1920px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 356px 135px 401px 202px;
+    width: 50%;
+    @include globalMixins.max-width(laptop) {
+      padding: 70px 20px;
+      width: 100%;
+    }
+  }
+
+  &__title {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: globalFunctions.fluidValue(24px, 56px, 320px, 1800px);
+    color: #fff;
+    @include globalMixins.max-width(laptop) {
+      text-align: center;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+  }
+
+  &__circle {
+    width: globalFunctions.fluidValue(60px, 139px, 320px, 1800px);
+    height: globalFunctions.fluidValue(60px, 139px, 320px, 1800px);
+    z-index: 2;
+    left: 7%;
+    top: 5%;
+    @include globalMixins.max-width(laptop) {
+      right: 4.6%;
+      top: 0;
+      transform: translateY(162%);
+      left: unset;
+    }
+    @include globalMixins.max-width(tablet) {
+      transform: translateY(21%);
+    }
+    @include globalMixins.max-width(mobile) {
+      transform: translateY(58%);
+      right: 11.6%;
+    }
+  }
+
+  &__iconsWrapper {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    @include globalMixins.max-width(laptop) {
+      width: 100%;
+      justify-content: center;
+      margin-left: -10px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: globalFunctions.fluidValue(40px, 100px, 320px, 1800px);
+    margin-left: 61px;
+    margin-top: -40px;
+    @include globalMixins.max-width(laptop) {
+      margin-left: 21px;
+      margin-top: 42px;
+      gap: 40px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: globalFunctions.fluidValue(30px, 90px, 320px, 1800px);
+  }
+
+  &__itemText {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: globalFunctions.fluidValue(14px, 30px, 320px, 1800px);
+    max-width: 444px;
+  }
+
+  &__bottleIcon {
+    color: #7e70d8;
+    width: globalFunctions.fluidValue(47px, 103px, 320px, 1800px);
+    height: globalFunctions.fluidValue(38px, 84px, 320px, 1800px);
+  }
+  &__plantIcon {
+    color: #ffbe5a;
+    width: globalFunctions.fluidValue(40px, 88px, 320px, 1800px);
+    height: globalFunctions.fluidValue(44px, 97px, 320px, 1800px);
+  }
+  &__bagIcon {
+    color: #ff7d4e;
+    width: globalFunctions.fluidValue(38px, 84px, 320px, 1800px);
+    height: globalFunctions.fluidValue(49px, 107px, 320px, 1800px);
+  }
+
+  &__contentImg1 {
+    position: absolute;
+    bottom: 198px;
+    left: 11.3%;
+    z-index: 2;
+    @include globalMixins.max-width(laptop) {
+      bottom: 10%;
+      left: 47%;
+      transform: translate(-88%, 9%);
+      z-index: 2;
+    }
+  }
+
+  &__contentImg2 {
+    position: absolute;
+    bottom: 0;
+    left: 37.6%;
+    z-index: 1;
+    @include globalMixins.max-width(laptop) {
+      bottom: 10%;
+      left: 21.6%;
+      transform: translate(1%, 47%);
+    }
+  }
+}
