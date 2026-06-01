@@ -81,15 +81,8 @@ body {
 }
 
 .container {
-  $min-width: 320px;
-  $max-width: 1920px;
-  max-width: $max-width;
+  max-width: 1800px;
   width: 100%;
-  padding-inline: globalFunctions.fluidValue(
-    20px,
-    202px,
-    $min-width,
-    $max-width
-  );
+  padding-inline: globalFunctions.fluidValue(20px, 202px, 320px, 1800px);
   margin: 0 auto;
 }

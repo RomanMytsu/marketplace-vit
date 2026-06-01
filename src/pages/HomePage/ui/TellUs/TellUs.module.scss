@@ -1,0 +1,70 @@
+.tellUs {
+  position: relative;
+  overflow: hidden;
+  padding: 150px 0;
+  @include globalMixins.max-width(laptop) {
+    padding-top: 48px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__ellipse {
+    top: 29.1%;
+    left: 4.4%;
+    transform: rotate(90deg);
+    &::before {
+      border-color: #ffca78;
+    }
+    @include globalMixins.max-width(laptop) {
+      display: none;
+    }
+  }
+
+  &__circle {
+    right: 12.4%;
+    top: 18.5%;
+    background-color: #8172dd;
+    width: globalFunctions.fluidValue(60px, 95px, 320px, 1800px);
+    height: globalFunctions.fluidValue(60px, 95px, 320px, 1800px);
+    @include globalMixins.max-width(laptop) {
+      right: 0;
+      transform: translate(50%, 50%);
+      top: 0;
+    }
+  }
+
+  &__titleWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__icon {
+    width: globalFunctions.fluidValue(50px, 99px, 320px, 1800px);
+    height: globalFunctions.fluidValue(50px, 99px, 320px, 1800px);
+    margin-bottom: globalFunctions.fluidValue(30px, 50px, 320px, 1800px);
+  }
+
+  &__title {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: globalFunctions.fluidValue(24px, 56px, 320px, 1800px);
+    text-align: center;
+    margin-bottom: globalFunctions.fluidValue(15px, 32px, 320px, 1800px);
+    max-width: 800px;
+  }
+
+  &__text {
+    font-size: globalFunctions.fluidValue(14px, 20px, 320px, 1800px);
+    text-align: center;
+    line-height: 1.63;
+    text-align: center;
+    color: #808080;
+    margin-bottom: globalFunctions.fluidValue(20px, 49px, 320px, 1800px);
+    max-width: 800px;
+  }
+}
