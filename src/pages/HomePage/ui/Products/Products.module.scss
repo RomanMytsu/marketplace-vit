@@ -1,0 +1,92 @@
+.products {
+  position: relative;
+  overflow: clip;
+
+  &__wrapper {
+    display: flex;
+    aspect-ratio: 15 / 6.88;
+    @include globalMixins.max-width(desktop-sm) {
+      // flex-direction: column-reverse;
+    }
+  }
+
+  &__sliderBlock {
+    position: relative;
+    z-index: 10;
+    right: -25%;
+    top: 10%;
+    transform: translate(-29.9%, 14.2%);
+    width: 50%;
+
+    
+    // :global(.swiper) {
+    //   position: relative;
+    //   z-index: 10;
+    //   right: -50%;
+    //   top: 10%;
+    //   transform: translate(-29.9%, 14.2%);
+    //   width: 833px;
+    //   overflow: hidden;
+    // }
+    // :global(.swiper-wrapper) {
+    //   display: flex;
+    //   align-items: stretch;
+    // }
+    // :global(.swiper-slide) {
+    //   width: 100% !important;
+    //   max-width: 400px !important;
+    //   height: 494px !important;
+    //   display: flex;
+    //   @include globalMixins.max-width(desktop-sm) {
+    //     width: 355px !important;
+    //   }
+    // }
+  }
+
+  &__contentBlock {
+    position: relative;
+    background-image: url(../../../../shared/assets/images/product-bg.webp);
+    max-width: 1920px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 234px 202px 235px 254px;
+    width: 50%;
+    margin-left: auto;
+  }
+
+  &__contentWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: globalFunctions.fluidValue(24px, 56px, 320px, 1800px);
+    color: #fff;
+    margin-bottom: globalFunctions.fluidValue(15px, 32px, 320px, 1800px);
+  }
+
+  &__description {
+    font-size: globalFunctions.fluidValue(14px, 20px, 320px, 1800px);
+    line-height: 1.63;
+    color: #fff;
+    margin-bottom: globalFunctions.fluidValue(20px, 32px, 320px, 1800px);
+  }
+
+  &__shopLink {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: globalFunctions.fluidValue(14px, 20px, 320px, 1800px);
+    color: #fff;
+  }
+
+  &__img {
+    position: absolute;
+    top: 87%;
+  }
+}
