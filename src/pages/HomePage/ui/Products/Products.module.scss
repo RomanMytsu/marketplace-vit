@@ -1,46 +1,44 @@
 .products {
   position: relative;
   overflow: clip;
+  @include globalMixins.max-width(mobile-small) {
+    padding-top: 15px;
+  }
 
   &__wrapper {
     display: flex;
-    aspect-ratio: 15 / 6.88;
-    @include globalMixins.max-width(desktop-sm) {
-      // flex-direction: column-reverse;
+    align-items: center;
+    position: relative;
+    max-width: 1920px;
+    margin: 0 auto;
+    @include globalMixins.max-width(laptop) {
+      flex-direction: column-reverse;
     }
   }
 
   &__sliderBlock {
     position: relative;
+    left: 11%;
+    transform: translateY(-3%);
+    width: globalFunctions.fluidValue(570px, 833px, 320px, 1800px);
     z-index: 10;
-    right: -25%;
-    top: 10%;
-    transform: translate(-29.9%, 14.2%);
-    width: 50%;
+    overflow: visible !important;
 
-    
-    // :global(.swiper) {
-    //   position: relative;
-    //   z-index: 10;
-    //   right: -50%;
-    //   top: 10%;
-    //   transform: translate(-29.9%, 14.2%);
-    //   width: 833px;
-    //   overflow: hidden;
-    // }
-    // :global(.swiper-wrapper) {
-    //   display: flex;
-    //   align-items: stretch;
-    // }
-    // :global(.swiper-slide) {
-    //   width: 100% !important;
-    //   max-width: 400px !important;
-    //   height: 494px !important;
-    //   display: flex;
-    //   @include globalMixins.max-width(desktop-sm) {
-    //     width: 355px !important;
-    //   }
-    // }
+    @include globalMixins.max-width(laptop) {
+      left: 0;
+      transform: translateY(-25%);
+    }
+    @include globalMixins.max-width(mobile) {
+      left: 38%;
+    }
+    @include globalMixins.max-width(mobile-small) {
+      left: 46%;
+    }
+
+    .product__slide {
+      width: globalFunctions.fluidValue(280px, 400px, 320px, 1800px);
+      height: globalFunctions.fluidValue(367px, 494px, 320px, 1800px);
+    }
   }
 
   &__contentBlock {
@@ -50,14 +48,23 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    padding: 234px 202px 235px 254px;
+    padding: 237px 202px 236px 254px;
     width: 50%;
     margin-left: auto;
+    z-index: 5;
+    @include globalMixins.max-width(laptop) {
+      padding: 59px 20px 137px;
+      width: 100%;
+    }
   }
 
   &__contentWrapper {
     display: flex;
     flex-direction: column;
+    @include globalMixins.max-width(laptop) {
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   &__title {
@@ -88,5 +95,8 @@
   &__img {
     position: absolute;
     top: 87%;
+    @include globalMixins.max-width(laptop) {
+      display: none;
+    }
   }
 }

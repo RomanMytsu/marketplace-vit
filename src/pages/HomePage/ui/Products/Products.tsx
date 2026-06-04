@@ -23,6 +23,7 @@ const Products: React.FC = () => {
             <Swiper
               spaceBetween={10}
               slidesPerView={"auto"}
+              watchSlidesProgress={true}
               loop={true}
               grabCursor={true}
               breakpoints={{
@@ -30,7 +31,7 @@ const Products: React.FC = () => {
               }}
             >
               {products.map((product) => (
-                <SwiperSlide key={product.id} className={s.slide}>
+                <SwiperSlide key={product.id} className={s.product__slide}>
                   <ProductCard product={product} variant="slider" />
                 </SwiperSlide>
               ))}

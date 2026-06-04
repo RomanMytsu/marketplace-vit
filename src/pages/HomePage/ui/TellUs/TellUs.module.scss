@@ -3,7 +3,7 @@
   overflow: hidden;
   padding: 150px 0;
   @include globalMixins.max-width(laptop) {
-    padding-top: 48px;
+    padding: 48px 0;
   }
 
   &__content {
