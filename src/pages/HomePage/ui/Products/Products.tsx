@@ -4,9 +4,9 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { useGetSwiperProductsQuery } from "@/entities/products/api/productApi"
 import { Link } from "react-router-dom"
 import ProductCard from "@/entities/products/ui/ProductCard/ProductCard"
-import "swiper/css"
 import productsImg from "@/shared/assets/images/products-img.webp"
 import Icon from "@/shared/ui/Icon/Icon"
+import "swiper/css"
 
 const Products: React.FC = () => {
   const { data: products, isLoading, error } = useGetSwiperProductsQuery()

@@ -1,0 +1,43 @@
+.reviews {
+  padding: 50px 0;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: globalFunctions.fluidValue(30px, 80px, 320px, 1800px);
+    @include globalMixins.max-width(laptop) {
+      align-items: center;
+    }
+  }
+
+  &__icon {
+    width: globalFunctions.fluidValue(50px, 86px, 320px, 1800px);
+    height: globalFunctions.fluidValue(57px, 98px, 320px, 1800px);
+    margin-bottom: globalFunctions.fluidValue(30px, 40px, 320px, 1800px);
+  }
+
+  &__title {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: globalFunctions.fluidValue(20px, 56px, 320px, 1800px);
+    margin-bottom: globalFunctions.fluidValue(15px, 32px, 320px, 1800px);
+    max-width: 612px;
+    @include globalMixins.max-width(laptop) {
+      text-align: center;
+    }
+  }
+
+  &__subTitle {
+    font-size: globalFunctions.fluidValue(14px, 20px, 320px, 1800px);
+    line-height: 1.63;
+    color: #808080;
+    max-width: 674px;
+    @include globalMixins.max-width(laptop) {
+      text-align: center;
+    }
+  }
+
+  &__slide {
+    width: globalFunctions.fluidValue(280px, 444px, 320px, 1800px);
+  }
+}

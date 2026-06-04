@@ -1,0 +1,51 @@
+.card {
+  border-radius: 16px;
+  background: #faf8f6;
+  padding: 40px 32px 30px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: globalFunctions.fluidValue(280px, 444px, 320px, 1800px);
+  @include globalMixins.max-width(laptop) {
+    padding: 30px 20px 20px;
+  }
+
+  
+
+  &__stars {
+    display: flex;
+    gap: 5px;
+    margin-bottom: globalFunctions.fluidValue(15px, 20px, 320px, 1800px);
+  }
+
+  &__title {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: globalFunctions.fluidValue(16px, 20px, 320px, 1800px);
+    margin-bottom: globalFunctions.fluidValue(15px, 20px, 320px, 1800px);
+  }
+
+  &__text {
+    font-size: globalFunctions.fluidValue(14px, 16px, 320px, 1800px);
+    line-height: 1.75;
+    height: 111px;
+    margin-bottom: globalFunctions.fluidValue(82px, 50px, 320px, 1800px);
+    @include globalMixins.max-width(mobile) {
+      line-height: 1.71;
+    }
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__authorName {
+    font-weight: 700;
+    font-size: globalFunctions.fluidValue(14px, 16px, 320px, 1800px);
+    @include globalMixins.max-width(mobile) {
+      font-weight: 600;
+    }
+  }
+}

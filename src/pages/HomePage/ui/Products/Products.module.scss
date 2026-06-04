@@ -1,6 +1,5 @@
 .products {
   position: relative;
-  overflow: clip;
   @include globalMixins.max-width(mobile-small) {
     padding-top: 15px;
   }
@@ -20,7 +19,7 @@
     position: relative;
     left: 11%;
     transform: translateY(-3%);
-    width: globalFunctions.fluidValue(570px, 833px, 320px, 1800px);
+    width: globalFunctions.fluidValue(280px, 833px, 320px, 1800px);
     z-index: 10;
     overflow: visible !important;
 
@@ -32,7 +31,7 @@
       left: 38%;
     }
     @include globalMixins.max-width(mobile-small) {
-      left: 46%;
+      left: 2%;
     }
 
     .product__slide {
@@ -95,6 +94,9 @@
   &__img {
     position: absolute;
     top: 87%;
+    @include globalMixins.max-width(desktop-sm) {
+      right: 16%;
+    }
     @include globalMixins.max-width(laptop) {
       display: none;
     }
