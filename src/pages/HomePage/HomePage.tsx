@@ -5,6 +5,7 @@ import Reviews from "@/widgets/Reviews/Reviews"
 import TellUs from "./ui/TellUs/TellUs"
 import reviewsIcon from "@/shared/assets/icons/reviews-icon.svg"
 import { MOCK_REVIEWS } from "@/widgets/Reviews/model/reviewsMock"
+import Ready from "./ui/Ready/Ready"
 
 const HomePage = () => {
   return (
@@ -19,6 +20,7 @@ const HomePage = () => {
         subTitle="We'll help you create a health plan with vitamins, supplements, and more that help you feel your best today and support you long-term."
         iconSrc={reviewsIcon}
       />
+      <Ready />
     </>
   )
 }
