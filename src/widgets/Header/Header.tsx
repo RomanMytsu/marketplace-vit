@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Logo from "@/shared/assets/icons/logo.svg"
 import Icon from "@/shared/ui/Icon/Icon"
 import { useEffect, useState } from "react"
@@ -6,12 +6,19 @@ import { MobileMenu } from "./ui/MobileMenu/MobileMenu"
 import QuizLink from "@/shared/ui/QuizLink/QuizLink"
 import s from "./Header.module.scss"
 import clsx from "clsx"
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks"
+import { selectUser } from "@/entities/auth/model/selectors"
+import { openAuthModal } from "@/features/auth/model/authModalSlice"
 
 const HEADER_HEIGHT = 55
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+
+  const user = useAppSelector(selectUser)
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +38,14 @@ const Header = () => {
 
   const handleCloseMenu = () => {
     setIsMenuOpen(false)
+  }
+
+  const handleProfileClick = () => {
+    if (user) {
+      navigate("/profile")
+    } else {
+      dispatch(openAuthModal("login"))
+    }
   }
 
   return (
@@ -56,14 +71,14 @@ const Header = () => {
             </Link>
           </div>
           <nav className={s.actions}>
-            <Link to="/login" aria-label="Profile">
+            <button onClick={handleProfileClick} aria-label="Profile">
               <Icon
                 name="profile"
                 width={32}
                 height={32}
                 className={s.iconProfile}
               />
-            </Link>
+            </button>
             <Link to="/cart" className={s.cart} aria-label="Cart">
               <Icon name="cart" width={32} height={32} className={s.iconCart} />
             </Link>

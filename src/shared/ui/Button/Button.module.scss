@@ -1,0 +1,20 @@
+.button {
+  border: none;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: 0.3s;
+}
+
+.primary {
+  background: #ff844e;
+  color: #fff;
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid #ddd;
+}
+
+.fullWidth {
+  width: 100%;
+}

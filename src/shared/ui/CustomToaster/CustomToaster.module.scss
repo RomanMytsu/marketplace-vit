@@ -1,0 +1,29 @@
+.toastCard {
+  border-radius: 12px !important;
+  padding: 17px 50px 17px 40px !important;
+  color: #fff !important;
+  line-height: 0 !important;
+  width: globalFunctions.fluidValue(320px, 336px, 320px, 1800px) !important;
+  height: globalFunctions.fluidValue(70px, 56px, 320px, 1800px);
+  gap: 15px;
+  font-family: globalVariables.$font-family;
+  @include globalMixins.max-width(laptop) {
+    padding: 24px 37px !important;
+  }
+
+  & [role="status"] {
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+
+  &.success {
+    background-color: #a2c94f;
+  }
+
+  &.error {
+    background-color: #d32d2c;
+  }
+}

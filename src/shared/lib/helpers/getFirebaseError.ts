@@ -1,0 +1,16 @@
+export const getAuthErrorMessage = (errorCode: string): string => {
+  switch (errorCode) {
+    case "auth/user-not-found":
+    case "auth/wrong-password":
+    case "auth/invalid-credential":
+      return "Incorrect email address or password."
+    case "auth/email-already-in-use":
+      return "A user with this email address is already registered."
+    case "auth/weak-password":
+      return "The password must be at least 6 characters long."
+    case "auth/invalid-email":
+      return "Invalid email address."
+    default:
+      return "An unexpected error has occurred. Please try again later."
+  }
+}

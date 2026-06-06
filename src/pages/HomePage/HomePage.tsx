@@ -6,8 +6,10 @@ import TellUs from "./ui/TellUs/TellUs"
 import reviewsIcon from "@/shared/assets/icons/reviews-icon.svg"
 import { MOCK_REVIEWS } from "@/widgets/Reviews/model/reviewsMock"
 import Ready from "./ui/Ready/Ready"
+import { useTitle } from "@/shared/lib/hooks/useTitle"
 
 const HomePage = () => {
+  useTitle("Home")
   return (
     <>
       <Hero />
