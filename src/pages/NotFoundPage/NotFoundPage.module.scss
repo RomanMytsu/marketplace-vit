@@ -1,0 +1,56 @@
+.notFound {
+  padding: 210px 0 100px;
+  @include globalMixins.max-width(laptop) {
+    padding: 130px 0 60px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include globalMixins.max-width(tablet) {
+      padding: 0 20px;
+    }
+  }
+
+  &__digits {
+    margin-bottom: globalFunctions.fluidValue(30px, 80px, 320px, 1800px);
+  }
+
+  &__img {
+    width: globalFunctions.fluidValue(280px, 490px, 320px, 1800px);
+    height: globalFunctions.fluidValue(116px, 202px, 320px, 1800px);
+  }
+
+  &__title {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: globalFunctions.fluidValue(24px, 26px, 320px, 1800px);
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  &__subtitle {
+    font-size: globalFunctions.fluidValue(14px, 16px, 320px, 1800px);
+    line-height: 1.75;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    background: globalVariables.$main-orange;
+    border: 1px solid globalVariables.$main-orange;
+    font-family: globalVariables.$second-family;
+    font-weight: 700;
+    font-size: globalFunctions.fluidValue(16px, 20px, 320px, 1800px);
+    text-align: center;
+    color: #fff;
+    width: globalFunctions.fluidValue(279px, 330px, 320px, 1800px);
+    height: globalFunctions.fluidValue(56px, 65px, 320px, 1800px);
+  }
+}

@@ -8,6 +8,7 @@ const ProfilePage = lazy(() => import("@/pages/ProfilePage/ProfilePage"))
 const LoginPage = lazy(() => import("@/pages/LoginPage/LoginPage"))
 const RegisterPage = lazy(() => import("@/pages/RegisterPage/RegisterPage"))
 const RecoveryPage = lazy(() => import("@/pages/RecoveryPage/RecoveryPage"))
+const NotFoundPage = lazy(() => import("@/pages/NotFoundPage/NotFoundPage"))
 
 const router = createHashRouter([
   {
@@ -24,6 +25,10 @@ const router = createHashRouter([
             <ProfilePage />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
       },
     ],
   },
