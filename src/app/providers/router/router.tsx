@@ -5,6 +5,9 @@ import ProtectedRoute from "./ProtectedRoute"
 
 const HomePage = lazy(() => import("@/pages/HomePage/HomePage"))
 const ProfilePage = lazy(() => import("@/pages/ProfilePage/ProfilePage"))
+const LoginPage = lazy(() => import("@/pages/LoginPage/LoginPage"))
+const RegisterPage = lazy(() => import("@/pages/RegisterPage/RegisterPage"))
+const RecoveryPage = lazy(() => import("@/pages/RecoveryPage/RecoveryPage"))
 
 const router = createHashRouter([
   {
@@ -23,6 +26,18 @@ const router = createHashRouter([
         ),
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
+  },
+  {
+    path: "/forgot-password",
+    element: <RecoveryPage />,
   },
 ])
 

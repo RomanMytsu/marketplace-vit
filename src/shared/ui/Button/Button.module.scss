@@ -1,20 +1,20 @@
 .button {
-  border: none;
-  cursor: pointer;
-  border-radius: 999px;
-  transition: 0.3s;
-}
-
-.primary {
-  background: #ff844e;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  border: 1px solid globalVariables.$main-orange;
+  background: globalVariables.$main-orange;
+  font-family: globalVariables.$second-family;
+  font-weight: 700;
+  font-size: 20px;
   color: #fff;
-}
+  text-align: center;
+  height: 65px;
+  width: 444px;
+  transition: all 0.4s ease-in-out;
 
-.secondary {
-  background: transparent;
-  border: 1px solid #ddd;
-}
-
-.fullWidth {
-  width: 100%;
+  @include globalMixins.hover {
+    background: darken(#ff844e, 8%);
+  }
 }

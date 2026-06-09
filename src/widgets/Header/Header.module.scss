@@ -66,8 +66,9 @@
 
   @include globalMixins.max-width(tablet) {
     justify-content: flex-end;
+    gap: 0;
 
-    a:not(.cart) {
+    > *:not(.cart) {
       display: none;
     }
   }

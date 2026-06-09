@@ -1,12 +1,10 @@
 import { Formik, Form } from "formik"
-import { useAppDispatch } from "@/app/store/hooks"
-import { closeAuthModal, setAuthView } from "../../model/authModalSlice"
 import { loginSchema } from "./validation"
 import { loginUser } from "../../api/authApi"
 import Input from "@/shared/ui/Input"
 import Button from "@/shared/ui/Button"
 import s from "./LoginForm.module.scss"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
 import { getAuthErrorMessage } from "@/shared/lib/helpers/getFirebaseError"
 import { FirebaseError } from "firebase/app"
@@ -15,14 +13,12 @@ type LoginFormValues = { email: string; password: string }
 const initialValues: LoginFormValues = { email: "", password: "" }
 
 const LoginForm = () => {
-  const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
   const handleSubmit = async (values: LoginFormValues) => {
     try {
       await loginUser(values.email, values.password)
       toast.success("You have successfully logged in!")
-      dispatch(closeAuthModal())
       navigate("/")
     } catch (error) {
       if (error instanceof FirebaseError) {
@@ -64,13 +60,9 @@ const LoginForm = () => {
               onBlur={handleBlur}
               error={touched.password ? errors.password : undefined}
             />
-            <button
-              type="button"
-              className={s.forgotLink}
-              onClick={() => dispatch(setAuthView("recovery"))}
-            >
+            <Link to="/forgot-password" className={s.forgotLink}>
               Forgot password?
-            </button>
+            </Link>
           </div>
 
           <Button type="submit" fullWidth>
@@ -81,13 +73,8 @@ const LoginForm = () => {
           {/* Компоненты социальных кнопок */}
 
           <div className={s.footer}>
-            Don't have an account?{" "}
-            <button
-              type="button"
-              onClick={() => dispatch(setAuthView("register"))}
-            >
-              Create one
-            </button>
+            Don't have an account?
+            <Link to="/register">Create one</Link>
           </div>
         </Form>
       )}

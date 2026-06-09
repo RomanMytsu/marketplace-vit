@@ -1,16 +1,15 @@
 import { Formik, Form } from "formik"
-import { useAppDispatch } from "@/app/store/hooks"
-import { closeAuthModal, setAuthView } from "../../model/authModalSlice"
 import { createUserProfileInFirestore, registerUser } from "../../api/authApi"
 import { registerSchema } from "./validation"
 import Input from "@/shared/ui/Input"
 import Button from "@/shared/ui/Button"
 import clsx from "clsx"
-import s from "./RegisterForm.module.scss" // Стили для табов
+import s from "./RegisterForm.module.scss"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
 import { getAuthErrorMessage } from "@/shared/lib/helpers/getFirebaseError"
 import { FirebaseError } from "firebase/app"
+import { SocialButtons } from "../SocialButtons/SocialButtons"
 
 type CustomerType = "regular" | "wholesale"
 
@@ -23,7 +22,6 @@ const initialValues = {
 }
 
 const RegisterForm = () => {
-  const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
   const handleSubmit = async (values: typeof initialValues) => {
@@ -35,7 +33,6 @@ const RegisterForm = () => {
         role: values.customerType,
       })
       toast.success("Your account has been successfully created!")
-      dispatch(closeAuthModal())
       navigate("/")
     } catch (error) {
       if (error instanceof FirebaseError) {
@@ -61,13 +58,16 @@ const RegisterForm = () => {
         setFieldValue,
       }) => (
         <Form className={s.form}>
-          {/* Переключатель типа клиента */}
-          <div className={s.tabs}>
+          <div
+            className={s.form__tabs}
+            aria-selected={values.customerType === "regular"}
+            role="tab"
+          >
             <button
               type="button"
               className={clsx(
-                s.tab,
-                values.customerType === "regular" && s.tabActive,
+                s.form__tab,
+                values.customerType === "regular" && s.form__tabActive,
               )}
               onClick={() => setFieldValue("customerType", "regular")}
             >
@@ -76,8 +76,8 @@ const RegisterForm = () => {
             <button
               type="button"
               className={clsx(
-                s.tab,
-                values.customerType === "wholesale" && s.tabActive,
+                s.form__tab,
+                values.customerType === "wholesale" && s.form__tabActive,
               )}
               onClick={() => setFieldValue("customerType", "wholesale")}
             >
@@ -85,12 +85,11 @@ const RegisterForm = () => {
             </button>
           </div>
 
-          <h3 className={s.title}>Sign up with</h3>
-          {/* Здесь будут ваши кнопки Social Auth (Google, Apple, Facebook) */}
-
-          <div className={s.divider}>
+          <h3 className={s.form__title}>Sign up with</h3>
+          <SocialButtons />
+          <p className={s.form__divider}>
             or sign up using your email address...
-          </div>
+          </p>
 
           <Input
             name="email"
@@ -130,19 +129,9 @@ const RegisterForm = () => {
             error={touched.password ? errors.password : undefined}
           />
 
-          <Button type="submit" fullWidth>
+          <Button type="submit" className={s.form__submitBtn}>
             Create my account
           </Button>
-
-          <div className={s.footer}>
-            Already have an account?{" "}
-            <button
-              type="button"
-              onClick={() => dispatch(setAuthView("login"))}
-            >
-              Sign in
-            </button>
-          </div>
         </Form>
       )}
     </Formik>

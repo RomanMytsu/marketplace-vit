@@ -1,6 +1,4 @@
 import { Formik, Form } from "formik"
-import { useAppDispatch } from "@/app/store/hooks"
-import { setAuthView } from "../../model/authModalSlice"
 import { recoverPassword } from "../../api/authApi"
 import { recoverySchema } from "./validation"
 import Input from "@/shared/ui/Input"
@@ -9,17 +7,15 @@ import s from "./RecoverPasswordForm.module.scss"
 import toast from "react-hot-toast"
 import { getAuthErrorMessage } from "@/shared/lib/helpers/getFirebaseError"
 import { FirebaseError } from "firebase/app"
+import { Link } from "react-router-dom"
 
 const initialValues = { email: "" }
 
 const RecoverPasswordForm = () => {
-  const dispatch = useAppDispatch()
-
   const handleSubmit = async (values: typeof initialValues) => {
     try {
       await recoverPassword(values.email)
       toast.success("The recovery instructions have been sent to your email!")
-      dispatch(setAuthView("login"))
     } catch (error) {
       if (error instanceof FirebaseError) {
         toast.error(getAuthErrorMessage(error.code))
@@ -55,13 +51,7 @@ const RecoverPasswordForm = () => {
           </Button>
 
           <div className={s.footer}>
-            Remember your password?{" "}
-            <button
-              type="button"
-              onClick={() => dispatch(setAuthView("login"))}
-            >
-              Back to login
-            </button>
+            Remember your password? <Link to="/login">Back to login</Link>
           </div>
         </Form>
       )}

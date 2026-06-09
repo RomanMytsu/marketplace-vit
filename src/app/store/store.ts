@@ -1,12 +1,11 @@
 import { productApi } from "@/entities/products/api/productApi"
 import { configureStore } from "@reduxjs/toolkit"
 import authReducer from "@/entities/auth/model/authSlice"
-import authModalReducer from "@/features/auth/model/authModalSlice"
+
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    authModal: authModalReducer,
     [productApi.reducerPath]: productApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

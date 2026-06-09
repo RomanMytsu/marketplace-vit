@@ -6,9 +6,8 @@ import { MobileMenu } from "./ui/MobileMenu/MobileMenu"
 import QuizLink from "@/shared/ui/QuizLink/QuizLink"
 import s from "./Header.module.scss"
 import clsx from "clsx"
-import { useAppDispatch, useAppSelector } from "@/app/store/hooks"
+import { useAppSelector } from "@/app/store/hooks"
 import { selectUser } from "@/entities/auth/model/selectors"
-import { openAuthModal } from "@/features/auth/model/authModalSlice"
 
 const HEADER_HEIGHT = 55
 
@@ -18,7 +17,6 @@ const Header = () => {
 
   const user = useAppSelector(selectUser)
   const navigate = useNavigate()
-  const dispatch = useAppDispatch()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,7 +42,7 @@ const Header = () => {
     if (user) {
       navigate("/profile")
     } else {
-      dispatch(openAuthModal("login"))
+      navigate("/login")
     }
   }
 
