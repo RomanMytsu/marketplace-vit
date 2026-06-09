@@ -3,7 +3,6 @@
   flex-direction: row;
   gap: globalFunctions.fluidValue(10px, 32px, 320px, 1800px);
   width: 100%;
-  margin-bottom: 40px;
 
   @include globalMixins.max-width(laptop) {
     flex-direction: column;

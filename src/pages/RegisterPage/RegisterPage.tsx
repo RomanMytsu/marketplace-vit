@@ -1,5 +1,5 @@
 import RegisterForm from "@/features/auth/ui/RegisterForm/RegisterForm"
-import s from "../LoginPage/LoginPage.module.scss"
+import s from "./RegisterPage.module.scss"
 import { useTitle } from "@/shared/lib/hooks/useTitle"
 import logoSrc from "@/shared/assets/icons/logo.svg"
 import Icon from "@/shared/ui/Icon/Icon"
@@ -8,11 +8,11 @@ import { Link } from "react-router-dom"
 const RegisterPage = () => {
   useTitle("RegisterPage")
   return (
-    <div className={s.pageWrapper}>
-      <div className={s.container}>
-        <div className={s.content}>
-          <div className={s.header}>
-            <Link to="/" className={s.link}>
+    <div className={s.register__pageWrapper}>
+      <div className={s.register__container}>
+        <div className={s.register__content}>
+          <div className={s.register__header}>
+            <Link to="/" className={s.register__logoLink}>
               <img
                 src={logoSrc}
                 alt="Logo images"
@@ -22,29 +22,28 @@ const RegisterPage = () => {
                 height={50}
               />
             </Link>
-            <div className={s.mobWrpper}>
+            <div className={s.register__mobWrapper}>
               <Link
                 to="/"
                 type="button"
-                className={s.backButton}
+                className={s.register__backButton}
                 aria-label="Go to home page"
               >
                 <Icon
                   name="back_arrow"
-                  className={s.backIcon}
                   width={11}
                   height={20}
                 />
               </Link>
-              <span className={s.backText}>Account</span>
+              <span className={s.register__backText}>Account</span>
             </div>
           </div>
-          <div className={s.card}>
+          <div className={s.register__card}>
             <RegisterForm />
           </div>
-          <div className={s.pageFooter}>
-            Already have an account?{" "}
-            <Link to="/login" className={s.footerLink}>
+          <div className={s.register__pageFooter}>
+            Already have an account?
+            <Link to="/login" className={s.register__footerLink}>
               Sign in
             </Link>
           </div>

@@ -1,0 +1,54 @@
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__title {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: globalFunctions.fluidValue(24px, 26px, 320px, 1800px);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  &__subtitle {
+    font-size: globalFunctions.fluidValue(14px, 16px, 320px, 1800px);
+    line-height: 1.75;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__passwordWrapper {
+    position: relative;
+
+    input {
+      padding-right: 140px;
+    }
+  }
+
+  &__forgotLink {
+    position: absolute;
+    right: 24px;
+    top: 37%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    text-align: center;
+    color: #000;
+    opacity: 0.5;
+  }
+
+  &__btnSubmit {
+    width: globalFunctions.fluidValue(280px, 270px, 320px, 1800px);
+    height: globalFunctions.fluidValue(56px, 65px, 320px, 1800px);
+    margin-top: 3px;
+  }
+
+  &__divider {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: globalFunctions.fluidValue(16px, 20px, 320px, 1800px);
+    text-align: center;
+    margin: 40px 0;
+  }
+}

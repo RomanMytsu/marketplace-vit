@@ -46,9 +46,7 @@ const RecoverPasswordForm = () => {
             error={touched.email ? errors.email : undefined}
           />
 
-          <Button type="submit" fullWidth>
-            Recover
-          </Button>
+          <Button type="submit">Recover</Button>
 
           <div className={s.footer}>
             Remember your password? <Link to="/login">Back to login</Link>

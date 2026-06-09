@@ -3,6 +3,7 @@ import s from "./SocialButtons.module.scss"
 import googleIcon from "@/shared/assets/icons/google.svg"
 import appleIcon from "@/shared/assets/icons/apple.svg"
 import facebookIcon from "@/shared/assets/icons/facebook_logo.svg"
+import clsx from "clsx"
 
 interface SocialProvider {
   id: string
@@ -16,13 +17,13 @@ const PROVIDERS: SocialProvider[] = [
   { id: "facebook", name: "Facebook", iconSrc: facebookIcon },
 ]
 
-export const SocialButtons = () => {
+export const SocialButtons = ({ className }: { className?: string }) => {
   const handleSocialClick = (providerId: string) => {
     console.log(`Login with ${providerId}`)
   }
 
   return (
-    <div className={s.socialGroup}>
+    <div className={clsx(s.socialGroup, className)}>
       {PROVIDERS.map(({ id, name, iconSrc }) => (
         <button
           key={id}

@@ -86,7 +86,7 @@ const RegisterForm = () => {
           </div>
 
           <h3 className={s.form__title}>Sign up with</h3>
-          <SocialButtons />
+          <SocialButtons className={s.form__socialGroup} />
           <p className={s.form__divider}>
             or sign up using your email address...
           </p>

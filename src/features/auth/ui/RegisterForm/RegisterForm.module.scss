@@ -60,6 +60,10 @@
     margin-bottom: globalFunctions.fluidValue(30px, 40px, 320px, 1800px);
   }
 
+  &__socialGroup {
+    margin-bottom: 40px;
+  }
+
   &__divider {
     font-family: globalVariables.$second-family;
     font-weight: 500;

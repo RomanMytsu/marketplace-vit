@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
 import { getAuthErrorMessage } from "@/shared/lib/helpers/getFirebaseError"
 import { FirebaseError } from "firebase/app"
+import { SocialButtons } from "../SocialButtons/SocialButtons"
 
 type LoginFormValues = { email: string; password: string }
 const initialValues: LoginFormValues = { email: "", password: "" }
@@ -36,10 +37,11 @@ const LoginForm = () => {
       onSubmit={handleSubmit}
     >
       {({ values, errors, touched, handleChange, handleBlur }) => (
-        <Form className={s.form}>
-          <h3 className={s.title}>Sign in with email</h3>
-          <p className={s.subtitle}>Please enter your e-mail and password:</p>
-
+        <Form className={s.loginForm}>
+          <h3 className={s.loginForm__title}>Sign in with email</h3>
+          <p className={s.loginForm__subtitle}>
+            Please enter your e-mail and password:
+          </p>
           <Input
             name="email"
             type="email"
@@ -49,8 +51,7 @@ const LoginForm = () => {
             onBlur={handleBlur}
             error={touched.email ? errors.email : undefined}
           />
-
-          <div className={s.passwordWrapper}>
+          <div className={s.loginForm__passwordWrapper}>
             <Input
               name="password"
               type="password"
@@ -60,22 +61,15 @@ const LoginForm = () => {
               onBlur={handleBlur}
               error={touched.password ? errors.password : undefined}
             />
-            <Link to="/forgot-password" className={s.forgotLink}>
+            <Link to="/forgot-password" className={s.loginForm__forgotLink}>
               Forgot password?
             </Link>
           </div>
-
-          <Button type="submit" fullWidth>
+          <Button type="submit" className={s.loginForm__btnSubmit}>
             Sign In
           </Button>
-
-          <div className={s.divider}>or sign in with...</div>
-          {/* Компоненты социальных кнопок */}
-
-          <div className={s.footer}>
-            Don't have an account?
-            <Link to="/register">Create one</Link>
-          </div>
+          <div className={s.loginForm__divider}>or sign in with...</div>
+          <SocialButtons />
         </Form>
       )}
     </Formik>

@@ -5,17 +5,8 @@ import clsx from "clsx"
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
 }
-const Button = ({
-  children,
-
-  className,
-  ...props
-}: ButtonProps) => {
-  return (
-    <button className={clsx(s.button, className)} {...props}>
-      {children}
-    </button>
-  )
+const Button = ({ children, className }: ButtonProps) => {
+  return <button className={clsx(s.button, className)}>{children}</button>
 }
 
 export default Button
