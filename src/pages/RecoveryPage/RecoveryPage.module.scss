@@ -1,0 +1,87 @@
+.recoveryPage {
+  min-height: 100vh;
+  background: #faf8f6;
+  padding: 30px 0 40px;
+  @include globalMixins.max-width(tablet) {
+    padding: 10px 0 40px;
+  }
+
+  &__container {
+    @include globalMixins.max-width(laptop) {
+      padding: 0 20px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: calc(100vh - 70px);
+    @include globalMixins.max-width(tablet) {
+      min-height: calc(100vh - 50px);
+    }
+  }
+
+  &__header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    @include globalMixins.max-width(tablet) {
+      min-height: 50px;
+    }
+  }
+
+  &__link {
+    @include globalMixins.max-width(tablet) {
+      display: none;
+    }
+  }
+
+  &__mobWrapper {
+    display: none;
+    @include globalMixins.max-width(tablet) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__backButton {
+    position: absolute;
+    left: 0;
+    top: 52%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 11px 7px 10px;
+  }
+
+  &__backText {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  &__card {
+    background: #fff;
+    padding: 60px 119px;
+    margin: 209px 0 226px;
+    @include globalMixins.max-width(tablet) {
+      padding: 0;
+      margin: 50px 0 20px;
+    }
+  }
+
+  &__pageFooter {
+    font-size: globalFunctions.fluidValue(14px, 16px, 320px, 1800px);
+    text-align: center;
+  }
+
+  &__footerLink {
+    color: globalVariables.$main-orange;
+  }
+}

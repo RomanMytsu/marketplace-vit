@@ -7,7 +7,6 @@ import s from "./RecoverPasswordForm.module.scss"
 import toast from "react-hot-toast"
 import { getAuthErrorMessage } from "@/shared/lib/helpers/getFirebaseError"
 import { FirebaseError } from "firebase/app"
-import { Link } from "react-router-dom"
 
 const initialValues = { email: "" }
 
@@ -32,9 +31,9 @@ const RecoverPasswordForm = () => {
       onSubmit={handleSubmit}
     >
       {({ values, errors, touched, handleChange, handleBlur }) => (
-        <Form className={s.form}>
-          <h3 className={s.title}>Recover password</h3>
-          <p className={s.subtitle}>Please enter your email:</p>
+        <Form className={s.recovery}>
+          <h3 className={s.recovery__title}>Recover password</h3>
+          <p className={s.recovery__subtitle}>Please enter your email:</p>
 
           <Input
             name="email"
@@ -45,12 +44,9 @@ const RecoverPasswordForm = () => {
             onBlur={handleBlur}
             error={touched.email ? errors.email : undefined}
           />
-
-          <Button type="submit">Recover</Button>
-
-          <div className={s.footer}>
-            Remember your password? <Link to="/login">Back to login</Link>
-          </div>
+          <Button type="submit" className={s.recovery__btnSubmit}>
+            Recover
+          </Button>
         </Form>
       )}
     </Formik>

@@ -15,6 +15,7 @@
   transition: all 0.4s ease-in-out;
 
   @include globalMixins.hover {
-    background: darken(#ff844e, 8%);
+    background: globalVariables.$main-orange;
+    opacity: 0.9;
   }
 }
