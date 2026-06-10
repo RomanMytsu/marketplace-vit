@@ -1,0 +1,1 @@
+import{i as e}from"./jsx-runtime-DUAcabCT.js";import{t}from"./react-DLuFYh-j.js";var n=e(t(),1),r=e=>{(0,n.useEffect)(()=>{let t=document.title;return document.title=`${e}`,()=>{document.title=t}},[e])};export{r as t};
