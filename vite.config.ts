@@ -56,25 +56,35 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes("node_modules")) {
-            const coreModules = [
-              "react",
-              "react-dom",
-              "react-router",
-              "react-router-dom",
-              "@reduxjs",
-              "immer",
-              "scheduler",
-            ]
-            const isCore = coreModules.some(
-              (mod) =>
-                id.includes(`node_modules/${mod}/`) ||
-                id.includes(`node_modules\\${mod}\\`),
-            )
-            if (isCore) {
-              return "vendor-core"
-            }
+          const normalizedId = id.toLowerCase().replace(/\\/g, "/")
+
+          if (!normalizedId.includes("node_modules")) return
+
+          const parts = normalizedId.split("node_modules/")
+          const packagePath = parts[parts.length - 1] || ""
+          if (
+            packagePath.startsWith("react/") ||
+            packagePath.startsWith("react-dom/") ||
+            packagePath.startsWith("react-router/") ||
+            packagePath.startsWith("react-router-dom/") ||
+            packagePath.startsWith("scheduler/")
+          ) {
+            return "react"
           }
+          if (
+            packagePath.startsWith("@reduxjs/") ||
+            packagePath.startsWith("immer/") ||
+            packagePath.startsWith("redux/")
+          ) {
+            return "redux"
+          }
+          if (packagePath.startsWith("swiper/")) {
+            return "swiper"
+          }
+          if (packagePath.startsWith("lucide-react/")) {
+            return "lucide"
+          }
+          return "vendor"
         },
       },
     },
