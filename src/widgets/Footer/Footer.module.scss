@@ -75,7 +75,7 @@
     font-size: 18px;
     line-height: 2.5;
     @include globalMixins.max-width(laptop) {
-      line-height: none;
+      line-height: normal;
     }
   }
 
