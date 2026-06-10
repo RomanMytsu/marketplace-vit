@@ -29,7 +29,7 @@ const Footer = () => {
               <h3 className={s.footer__title}>{shopLinks.title}</h3>
               <ul className={`${s.footer__list} ${s.footer__shopList}`}>
                 {shopLinks.links.map((link) => (
-                  <li key={link.href} className={s.footer__item}>
+                  <li key={link.id} className={s.footer__item}>
                     <Link to={link.href} className={s.footer__link}>
                       {link.label}
                     </Link>
@@ -41,7 +41,7 @@ const Footer = () => {
               <h3 className={s.footer__title}>{infoLinks.title}</h3>
               <ul className={s.footer__list}>
                 {infoLinks.links.map((link) => (
-                  <li key={link.href} className={s.footer__item}>
+                  <li key={link.id} className={s.footer__item}>
                     <Link to={link.href} className={s.footer__link}>
                       {link.label}
                     </Link>

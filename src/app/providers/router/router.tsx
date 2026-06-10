@@ -9,6 +9,7 @@ const LoginPage = lazy(() => import("@/pages/LoginPage/LoginPage"))
 const RegisterPage = lazy(() => import("@/pages/RegisterPage/RegisterPage"))
 const RecoveryPage = lazy(() => import("@/pages/RecoveryPage/RecoveryPage"))
 const NotFoundPage = lazy(() => import("@/pages/NotFoundPage/NotFoundPage"))
+const TermsPage = lazy(() => import("@/pages/TermsPage/TermsPage"))
 
 const router = createHashRouter([
   {
@@ -19,12 +20,8 @@ const router = createHashRouter([
         element: <HomePage />,
       },
       {
-        path: "/profile",
-        element: (
-          <ProtectedRoute>
-            <ProfilePage />
-          </ProtectedRoute>
-        ),
+        path: "/terms",
+        element: <TermsPage />,
       },
       {
         path: "*",
@@ -43,6 +40,14 @@ const router = createHashRouter([
   {
     path: "/forgot-password",
     element: <RecoveryPage />,
+  },
+  {
+    path: "/profile",
+    element: (
+      <ProtectedRoute>
+        <ProfilePage />
+      </ProtectedRoute>
+    ),
   },
 ])
 
