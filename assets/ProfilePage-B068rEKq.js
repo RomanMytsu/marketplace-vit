@@ -1,1 +1,0 @@
-import{t as e}from"./react-CSeAam5c.js";var t=e(),n=()=>(0,t.jsx)(`h1`,{children:`Profile Page`});export{n as default};
