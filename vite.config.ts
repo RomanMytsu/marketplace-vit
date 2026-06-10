@@ -59,30 +59,24 @@ export default defineConfig({
           const normalizedId = id.toLowerCase().replace(/\\/g, "/")
 
           if (!normalizedId.includes("node_modules")) return
-
-          const parts = normalizedId.split("node_modules/")
-          const packagePath = parts[parts.length - 1] || ""
           if (
-            packagePath.startsWith("react/") ||
-            packagePath.startsWith("react-dom/") ||
-            packagePath.startsWith("react-router/") ||
-            packagePath.startsWith("react-router-dom/") ||
-            packagePath.startsWith("scheduler/")
+            normalizedId.includes("node_modules/react/") ||
+            normalizedId.includes("node_modules/react-dom/") ||
+            normalizedId.includes("node_modules/react-router/") ||
+            normalizedId.includes("node_modules/react-router-dom/") ||
+            normalizedId.includes("node_modules/scheduler/")
           ) {
-            return "react"
+            return "react-core"
           }
           if (
-            packagePath.startsWith("@reduxjs/") ||
-            packagePath.startsWith("immer/") ||
-            packagePath.startsWith("redux/")
+            normalizedId.includes("node_modules/@reduxjs/") ||
+            normalizedId.includes("node_modules/immer/") ||
+            normalizedId.includes("node_modules/redux/")
           ) {
-            return "redux"
+            return "redux-state"
           }
-          if (packagePath.startsWith("swiper/")) {
-            return "swiper"
-          }
-          if (packagePath.startsWith("lucide-react/")) {
-            return "lucide"
+          if (normalizedId.includes("node_modules/swiper/")) {
+            return "swiper-slider"
           }
           return "vendor"
         },
