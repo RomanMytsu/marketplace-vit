@@ -1,1 +1,0 @@
-import{o as e}from"./index-CeS7XYNz.js";var t=e(),n=()=>(0,t.jsx)(`h1`,{children:`Profile Page`});export{n as default};

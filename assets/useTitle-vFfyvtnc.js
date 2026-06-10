@@ -1,1 +1,0 @@
-import{v as e,x as t}from"./index-CeS7XYNz.js";var n=t(e(),1),r=e=>{(0,n.useEffect)(()=>{let t=document.title;return document.title=`${e}`,()=>{document.title=t}},[e])};export{r as t};
