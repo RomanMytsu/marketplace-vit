@@ -1,29 +1,29 @@
 import { auth, db } from "@/shared/firebase/firebase"
-import {
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-} from "firebase/auth"
-import { doc, setDoc } from "firebase/firestore"
-
 export interface UserProfile {
   firstName: string
   lastName: string
   role: "regular" | "wholesale"
 }
 
-export const registerUser = (email: string, password: string) =>
-  createUserWithEmailAndPassword(auth, email, password)
+export const registerUser = async (email: string, password: string) => {
+  const { createUserWithEmailAndPassword } = await import("firebase/auth")
+  return createUserWithEmailAndPassword(auth, email, password)
+}
 
-export const loginUser = (email: string, password: string) =>
-  signInWithEmailAndPassword(auth, email, password)
+export const loginUser = async (email: string, password: string) => {
+  const { signInWithEmailAndPassword } = await import("firebase/auth")
+  return signInWithEmailAndPassword(auth, email, password)
+}
 
-export const recoverPassword = (email: string) =>
-  sendPasswordResetEmail(auth, email)
+export const recoverPassword = async (email: string) => {
+  const { sendPasswordResetEmail } = await import("firebase/auth")
+  return sendPasswordResetEmail(auth, email)
+}
 
-export const createUserProfileInFirestore = (
+export const createUserProfileInFirestore = async (
   uid: string,
   profile: UserProfile,
 ) => {
+  const { doc, setDoc } = await import("firebase/firestore")
   return setDoc(doc(db, "users", uid), profile)
 }

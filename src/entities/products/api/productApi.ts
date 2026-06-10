@@ -1,6 +1,5 @@
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react"
 import type { Product } from "../model/types"
-import { collection, getDocs } from "firebase/firestore"
 import { db } from "@/shared/firebase/firebase"
 
 export const productApi = createApi({
@@ -10,6 +9,7 @@ export const productApi = createApi({
     getSwiperProducts: builder.query<Product[], void>({
       async queryFn() {
         try {
+          const { collection, getDocs } = await import("firebase/firestore")
           const querySnapshot = await getDocs(collection(db, "products-swiper"))
           const products: Product[] = []
 

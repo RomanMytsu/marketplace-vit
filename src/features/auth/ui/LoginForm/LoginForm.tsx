@@ -7,8 +7,9 @@ import s from "./LoginForm.module.scss"
 import { Link, useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
 import { getAuthErrorMessage } from "@/shared/lib/helpers/getFirebaseError"
-import { FirebaseError } from "firebase/app"
 import { SocialButtons } from "../SocialButtons/SocialButtons"
+
+type FirebaseLikeError = { code: string }
 
 type LoginFormValues = { email: string; password: string }
 const initialValues: LoginFormValues = { email: "", password: "" }
@@ -22,8 +23,9 @@ const LoginForm = () => {
       toast.success("You have successfully logged in!")
       navigate("/")
     } catch (error) {
-      if (error instanceof FirebaseError) {
-        toast.error(getAuthErrorMessage(error.code))
+      if (error && typeof error === "object" && "code" in error) {
+        const firebaseError = error as FirebaseLikeError
+        toast.error(getAuthErrorMessage(firebaseError.code))
       } else {
         toast.error("An unexpected error has occurred. Please try again later.")
       }
