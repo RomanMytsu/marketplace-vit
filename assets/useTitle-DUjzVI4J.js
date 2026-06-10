@@ -1,0 +1,1 @@
+import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{P as t}from"./vendor-U1DkWBdl.js";var n=e(t(),1),r=e=>{(0,n.useEffect)(()=>{let t=document.title;return document.title=`${e}`,()=>{document.title=t}},[e])};export{r as t};
