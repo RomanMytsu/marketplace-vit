@@ -1,0 +1,1 @@
+import{s as e}from"./vendor-core-DEF-mHLx.js";var t=e(),n=()=>(0,t.jsx)(`h1`,{children:`Profile Page`});export{n as default};

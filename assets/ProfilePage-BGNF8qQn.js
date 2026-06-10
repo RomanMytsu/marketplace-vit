@@ -1,1 +1,0 @@
-import{d as e}from"./vendor-U1DkWBdl.js";var t=e(),n=()=>(0,t.jsx)(`h1`,{children:`Profile Page`});export{n as default};
