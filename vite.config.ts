@@ -56,28 +56,25 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (!id.includes("node_modules")) return
-
-          const packagePath =
-            id.split("node_modules/").pop() ||
-            id.split("node_modules\\").pop() ||
-            ""
-          if (
-            packagePath.startsWith("react/") ||
-            packagePath.startsWith("react-dom/") ||
-            packagePath.startsWith("react-router/") ||
-            packagePath.startsWith("react-router-dom/") ||
-            packagePath.startsWith("scheduler/")
-          ) {
-            return "react"
+          if (id.includes("node_modules")) {
+            const coreModules = [
+              "react",
+              "react-dom",
+              "react-router",
+              "react-router-dom",
+              "@reduxjs",
+              "immer",
+              "scheduler",
+            ]
+            const isCore = coreModules.some(
+              (mod) =>
+                id.includes(`node_modules/${mod}/`) ||
+                id.includes(`node_modules\\${mod}\\`),
+            )
+            if (isCore) {
+              return "vendor-core"
+            }
           }
-          if (
-            packagePath.startsWith("@reduxjs/") ||
-            packagePath.startsWith("immer/")
-          ) {
-            return "redux"
-          }
-          return "vendor"
         },
       },
     },
