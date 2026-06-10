@@ -57,7 +57,17 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
-            return "vendor"
+            const coreFrameworks = [
+              "react",
+              "react-dom",
+              "react-router",
+              "@reduxjs",
+              "immer",
+              "scheduler",
+            ]
+            if (coreFrameworks.some((lib) => id.includes(lib))) {
+              return "vendor-core"
+            }
           }
         },
       },
