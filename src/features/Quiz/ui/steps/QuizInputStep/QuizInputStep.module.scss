@@ -1,0 +1,80 @@
+.introForm {
+  width: 100%;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputLabel {
+  font-size: 0.875rem;
+  color: #999999;
+  font-weight: 500;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.nameInput {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.25rem;
+  padding: 16px 48px 16px 12px;
+  font-weight: 600;
+  color: #333333;
+
+  &::placeholder {
+    color: #cccccc;
+  }
+}
+
+.inputError {
+  border: 1px solid #ff4d4f;
+  border-radius: 12px;
+}
+
+.errorText {
+  color: #ff4d4f;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.submitCircleBtn {
+  position: absolute;
+  right: 16px;
+  background-color: #f57c51; // Оранжевый круглайт кнопки из макета
+  color: #ffffff;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background-color: #e0663b;
+    transform: scale(1.05);
+  }
+
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+}
+
+

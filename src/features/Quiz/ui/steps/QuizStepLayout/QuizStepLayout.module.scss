@@ -1,0 +1,72 @@
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+
+  &__leftPanel {
+    width: 50%;
+    background: #8172dd;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0 30px 35px;
+    position: relative;
+  }
+
+  // &__header {
+  //   color: #ffffff;
+  // }
+
+  &__mainTitle {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: 64px;
+    color: #fff;
+    max-width: 494px;
+    margin: auto 0;
+  }
+
+  &__backButton {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: max-content;
+    padding: 0;
+    transition: color 0.4s ease;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+
+  &__rightPanel {
+    width: 50%;
+    background-color: #faf8f6;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 48px;
+  }
+
+  &__stepCounter {
+    position: absolute;
+    top: 48px;
+    right: 48px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #000000;
+  }
+
+  &__contentWrapper {
+    width: 100%;
+    max-width: 440px;
+    z-index: 2;
+  }
+}

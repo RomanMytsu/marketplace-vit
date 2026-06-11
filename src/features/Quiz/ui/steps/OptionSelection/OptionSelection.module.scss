@@ -1,0 +1,46 @@
+// Стили для вариантов выбора (Step 2)
+.optionsStack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.optionCard {
+  background: #ffffff;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.selectedCard {
+  border-color: #7b61ff; // Фиолетовая рамка для выбранного элемента
+}
+
+.optionContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.optionLabel {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #333333;
+}
+
+.optionSublabel {
+  font-size: 0.875rem;
+  color: #666666;
+  margin-top: 4px;
+}

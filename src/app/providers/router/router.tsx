@@ -10,6 +10,8 @@ const RegisterPage = lazy(() => import("@/pages/RegisterPage/RegisterPage"))
 const RecoveryPage = lazy(() => import("@/pages/RecoveryPage/RecoveryPage"))
 const NotFoundPage = lazy(() => import("@/pages/NotFoundPage/NotFoundPage"))
 const TermsPage = lazy(() => import("@/pages/TermsPage/TermsPage"))
+const QuizPage = lazy(() => import("@/pages/QuizPage/QuizPage"))
+const PersonalPack = lazy(() => import("@/pages/PersonalPack/PersonalPack"))
 
 const router = createHashRouter([
   {
@@ -22,6 +24,10 @@ const router = createHashRouter([
       {
         path: "/terms",
         element: <TermsPage />,
+      },
+      {
+        path: "/personal-pack",
+        element: <PersonalPack />,
       },
       {
         path: "*",
@@ -48,6 +54,10 @@ const router = createHashRouter([
         <ProfilePage />
       </ProtectedRoute>
     ),
+  },
+  {
+    path: "/quiz",
+    element: <QuizPage />,
   },
 ])
 
