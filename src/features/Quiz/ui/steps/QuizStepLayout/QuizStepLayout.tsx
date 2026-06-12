@@ -70,9 +70,9 @@ export const QuizStepLayout = ({
           </button>
         )}
       </footer>
-      {/* <Circle className={s.layout__circle} aria-hidden="true" />
+      <Circle className={s.layout__circle} aria-hidden="true" />
       <Ellipse className={s.layout__ellipse1} aria-hidden="true" />
-      <Ellipse className={s.layout__ellipse2} aria-hidden="true" /> */}
+      <Ellipse className={s.layout__ellipse2} aria-hidden="true" />
     </div>
   )
 }
