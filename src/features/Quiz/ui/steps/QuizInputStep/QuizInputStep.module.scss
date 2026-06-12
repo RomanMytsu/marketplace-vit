@@ -1,80 +1,50 @@
-.introForm {
-  width: 100%;
-}
-
-.inputContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.inputLabel {
-  font-size: 0.875rem;
-  color: #999999;
-  font-weight: 500;
-}
-
-.inputWrapper {
+.quizForm {
   position: relative;
-  display: flex;
-  align-items: center;
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 8px 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-}
-
-.nameInput {
   width: 100%;
-  border: none;
-  outline: none;
-  font-size: 1.25rem;
-  padding: 16px 48px 16px 12px;
-  font-weight: 600;
-  color: #333333;
 
-  &::placeholder {
-    color: #cccccc;
-  }
-}
-
-.inputError {
-  border: 1px solid #ff4d4f;
-  border-radius: 12px;
-}
-
-.errorText {
-  color: #ff4d4f;
-  font-size: 0.85rem;
-  margin-top: 4px;
-}
-
-.submitCircleBtn {
-  position: absolute;
-  right: 16px;
-  background-color: #f57c51; // Оранжевый круглайт кнопки из макета
-  color: #ffffff;
-  border: none;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease;
-
-  &:hover:not(:disabled) {
-    background-color: #e0663b;
-    transform: scale(1.05);
+  &__input {
+    height: 105px;
+    width: 100%;
+    background: #fff;
+    border-radius: 16px;
+    padding: 0 40px;
+    font-weight: 600;
   }
 
-  &:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
+  &__label {
+    margin-bottom: 15px;
+  }
+
+  &__submitCircleBtn {
+    position: absolute;
+    top: 60px;
+    right: 17px;
+    background: globalVariables.$main-orange;
+    width: 69px;
+    height: 69px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      transform 0.4s ease,
+      background-color 0.4s ease;
+
+    @include globalMixins.hover {
+      &:hover:not(:disabled) {
+        background-color: #e0663b;
+        transform: scale(1.05);
+      }
+    }
+
+    &:disabled {
+      background-color: #ddd;
+      cursor: not-allowed;
+    }
+  }
+
+  &__icon {
+    color: #fff;
+    transform: rotate(180deg);
   }
 }
-
-

@@ -36,6 +36,12 @@
     }
   }
 
+  &__label {
+    font-size: 18px;
+    color: #000;
+    opacity: 0.5;
+  }
+
   &__inputError {
     border-color: globalVariables.$main-orange;
   }

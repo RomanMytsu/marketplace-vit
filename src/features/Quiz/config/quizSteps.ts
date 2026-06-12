@@ -115,6 +115,7 @@ export const QUIZ_STEPS: QuizStepConfig[] = [
   {
     id: "focus",
     type: "single",
+    layout: "grid",
     title: "Tell us what you want to focus on",
     options: [
       {

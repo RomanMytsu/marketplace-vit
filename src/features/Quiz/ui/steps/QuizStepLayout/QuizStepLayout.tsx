@@ -1,8 +1,12 @@
 import type { ReactNode } from "react"
 import { Link } from "react-router-dom"
 import logoWhite from "@/shared/assets/images/white-logo.svg"
-import s from "./QuizStepLayout.module.scss"
+import logo from "@/shared/assets/icons/logo.svg"
 import Icon from "@/shared/ui/Icon/Icon"
+import Circle from "@/shared/ui/Circle/Circle"
+import Ellipse from "@/shared/ui/Ellipse/Ellipse"
+import clsx from "clsx"
+import s from "./QuizStepLayout.module.scss"
 
 interface QuizStepLayoutProps {
   title: string
@@ -22,10 +26,12 @@ export const QuizStepLayout = ({
   children,
 }: QuizStepLayoutProps) => {
   return (
-    <div className={s.layout}>
-      <div className={s.layout__leftPanel}>
-        <div className={s.layout__header}>
-          <Link to="/">
+    <div className={clsx(s.layout, s[`layout--step-${currentStep}`])}>
+      <div className={s.layout__sidebarBg} aria-hidden="true" />
+      <div className={s.layout__topBar}>
+        <Link to="/" className={s.layout__logoLink}>
+          <picture>
+            <source media="(max-width: 768px)" srcSet={logo} />
             <img
               src={logoWhite}
               alt="Logo Image"
@@ -33,26 +39,40 @@ export const QuizStepLayout = ({
               height={50}
               loading="lazy"
             />
-          </Link>
-        </div>
-        <h1 className={s.layout__mainTitle}>{title}</h1>
+          </picture>
+        </Link>
+        <p className={s.layout__stepCounter}>
+          {currentStep}/{totalSteps}
+        </p>
+      </div>
+      <h1 className={s.layout__mainTitle}>{title}</h1>
+      <div
+        className={clsx(s.layout__contentWrapper, {
+          [s["layout__contentWrapper--wide"]]: currentStep === 8,
+        })}
+      >
+        {children}
+      </div>
+      <footer className={s.layout__footer}>
         {showBack && (
           <button
             onClick={onBack}
             className={s.layout__backButton}
             type="button"
           >
-            <Icon name="back-arrow" width={9} height={15} />
+            <Icon
+              name="back-arrow"
+              className={s.layout__backIcon}
+              width={9}
+              height={15}
+            />
             Back
           </button>
         )}
-      </div>
-      <div className={s.layout__rightPanel}>
-        <div className={s.layout__stepCounter}>
-          {currentStep}/{totalSteps}
-        </div>
-        <div className={s.layout__contentWrapper}>{children}</div>
-      </div>
+      </footer>
+      {/* <Circle className={s.layout__circle} aria-hidden="true" />
+      <Ellipse className={s.layout__ellipse1} aria-hidden="true" />
+      <Ellipse className={s.layout__ellipse2} aria-hidden="true" /> */}
     </div>
   )
 }

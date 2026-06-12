@@ -13,6 +13,7 @@ export interface QuizStepConfig {
   title: string
   subtitle?: string
   options?: QuizOption[]
+  layout?: "stack" | "grid"
 }
 
 export interface QuizState {

@@ -1,19 +1,22 @@
 import { forwardRef, type InputHTMLAttributes } from "react"
-
 import clsx from "clsx"
-
 import s from "./Input.module.scss"
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string
   label?: string
+  labelClassName?: string
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, className, ...props }, ref) => {
+  ({ label, error, className, labelClassName, ...props }, ref) => {
     return (
       <div className={s.field__wrapper}>
-        {label && <label className={s.label}>{label}</label>}
+        {label && (
+          <label className={clsx(s.field__label, labelClassName)}>
+            {label}
+          </label>
+        )}
         <input
           ref={ref}
           className={clsx(

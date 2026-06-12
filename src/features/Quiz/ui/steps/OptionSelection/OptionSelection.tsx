@@ -1,25 +1,24 @@
-import React from "react"
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks"
-import s from "./OptionSelection.module.scss"
 import type { QuizStepConfig } from "@/features/Quiz/model/types"
 import { setAnswer } from "@/features/Quiz/model/quizSlice"
+import s from "./OptionSelection.module.scss"
+import clsx from "clsx"
 
 interface OptionSelectionProps {
   config: QuizStepConfig
   onAutoSubmit?: () => void
 }
 
-export const OptionSelection: React.FC<OptionSelectionProps> = ({
+export const OptionSelection = ({
   config,
   onAutoSubmit,
-}) => {
+}: OptionSelectionProps) => {
   const dispatch = useAppDispatch()
   const currentAnswer = useAppSelector((state) => state.quiz.answers[config.id])
 
   const handleSelect = (value: string) => {
     if (config.type === "single") {
       dispatch(setAnswer({ questionId: config.id, value }))
-      // Если это single-choice, можно автоматически переводить на следующий шаг
       if (onAutoSubmit) {
         setTimeout(onAutoSubmit, 300)
       }
@@ -43,17 +42,21 @@ export const OptionSelection: React.FC<OptionSelectionProps> = ({
   }
 
   return (
-    <div className={s.optionsStack}>
+    <div
+      className={clsx(s.optionSelection, {
+        [s["optionSelection--grid"]]: config.layout === "grid",
+      })}
+    >
       {config.options?.map((option) => (
         <button
           key={option.value}
           type="button"
           onClick={() => handleSelect(option.value)}
-          className={`${s.optionCard} ${isSelected(option.value) ? s.selectedCard : ""}`}
+          className={clsx(s.optionSelection__optionCard, {
+            [s.optionSelection__selectedCard]: isSelected(option.value),
+          })}
         >
-          <div className={s.optionContent}>
-            <span className={s.optionLabel}>{option.label}</span>
-          </div>
+          <span className={s.optionSelection__optionLabel}>{option.label}</span>
         </button>
       ))}
     </div>

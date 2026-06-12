@@ -6,6 +6,7 @@ import s from "./QuizInputStep.module.scss"
 import type { QuizStepConfig } from "@/features/Quiz/model/types"
 import { emailValidationRule, nameValidationRule } from "./validation"
 import { setAnswer } from "@/features/Quiz/model/quizSlice"
+import Icon from "@/shared/ui/Icon/Icon"
 
 interface QuizInputStepProps {
   config: QuizStepConfig
@@ -24,7 +25,6 @@ export const QuizInputStep = ({ config, onValid }: QuizInputStepProps) => {
 
   const isEmail = config.id === "email"
 
-  // Формируем динамическую схему, где ключом всегда является 'value'
   const validationSchema = object({
     value: isEmail ? emailValidationRule : nameValidationRule,
   })
@@ -49,7 +49,7 @@ export const QuizInputStep = ({ config, onValid }: QuizInputStepProps) => {
       onSubmit={handleSubmit}
     >
       {({ values, errors, touched, handleChange, handleBlur, isValid }) => (
-        <Form className={s.introForm}>
+        <Form className={s.quizForm}>
           <Input
             id={config.id}
             name="value"
@@ -61,27 +61,20 @@ export const QuizInputStep = ({ config, onValid }: QuizInputStepProps) => {
             onChange={handleChange}
             onBlur={handleBlur}
             error={touched.value ? errors.value : undefined}
+            className={s.quizForm__input}
+            labelClassName={s.quizForm__label}
           />
           <button
             type="submit"
-            className={s.submitCircleBtn}
+            className={s.quizForm__submitCircleBtn}
             disabled={!isValid || !values.value.trim()}
           >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 5L16 12L9 19"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <Icon
+              name="back-arrow"
+              className={s.quizForm__icon}
+              width={9}
+              height={15}
+            />
           </button>
         </Form>
       )}
