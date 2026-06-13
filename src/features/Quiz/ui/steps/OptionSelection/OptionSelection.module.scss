@@ -21,13 +21,49 @@
 
   &__optionLabel {
     font-weight: 600;
-    font-size: 18px;
+    font-size: globalFunctions.fluidValue(16px, 18px, 320px, 1800px);
   }
 
   &--grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     max-width: 680px;
-    gap: 20px;
+    @include globalMixins.max-width(tablet) {
+      gap: 10px 16px;
+    }
+    .optionSelection__optionCard {
+      @include globalMixins.max-width(tablet) {
+        height: 104px;
+        padding: 0;
+        text-align: center;
+      }
+    }
+  }
+
+  @include globalMixins.max-width(tablet) {
+    &--m-tiles {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      .optionSelection__optionCard {
+        height: 104px;
+        text-align: center;
+        padding: 0 6px;
+        border-radius: 10px;
+      }
+    }
+
+    &--m-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .optionSelection__optionCard {
+        height: 60px;
+        height: auto;
+        text-align: center;
+        padding: 17px 20px;
+      }
+    }
   }
 }

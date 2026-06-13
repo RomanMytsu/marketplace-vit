@@ -2,23 +2,28 @@ import type { QuizStepConfig } from "../model/types"
 
 export const QUIZ_STEPS: QuizStepConfig[] = [
   {
-    id: "name",
+    id: "1",
     type: "intro",
     title: "What’s your first name?",
+    inputLabel: "First Name",
+    inputType: "text",
+    validationType: "name",
   },
   {
-    id: "smoke",
+    id: "2",
     type: "single",
     title: "Do you smoke?",
+    optionVariant: "tiles",
     options: [
       { label: "Yes", value: "yes" },
       { label: "No", value: "no" },
     ],
   },
   {
-    id: "eating-habits",
+    id: "3",
     type: "single",
     title: "What is your eating habits?",
+    optionVariant: "rows",
     options: [
       {
         label: "Vegan diet",
@@ -41,9 +46,10 @@ export const QUIZ_STEPS: QuizStepConfig[] = [
     ],
   },
   {
-    id: "alcoholic",
+    id: "4",
     type: "single",
     title: "How frequently do you consume alcoholic beverages?",
+    optionVariant: "rows",
     options: [
       {
         label: "≤ 3 times per week",
@@ -60,9 +66,10 @@ export const QUIZ_STEPS: QuizStepConfig[] = [
     ],
   },
   {
-    id: "cold",
+    id: "5",
     type: "single",
     title: "How frequently do you have cold/flu symptoms?",
+    optionVariant: "rows",
     options: [
       {
         label: " ≤ 2 per year",
@@ -79,9 +86,10 @@ export const QUIZ_STEPS: QuizStepConfig[] = [
     ],
   },
   {
-    id: "stress",
+    id: "6",
     type: "single",
     title: "Describe your stress level",
+    optionVariant: "rows",
     options: [
       {
         label: " I feel calm and relaxed most of the time",
@@ -98,9 +106,10 @@ export const QUIZ_STEPS: QuizStepConfig[] = [
     ],
   },
   {
-    id: "glucose",
+    id: "7",
     type: "single",
     title: "Have you ever been diagnosted with high blood glucose level?",
+    optionVariant: "tiles",
     options: [
       {
         label: " Yes",
@@ -113,9 +122,10 @@ export const QUIZ_STEPS: QuizStepConfig[] = [
     ],
   },
   {
-    id: "focus",
+    id: "8",
     type: "single",
     layout: "grid",
+    layoutSize: "wide",
     title: "Tell us what you want to focus on",
     options: [
       {
@@ -145,8 +155,11 @@ export const QUIZ_STEPS: QuizStepConfig[] = [
     ],
   },
   {
-    id: "email",
+    id: "9",
     type: "email",
     title: "What’s your email address?",
+    inputLabel: "Email",
+    inputType: "email",
+    validationType: "email",
   },
 ]

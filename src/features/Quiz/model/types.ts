@@ -3,8 +3,6 @@ export type StepType = "intro" | "single" | "multi" | "email"
 export interface QuizOption {
   label: string
   value: string
-  icon?: string
-  sublabel?: string
 }
 
 export interface QuizStepConfig {
@@ -14,10 +12,14 @@ export interface QuizStepConfig {
   subtitle?: string
   options?: QuizOption[]
   layout?: "stack" | "grid"
+  layoutSize?: "standard" | "wide"
+  optionVariant?: "tiles" | "rows"
+  inputLabel?: string
+  inputType?: string
+  validationType?: "name" | "email"
 }
 
 export interface QuizState {
-  userName: string
   currentStep: number
   answers: Record<string, string | string[]>
 }

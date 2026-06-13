@@ -1,20 +1,25 @@
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks"
 import type { QuizStepConfig } from "@/features/Quiz/model/types"
 import { setAnswer } from "@/features/Quiz/model/quizSlice"
-import s from "./OptionSelection.module.scss"
+import { selectAnswerById } from "@/features/Quiz/model/selectors"
 import clsx from "clsx"
+import s from "./OptionSelection.module.scss"
 
 interface OptionSelectionProps {
   config: QuizStepConfig
   onAutoSubmit?: () => void
+  variant?: "tiles" | "rows"
 }
 
 export const OptionSelection = ({
   config,
   onAutoSubmit,
+  variant,
 }: OptionSelectionProps) => {
   const dispatch = useAppDispatch()
-  const currentAnswer = useAppSelector((state) => state.quiz.answers[config.id])
+  const currentAnswer = useAppSelector((state) =>
+    selectAnswerById(state, config.id),
+  )
 
   const handleSelect = (value: string) => {
     if (config.type === "single") {
@@ -45,6 +50,7 @@ export const OptionSelection = ({
     <div
       className={clsx(s.optionSelection, {
         [s["optionSelection--grid"]]: config.layout === "grid",
+        [s[`optionSelection--m-${variant}`]]: variant,
       })}
     >
       {config.options?.map((option) => (

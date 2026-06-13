@@ -59,7 +59,6 @@ const Products: React.FC = () => {
               src={productsImg}
               alt="Products img"
               className={s.products__img}
-              loading="lazy"
             />
           </div>
         </div>

@@ -26,7 +26,6 @@ const Reviews: React.FC<ReviewsProps> = ({
               src={iconSrc}
               alt="icon"
               className={s.reviews__icon}
-              loading="lazy"
             />
             <h2 className={s.reviews__title}>{title}</h2>
             <p className={s.reviews__subTitle}>{subTitle}</p>

@@ -7,40 +7,34 @@ import type { QuizStepConfig } from "@/features/Quiz/model/types"
 import { emailValidationRule, nameValidationRule } from "./validation"
 import { setAnswer } from "@/features/Quiz/model/quizSlice"
 import Icon from "@/shared/ui/Icon/Icon"
-
+import { selectStringAnswerById } from "@/features/Quiz/model/selectors"
 interface QuizInputStepProps {
   config: QuizStepConfig
   onValid: () => void
 }
-
 interface FormValues {
   value: string
 }
 
 export const QuizInputStep = ({ config, onValid }: QuizInputStepProps) => {
   const dispatch = useAppDispatch()
-  const savedValue = useAppSelector(
-    (state) => state.quiz.answers[config.id],
-  ) as string | undefined
-
-  const isEmail = config.id === "email"
+  const savedValue = useAppSelector((state) =>
+    selectStringAnswerById(state, config.id),
+  )
 
   const validationSchema = object({
-    value: isEmail ? emailValidationRule : nameValidationRule,
+    value:
+      config.validationType === "email"
+        ? emailValidationRule
+        : nameValidationRule,
   })
 
-  const initialValues: FormValues = {
-    value: savedValue || "",
-  }
+  const initialValues: FormValues = { value: savedValue || "" }
 
   const handleSubmit = (values: FormValues) => {
     dispatch(setAnswer({ questionId: config.id, value: values.value.trim() }))
     onValid()
   }
-
-  const inputLabel = isEmail ? "Email" : "First Name"
-  const inputPlaceholder = isEmail ? "alex@example.com" : "Alex"
-  const inputType = isEmail ? "email" : "text"
 
   return (
     <Formik
@@ -53,9 +47,8 @@ export const QuizInputStep = ({ config, onValid }: QuizInputStepProps) => {
           <Input
             id={config.id}
             name="value"
-            type={inputType}
-            label={inputLabel}
-            placeholder={inputPlaceholder}
+            type={config.inputType || "text"}
+            label={config.inputLabel || "Value"}
             autoFocus
             value={values.value}
             onChange={handleChange}

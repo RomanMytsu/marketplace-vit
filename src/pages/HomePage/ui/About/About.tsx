@@ -53,10 +53,10 @@ const About = () => {
         </div>
       </div>
       <div className={s.about__contentImg1}>
-        <img src={productsImg} alt="Products Images " loading="lazy" />
+        <img src={productsImg} alt="Products Images " />
       </div>
       <div className={s.about__contentImg2}>
-        <img src={capsuleImg} alt="Products Images " loading="lazy" />
+        <img src={capsuleImg} alt="Products Images " />
       </div>
     </section>
   )

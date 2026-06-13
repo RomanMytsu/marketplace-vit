@@ -36,7 +36,6 @@ const Hero = () => {
           <img
             src={heroImg}
             alt="Hero Img"
-            loading="lazy"
             className={s.heroImg}
           />
         </div>

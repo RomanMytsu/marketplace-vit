@@ -15,6 +15,7 @@ interface QuizStepLayoutProps {
   showBack: boolean
   onBack: () => void
   children: ReactNode
+  layoutSize?: "standard" | "wide"
 }
 
 export const QuizStepLayout = ({
@@ -24,6 +25,7 @@ export const QuizStepLayout = ({
   showBack,
   onBack,
   children,
+  layoutSize = "standard",
 }: QuizStepLayoutProps) => {
   return (
     <div className={clsx(s.layout, s[`layout--step-${currentStep}`])}>
@@ -38,6 +40,7 @@ export const QuizStepLayout = ({
               width={42}
               height={50}
               loading="lazy"
+              className={s.layout__logoImg}
             />
           </picture>
         </Link>
@@ -48,7 +51,7 @@ export const QuizStepLayout = ({
       <h1 className={s.layout__mainTitle}>{title}</h1>
       <div
         className={clsx(s.layout__contentWrapper, {
-          [s["layout__contentWrapper--wide"]]: currentStep === 8,
+          [s["layout__contentWrapper--wide"]]: layoutSize === "wide",
         })}
       >
         {children}

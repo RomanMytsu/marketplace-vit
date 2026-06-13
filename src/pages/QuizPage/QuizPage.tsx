@@ -1,23 +1,29 @@
-import { useAppDispatch, useAppSelector } from "@/app/store/hooks"
 import { useNavigate } from "react-router-dom"
-import { QUIZ_STEPS } from "@/features/Quiz/config/quizSteps"
+import { useTitle } from "@/shared/lib/hooks/useTitle"
+import { useAppDispatch, useAppSelector } from "@/app/store/hooks"
 import { nextStep, prevStep } from "@/features/Quiz/model/quizSlice"
-import s from "./QuizPage.module.scss"
 import { QuizStepLayout } from "@/features/Quiz/ui/steps/QuizStepLayout/QuizStepLayout"
 import { QuizInputStep } from "@/features/Quiz/ui/steps/QuizInputStep/QuizInputStep"
 import { OptionSelection } from "@/features/Quiz/ui/steps/OptionSelection/OptionSelection"
+import {
+  selectCurrentStepConfig,
+  selectCurrentStepIdx,
+  selectIsLastStep,
+  selectTotalSteps,
+} from "@/features/Quiz/model/selectors"
+import s from "./QuizPage.module.scss"
 
 const QuizPage = () => {
+  useTitle("Quiz")
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  const currentStepIdx = useAppSelector((state) => state.quiz.currentStep)
-
-  const currentStepConfig = QUIZ_STEPS[currentStepIdx]
+  const currentStepIdx = useAppSelector(selectCurrentStepIdx)
+  const currentStepConfig = useAppSelector(selectCurrentStepConfig)
+  const isLastStep = useAppSelector(selectIsLastStep)
+  const totalSteps = selectTotalSteps()
 
   if (!currentStepConfig) return null
-
-  const isLastStep = currentStepIdx === QUIZ_STEPS.length - 1
 
   const handleNext = () => {
     if (isLastStep) {
@@ -32,14 +38,15 @@ const QuizPage = () => {
       <QuizStepLayout
         title={currentStepConfig.title}
         currentStep={currentStepIdx + 1}
-        totalSteps={QUIZ_STEPS.length}
+        totalSteps={totalSteps}
         showBack={currentStepIdx > 0}
         onBack={() => dispatch(prevStep())}
+        layoutSize={currentStepConfig.layoutSize}
       >
         {currentStepConfig.type === "intro" ||
         currentStepConfig.type === "email" ? (
           <QuizInputStep
-            key={currentStepConfig.id} // Ключ сбросит состояние Formik между 1 и 9 шагом
+            key={currentStepConfig.id}
             config={currentStepConfig}
             onValid={handleNext}
           />
@@ -47,6 +54,7 @@ const QuizPage = () => {
           <OptionSelection
             config={currentStepConfig}
             onAutoSubmit={handleNext}
+            variant={currentStepConfig.optionVariant}
           />
         )}
       </QuizStepLayout>

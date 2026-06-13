@@ -33,7 +33,6 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
           src={review.author.avatar}
           alt={review.author.name}
           className={s.card__avatar}
-          loading="lazy"
           width={48}
           height={48}
         />
