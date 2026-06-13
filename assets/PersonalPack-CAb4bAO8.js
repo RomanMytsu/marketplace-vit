@@ -1,1 +1,0 @@
-import{t as e}from"./react-core-CSeAam5c.js";var t={},n=e(),r=()=>(0,n.jsx)(`div`,{className:t.personalPack});export{r as default};
