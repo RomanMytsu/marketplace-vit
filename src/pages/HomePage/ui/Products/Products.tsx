@@ -1,5 +1,3 @@
-import type React from "react"
-import s from "./Products.module.scss"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { useGetSwiperProductsQuery } from "@/entities/products/api/productApi"
 import { Link } from "react-router-dom"
@@ -7,8 +5,9 @@ import ProductCard from "@/entities/products/ui/ProductCard/ProductCard"
 import productsImg from "@/shared/assets/images/products-img.webp"
 import Icon from "@/shared/ui/Icon/Icon"
 import "swiper/css"
+import s from "./Products.module.scss"
 
-const Products: React.FC = () => {
+const Products = () => {
   const { data: products, isLoading, error } = useGetSwiperProductsQuery()
 
   if (isLoading) return <div className={s.loading}>Loading products...</div>

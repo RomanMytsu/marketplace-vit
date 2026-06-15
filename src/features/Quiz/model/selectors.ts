@@ -33,5 +33,5 @@ export const selectIsLastStep = createSelector(
 
 export const selectTotalSteps = () => QUIZ_STEPS.length
 
-export const selectUserName = (state: RootState) =>
-  selectQuizAnswers(state)["name"] as string | undefined
+export const selectUserName = (state: RootState): string | undefined =>
+  selectStringAnswerById(state, "name")

@@ -2,7 +2,7 @@ import type { QuizStepConfig } from "../model/types"
 
 export const QUIZ_STEPS: QuizStepConfig[] = [
   {
-    id: "1",
+    id: "name",
     type: "intro",
     title: "What’s your first name?",
     inputLabel: "First Name",

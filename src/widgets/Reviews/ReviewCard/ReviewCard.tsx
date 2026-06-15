@@ -1,4 +1,3 @@
-import type React from "react"
 import type { Review } from "../model/reviewsMock"
 import s from "./ReviewCard.module.scss"
 
@@ -6,7 +5,7 @@ interface ReviewCardProps {
   review: Review
 }
 
-const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
+const ReviewCard = ({ review }: ReviewCardProps) => {
   return (
     <article className={s.card}>
       <div className={s.card__stars}>

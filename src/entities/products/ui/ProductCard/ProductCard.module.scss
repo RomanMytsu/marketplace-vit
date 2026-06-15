@@ -7,6 +7,15 @@
     transform 0.4s ease,
     box-shadow 0.4s ease;
 
+  &__category {
+    font-weight: 600;
+    font-size: globalFunctions.fluidValue(12px, 14px, 320px, 1800px);
+  }
+
+  &__name {
+    font-family: globalVariables.$second-family;
+  }
+
   &--slider {
     padding: 62px 30px 40px;
     display: flex;
@@ -19,8 +28,6 @@
     }
 
     .card__category {
-      font-weight: 600;
-      font-size: globalFunctions.fluidValue(12px, 14px, 320px, 1800px);
       color: #fff;
       opacity: 0.5;
       margin-bottom: globalFunctions.fluidValue(10px, 12px, 320px, 1800px);
@@ -28,7 +35,6 @@
     }
 
     .card__name {
-      font-family: globalVariables.$second-family;
       font-weight: 500;
       font-size: globalFunctions.fluidValue(18px, 24px, 320px, 1800px);
       color: #fff;
@@ -50,6 +56,30 @@
     &:hover {
       transform: translateY(-4px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  &--pack {
+    background: #fff;
+    padding: 40px 30px 30px;
+    @include globalMixins.max-width(tablet) {
+      padding: 30px 20px 20px;
+    }
+
+    .card__category {
+      margin-bottom: globalFunctions.fluidValue(10px, 12px, 320px, 1800px);
+    }
+
+    .card__name {
+      font-size: globalFunctions.fluidValue(16px, 20px, 320px, 1800px);
+      margin-bottom: 15px;
+    }
+
+    .card__defaultPrice {
+      font-size: globalFunctions.fluidValue(16px, 20px, 320px, 1800px);
+      @include globalMixins.max-width(tablet) {
+        font-weight: 700;
+      }
     }
   }
 
@@ -83,17 +113,17 @@
     align-items: center;
     gap: 12px;
     margin-top: auto;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 600;
 
     .card__defaultPrice {
-      color: #1a1a1a;
+      font-size: 20px;
+      font-weight: 600;
     }
 
     .card__oldPrice {
-      color: #999999;
       text-decoration: line-through;
-      font-weight: 400;
+      font-weight: 600;
     }
 
     .card__currentPriceWithDiscount {

@@ -9,12 +9,7 @@ interface ReviewsProps {
   subTitle?: string
   iconSrc?: string
 }
-const Reviews: React.FC<ReviewsProps> = ({
-  reviews,
-  title,
-  subTitle,
-  iconSrc,
-}) => {
+const Reviews = ({ reviews, title, subTitle, iconSrc }: ReviewsProps) => {
   if (!reviews || reviews.length === 0) return null
 
   return (
@@ -22,11 +17,7 @@ const Reviews: React.FC<ReviewsProps> = ({
       <div className="container">
         {(title || subTitle || iconSrc) && (
           <div className={s.reviews__content}>
-            <img
-              src={iconSrc}
-              alt="icon"
-              className={s.reviews__icon}
-            />
+            <img src={iconSrc} alt="icon" className={s.reviews__icon} />
             <h2 className={s.reviews__title}>{title}</h2>
             <p className={s.reviews__subTitle}>{subTitle}</p>
           </div>

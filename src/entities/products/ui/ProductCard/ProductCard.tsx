@@ -1,28 +1,31 @@
-import React from "react"
 import type { Product } from "../../model/types"
-import s from "./ProductCard.module.scss"
 import { getProductImageUrl } from "../../lib/getImage"
 import { getCategoryClass } from "../../lib/categoryStyles"
-
+import s from "./ProductCard.module.scss"
 interface ProductCardProps {
   product: Product
-  variant?: "slider" | "catalog"
+  variant?: "slider" | "catalog" | "pack"
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({
-  product,
-  variant = "slider",
-}) => {
+const ProductCard = ({ product, variant = "slider" }: ProductCardProps) => {
   const imgSrc = getProductImageUrl(product.img)
   const bgClass = getCategoryClass(product.category, "background")
   const textClass = getCategoryClass(product.category, "text")
 
+  const isSlider = variant === "slider"
+  const isCatalog = variant === "catalog"
+  const isPack = variant === "pack"
+
+  const showFullInfo = isCatalog || isPack
+
   const cardClasses = [
     s.card,
-    variant === "slider"
-      ? `${s["card--slider"]} ${bgClass}`
-      : s["card--catalog"],
-  ].join(" ")
+    isSlider && `${s["card--slider"]} ${bgClass}`,
+    isCatalog && s["card--catalog"],
+    isPack && s["card--pack"],
+  ]
+    .filter(Boolean)
+    .join(" ")
 
   const formatPrice = (value?: number) => {
     if (value === undefined) return ""
@@ -33,7 +36,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <article className={cardClasses}>
       <div className={s.card__imageWrapper}>
         <img src={imgSrc} alt={product.name} className={s.card__image} />
-        {variant === "catalog" && product.oldPrice && product.price && (
+        {showFullInfo && product.oldPrice && product.price && (
           <span className={s.card__discountBadge}>
             -
             {Math.round(
@@ -45,15 +48,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
       </div>
       <div className={s.card__info}>
         <span
-          className={`${s.card__category} ${variant === "catalog" ? textClass : ""}`}
+          className={`${s.card__category} ${showFullInfo ? textClass : ""}`}
         >
           {product.category}
         </span>
-        <h3 className={s.card__name}>{product.name}</h3>
-        {variant === "slider" && product.title && (
+        <p className={s.card__name}>{product.name}</p>
+        {isSlider && product.title && (
           <p className={s.card__title}>{product.title}</p>
         )}
-        {variant === "catalog" && product.price && (
+        {showFullInfo && product.price && (
           <div className={s.card__priceBlock}>
             {product.oldPrice ? (
               <>
