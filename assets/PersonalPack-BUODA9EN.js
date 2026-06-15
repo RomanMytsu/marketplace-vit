@@ -1,1 +1,0 @@
-import{t as e}from"./react-core-CSeAam5c.js";import{t}from"./useTitle-Doibm434.js";var n={},r=e(),i=()=>(t(`Personal Pack`),(0,r.jsx)(`div`,{className:n.personalPack}));export{i as default};
