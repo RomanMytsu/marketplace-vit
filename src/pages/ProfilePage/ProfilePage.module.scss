@@ -1,0 +1,60 @@
+.profilePage {
+  padding: 160px 0 100px;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 138px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+
+  &__sidebar {
+    width: 217px;
+    flex-shrink: 0;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: 768px) {
+      flex-direction: row;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      gap: 20px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+  }
+
+  &__navLink {
+    font-family: globalVariables.$second-family;
+    font-size: 22px;
+    line-height: 3.2;
+    text-align: left;
+    transition: color 0.4s ease;
+
+    &_active {
+      font-weight: 700;
+    }
+  }
+
+  &__logoutBtn {
+    color: globalVariables.$red;
+  }
+
+  &__content {
+    flex-grow: 1;
+
+    @media (max-width: 480px) {
+      padding: 16px;
+    }
+  }
+}

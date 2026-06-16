@@ -3,17 +3,16 @@ import { selectUserName } from "@/features/Quiz/model/selectors"
 import { useTitle } from "@/shared/lib/hooks/useTitle"
 import { useGetPersonalizedPackQuery } from "@/entities/products/api/productApi"
 import ProductCard from "@/entities/products/ui/ProductCard/ProductCard"
-import s from "./PersonalPack.module.scss"
 import Button from "@/shared/ui/Button"
 import { useEffect } from "react"
 import toast from "react-hot-toast"
-import PageLoader from "@/shared/ui/PageLoader/PageLoader"
+import s from "./PersonalPack.module.scss"
 
 const PersonalPack = () => {
   useTitle("Personal Pack")
   const userName = useAppSelector(selectUserName)
 
-  const { data: products, isLoading, error } = useGetPersonalizedPackQuery()
+  const { data: products, error } = useGetPersonalizedPackQuery()
 
   useEffect(() => {
     if (error) {
@@ -22,10 +21,6 @@ const PersonalPack = () => {
       )
     }
   }, [error])
-
-  if (isLoading) {
-    return <PageLoader />
-  }
 
   return (
     <div className={s.personalPack}>

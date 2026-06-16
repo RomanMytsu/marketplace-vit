@@ -20,6 +20,11 @@ export const recoverPassword = async (email: string) => {
   return sendPasswordResetEmail(auth, email)
 }
 
+export const logoutUser = async (): Promise<void> => {
+  const { signOut } = await import("firebase/auth")
+  return signOut(auth)
+}
+
 export const createUserProfileInFirestore = async (
   uid: string,
   profile: UserProfile,

@@ -1,6 +1,6 @@
 import MainLayout from "@/app/layouts/MainLayout/MainLayout"
 import { lazy } from "react"
-import { createHashRouter } from "react-router-dom"
+import { createHashRouter, Navigate } from "react-router-dom"
 import ProtectedRoute from "./ProtectedRoute"
 
 const HomePage = lazy(() => import("@/pages/HomePage/HomePage"))
@@ -12,6 +12,12 @@ const NotFoundPage = lazy(() => import("@/pages/NotFoundPage/NotFoundPage"))
 const TermsPage = lazy(() => import("@/pages/TermsPage/TermsPage"))
 const QuizPage = lazy(() => import("@/pages/QuizPage/QuizPage"))
 const PersonalPack = lazy(() => import("@/pages/PersonalPack/PersonalPack"))
+const SubscriptionsTab = lazy(
+  () => import("@/features/profile/ui/SubscriptionsTab/SubscriptionsTab"),
+)
+const OrdersTab = lazy(
+  () => import("@/features/profile/ui/OrdersTab/OrdersTab"),
+)
 
 const router = createHashRouter([
   {
@@ -30,6 +36,28 @@ const router = createHashRouter([
         element: <PersonalPack />,
       },
       {
+        path: "/profile",
+        element: (
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        ),
+        children: [
+          {
+            index: true,
+            element: <Navigate to="subscriptions" replace />,
+          },
+          {
+            path: "subscriptions",
+            element: <SubscriptionsTab />,
+          },
+          {
+            path: "orders",
+            element: <OrdersTab />,
+          },
+        ],
+      },
+      {
         path: "*",
         element: <NotFoundPage />,
       },
@@ -46,14 +74,6 @@ const router = createHashRouter([
   {
     path: "/forgot-password",
     element: <RecoveryPage />,
-  },
-  {
-    path: "/profile",
-    element: (
-      <ProtectedRoute>
-        <ProfilePage />
-      </ProtectedRoute>
-    ),
   },
   {
     path: "/quiz",

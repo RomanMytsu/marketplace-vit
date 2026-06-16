@@ -2,6 +2,7 @@ import { productApi } from "@/entities/products/api/productApi"
 import { configureStore } from "@reduxjs/toolkit"
 import authReducer from "@/entities/auth/model/authSlice"
 import quizReducer from "@/features/Quiz/model/quizSlice"
+import subscriptionReducer from "@/entities/profile/subscription/model/subscriptionSlice"
 import {
   loadContractedState,
   saveContractedState,
@@ -13,6 +14,7 @@ export const store = configureStore({
   reducer: {
     auth: authReducer,
     quiz: quizReducer,
+    subscription: subscriptionReducer,
     [productApi.reducerPath]: productApi.reducer,
   },
   preloadedState,

@@ -1,0 +1,45 @@
+@use "./variables.scss" as *;
+
+.category--vitamins {
+  color: $goods-purple-text;
+}
+.category--minerals {
+  color: $goods-mint-text;
+}
+.category--prenatal-vitamins {
+  color: $goods-pink-text;
+}
+.category--pain {
+  color: $goods-blue-text;
+}
+.category--antioxidants {
+  color: $goods-orange-text;
+}
+.category--loss {
+  color: $goods-green-text;
+}
+.category--probiotics {
+  color: $goods-red-text;
+}
+
+.category-bg--vitamins {
+  background-color: $goods-purple;
+}
+.category-bg--minerals {
+  background-color: $goods-mint;
+}
+.category-bg--prenatal-vitamins {
+  background-color: $goods-pink;
+}
+.category-bg--pain {
+  background-color: $goods-blue;
+}
+.category-bg--antioxidants {
+  background-color: $goods-orange;
+}
+.category-bg--loss {
+  background-color: $goods-green;
+}
+.category-bg--probiotics {
+  background-color: $goods-red;
+}

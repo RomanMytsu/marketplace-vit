@@ -1,6 +1,6 @@
 import type { Product } from "../../model/types"
-import { getProductImageUrl } from "../../lib/getImage"
-import { getCategoryClass } from "../../lib/categoryStyles"
+import { getProductImageUrl } from "../../../../shared/lib/helpers/getImage"
+import { getCategoryClass } from "../../../../shared/lib/helpers/categoryStyles"
 import s from "./ProductCard.module.scss"
 interface ProductCardProps {
   product: Product
