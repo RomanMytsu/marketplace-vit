@@ -1,0 +1,1 @@
+import{t as e}from"./react-core-DRjrpHGB.js";import{a as t}from"./vendor-BLauk5A9.js";var n={circle:`_circle_qqv8s_1`},r=e(),i=({className:e})=>(0,r.jsx)(`div`,{className:t(n.circle,e)}),a={ellipse:`_ellipse_vtnhp_1`,yellow:`_yellow_vtnhp_19`},o=({className:e})=>(0,r.jsx)(`div`,{className:t(a.ellipse,e)});export{i as n,o as t};
