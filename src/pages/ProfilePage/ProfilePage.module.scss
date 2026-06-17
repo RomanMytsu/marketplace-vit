@@ -3,7 +3,7 @@
 
   &__wrapper {
     display: flex;
-    gap: 138px;
+    gap: 140px;
 
     @include globalMixins.max-width(laptop) {
       gap: 24px;

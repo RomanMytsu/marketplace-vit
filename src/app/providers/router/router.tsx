@@ -18,6 +18,9 @@ const SubscriptionsTab = lazy(
 const OrdersTab = lazy(
   () => import("@/features/profile/ui/OrdersTab/OrdersTab"),
 )
+const AccountOverviewTab = lazy(
+  () => import("@/features/profile/ui/AccountOverviewTab/AccountOverviewTab"),
+)
 
 const router = createHashRouter([
   {
@@ -54,6 +57,10 @@ const router = createHashRouter([
           {
             path: "orders",
             element: <OrdersTab />,
+          },
+          {
+            path: "overview",
+            element: <AccountOverviewTab />,
           },
         ],
       },

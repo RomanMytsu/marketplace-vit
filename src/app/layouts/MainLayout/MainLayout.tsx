@@ -13,9 +13,19 @@ const MainLayout = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      dispatch(setUser(user))
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
+        dispatch(
+          setUser({
+            uid: firebaseUser.uid,
+            email: firebaseUser.email,
+          }),
+        )
+      } else {
+        dispatch(setUser(null))
+      }
     })
+
     return unsubscribe
   }, [dispatch])
 

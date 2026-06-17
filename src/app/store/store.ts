@@ -2,7 +2,7 @@ import { productApi } from "@/entities/products/api/productApi"
 import { configureStore } from "@reduxjs/toolkit"
 import authReducer from "@/entities/auth/model/authSlice"
 import quizReducer from "@/features/Quiz/model/quizSlice"
-import subscriptionReducer from "@/entities/profile/subscription/model/subscriptionSlice"
+import subscriptionReducer from "@/entities/profile/model/subscriptionSlice"
 import {
   loadContractedState,
   saveContractedState,

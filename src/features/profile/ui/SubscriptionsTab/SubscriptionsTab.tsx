@@ -5,8 +5,8 @@ import s from "./SubscriptionsTab.module.scss"
 import {
   cancelSubscription,
   getSubscriptions,
-} from "@/entities/profile/subscription/model/subscriptionSlice"
-import { selectSubscriptions } from "@/entities/profile/subscription/model/selectors"
+} from "@/entities/profile/model/subscriptionSlice"
+import { selectSubscriptions } from "@/entities/profile/model/selectors"
 import { getCategoryClass } from "@/shared/lib/helpers/categoryStyles"
 import { getProductImageUrl } from "@/shared/lib/helpers/getImage"
 import toast from "react-hot-toast"
