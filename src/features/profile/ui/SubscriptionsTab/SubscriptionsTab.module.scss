@@ -7,123 +7,111 @@
   }
 
   &__list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: globalFunctions.fluidValue(15px, 20px, 320px, 1800px);
   }
-}
 
-.card {
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  transition:
-    transform 0.4s ease,
-    box-shadow 0.4s ease;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  &__card {
+    display: flex;
+    align-items: center;
+    gap: globalFunctions.fluidValue(20px, 30px, 320px, 1800px);
+    border-radius: 16px;
+    background: #faf8f6;
+    padding: 30px 40px;
+    @include globalMixins.max-width(laptop) {
+      flex-direction: column;
+      padding: 20px;
+    }
   }
 
   &__imageWrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    height: 220px;
-    transition: background-color 0.3s ease;
-  }
-
-  &__image {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
+    border-radius: 8px;
+    padding: 30px 0;
+    @include globalMixins.max-width(laptop) {
+      padding: 10px 60px;
+    }
   }
 
   &__content {
     display: flex;
     flex-direction: column;
-    padding: 24px;
     flex-grow: 1;
   }
 
   &__header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
   }
 
   &__category {
     font-weight: 600;
     font-size: globalFunctions.fluidValue(12px, 14px, 320px, 1800px);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    margin-bottom: 5px;
   }
 
   &__price {
-    font-weight: 700;
+    font-weight: 600;
     font-size: globalFunctions.fluidValue(16px, 18px, 320px, 1800px);
-    color: #1a1a1a;
   }
 
-  &__title {
+  &__name {
     font-family: globalVariables.$second-family;
-    font-weight: 600;
     font-size: globalFunctions.fluidValue(16px, 20px, 320px, 1800px);
-    line-height: 1.4;
-    margin-bottom: 20px;
-    color: #1a1a1a;
-    flex-grow: 1; // проталкивает футер вниз, если названия разной длины
+    flex-grow: 1;
+    margin-bottom: 25px;
   }
 
   &__footer {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    margin-top: auto;
+    align-items: center;
+    margin-top: 25px;
+    @include globalMixins.max-width(laptop) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 
   &__deliveryInfo {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    @include globalMixins.max-width(laptop) {
+      margin-bottom: 20px;
+    }
   }
 
   &__text {
-    font-size: 13px;
-    color: #7a7a7a;
-    margin: 0;
+    font-size: globalFunctions.fluidValue(12px, 14px, 320px, 1800px);
+    color: rgba(0, 0, 0, 0.5);
   }
 
   &__deliveryDate {
-    font-size: 14px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin: 0;
+    font-size: 16px;
   }
 
   &__unsubscribeBtn {
-    padding: 8px 16px;
-    border-radius: 8px;
-    border: 1px solid #e0e0e0;
+    height: 50px;
+    width: globalFunctions.fluidValue(240px, 164px, 320px, 1800px);
+    border-radius: 100px;
+    border: 2px solid rgba(211, 45, 44, 0.2);
     background-color: transparent;
+    font-family: globalVariables.$second-family;
     font-weight: 500;
-    font-size: 14px;
-    color: #666666;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    font-size: 16px;
+    text-align: center;
+    color: globalVariables.$red;
+    transition:
+      background-color 0.4s ease-in-out,
+      color 0.4s ease-in-out,
+      border-color 0.4s ease-in-out;
 
-    &:hover {
-      background-color: #f5f5f5;
-      color: #d93838;
-      border-color: #d93838;
+    @include globalMixins.hover {
+      background-color: globalVariables.$red;
+      color: #fff;
+      border-color: globalVariables.$red;
     }
   }
 }

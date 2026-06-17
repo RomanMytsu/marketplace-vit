@@ -3,21 +3,23 @@
 
   &__wrapper {
     display: flex;
-    justify-content: space-between;
     gap: 138px;
 
-    @media (max-width: 768px) {
-      flex-direction: column;
+    @include globalMixins.max-width(laptop) {
       gap: 24px;
+    }
+    @include globalMixins.max-width(tablet) {
+      display: block;
     }
   }
 
   &__sidebar {
     width: 217px;
     flex-shrink: 0;
+    margin-top: -9px;
 
-    @media (max-width: 768px) {
-      width: 100%;
+    @include globalMixins.max-width(tablet) {
+      display: none;
     }
   }
 
@@ -52,9 +54,5 @@
 
   &__content {
     flex-grow: 1;
-
-    @media (max-width: 480px) {
-      padding: 16px;
-    }
   }
 }

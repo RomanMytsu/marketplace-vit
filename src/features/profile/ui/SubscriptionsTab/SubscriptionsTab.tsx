@@ -6,11 +6,7 @@ import {
   cancelSubscription,
   getSubscriptions,
 } from "@/entities/profile/subscription/model/subscriptionSlice"
-import {
-  selectSubscriptionError,
-  selectSubscriptionLoading,
-  selectSubscriptions,
-} from "@/entities/profile/subscription/model/selectors"
+import { selectSubscriptions } from "@/entities/profile/subscription/model/selectors"
 import { getCategoryClass } from "@/shared/lib/helpers/categoryStyles"
 import { getProductImageUrl } from "@/shared/lib/helpers/getImage"
 import toast from "react-hot-toast"
@@ -18,8 +14,6 @@ import toast from "react-hot-toast"
 const SubscriptionsTab = () => {
   const dispatch = useAppDispatch()
   const subscriptions = useAppSelector(selectSubscriptions)
-  const isLoading = useAppSelector(selectSubscriptionLoading)
-  const error = useAppSelector(selectSubscriptionError)
 
   useEffect(() => {
     dispatch(getSubscriptions())
@@ -33,24 +27,8 @@ const SubscriptionsTab = () => {
     })
   }
 
-  if (isLoading) {
-    return (
-      <section className={s.subscriptions}>
-        <p>Loading subscriptions...</p>
-      </section>
-    )
-  }
-
-  if (error) {
-    return (
-      <section className={s.subscriptions}>
-        <p className={s.error}>{error}</p>
-      </section>
-    )
-  }
-
   return (
-    <section className={s.subscriptions}>
+    <div className={s.subscriptions}>
       <h2 className={s.subscriptions__title}>Subscriptions</h2>
       <div className={s.subscriptions__list}>
         {subscriptions.map((item) => {
@@ -58,36 +36,43 @@ const SubscriptionsTab = () => {
           const textCategoryClass = getCategoryClass(item.category, "text")
           const imageUrl = getProductImageUrl(item.img)
           return (
-            <article key={item.id} className={s.card}>
-              <div className={clsx(s.card__imageWrapper, bgCategoryClass)}>
+            <article key={item.id} className={s.subscriptions__card}>
+              <div
+                className={clsx(s.subscriptions__imageWrapper, bgCategoryClass)}
+              >
                 <img
                   src={imageUrl}
                   alt={item.name}
-                  className={s.card__image}
+                  className={s.subscriptions__image}
                   loading="lazy"
+                  width={120}
+                  height={112}
                 />
               </div>
-              <div className={s.card__content}>
-                <div className={s.card__header}>
-                  <span className={clsx(s.card__category, textCategoryClass)}>
-                    {item.category}
-                  </span>
-                  <span className={s.card__price}>
+              <div className={s.subscriptions__content}>
+                <p
+                  className={clsx(s.subscriptions__category, textCategoryClass)}
+                >
+                  {item.category}
+                </p>
+                <div className={s.subscriptions__header}>
+                  <p className={s.subscriptions__name}>{item.name}</p>
+                  <p className={s.subscriptions__price}>
                     ${item.price.toFixed(2)}
-                  </span>
+                  </p>
                 </div>
-                <h3 className={s.card__title}>{item.name}</h3>
-                <div className={s.card__footer}>
-                  <div className={s.card__deliveryInfo}>
-                    <p className={s.card__text}>{item.shipment}</p>
-                    <p className={s.card__deliveryDate}>
+
+                <div className={s.subscriptions__footer}>
+                  <div className={s.subscriptions__deliveryInfo}>
+                    <p className={s.subscriptions__text}>{item.shipment}</p>
+                    <p className={s.subscriptions__deliveryDate}>
                       {item["next-shipment"]}
                     </p>
                   </div>
                   <button
                     type="button"
                     onClick={() => handleUnsubscribe(item.id)}
-                    className={s.card__unsubscribeBtn}
+                    className={s.subscriptions__unsubscribeBtn}
                   >
                     Unsubscribe
                   </button>
@@ -97,7 +82,7 @@ const SubscriptionsTab = () => {
           )
         })}
       </div>
-    </section>
+    </div>
   )
 }
 

@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import { fetchProfileSubscriptions, updateSubscriptionStatusInFirebase } from "../api/subscriptionApi"
+import {
+  fetchProfileSubscriptions,
+  updateSubscriptionStatusInFirebase,
+} from "../api/subscriptionApi"
 import type { FirestoreSubscription } from "./types"
-
 interface SubscriptionState {
   items: FirestoreSubscription[]
   isLoading: boolean
@@ -14,34 +16,34 @@ const initialState: SubscriptionState = {
   error: null,
 }
 
-export const getSubscriptions = createAsyncThunk<FirestoreSubscription[], void>(
-  "subscription/getSubscriptions",
-  async (_, { rejectWithValue }) => {
-    try {
-      return await fetchProfileSubscriptions()
-    } catch (error) {
-      return rejectWithValue(
-        error instanceof Error ? error.message : "Unknown error occurred",
-      )
-    }
-  },
-)
+export const getSubscriptions = createAsyncThunk<
+  FirestoreSubscription[],
+  void,
+  { rejectValue: string }
+>("subscription/getSubscriptions", async (_, { rejectWithValue }) => {
+  try {
+    return await fetchProfileSubscriptions()
+  } catch (error) {
+    return rejectWithValue(
+      error instanceof Error ? error.message : "Unknown error occurred",
+    )
+  }
+})
 
-export const cancelSubscription = createAsyncThunk<string, string>(
-  "subscription/cancelSubscription",
-  async (id, { rejectWithValue }) => {
-    try {
-      await updateSubscriptionStatusInFirebase(id, "cancelled")
-      return id
-    } catch (error) {
-      return rejectWithValue(
-        error instanceof Error
-          ? error.message
-          : "Failed to cancel subscription",
-      )
-    }
-  },
-)
+export const cancelSubscription = createAsyncThunk<
+  string,
+  string,
+  { rejectValue: string }
+>("subscription/cancelSubscription", async (id, { rejectWithValue }) => {
+  try {
+    await updateSubscriptionStatusInFirebase(id, "cancelled")
+    return id
+  } catch (error) {
+    return rejectWithValue(
+      error instanceof Error ? error.message : "Failed to cancel subscription",
+    )
+  }
+})
 
 const subscriptionSlice = createSlice({
   name: "subscription",
@@ -59,14 +61,13 @@ const subscriptionSlice = createSlice({
       })
       .addCase(getSubscriptions.rejected, (state, action) => {
         state.isLoading = false
-        state.error = action.payload as string
+        state.error = action.payload ?? "An error occurred"
       })
       .addCase(cancelSubscription.fulfilled, (state, action) => {
         state.items = state.items.filter((item) => item.id !== action.payload)
       })
-      .addCase(cancelSubscription.rejected, (_, action) => {
-        // Здесь можно обработать ошибку, например, показать toast уведомление
-        console.error("Redux error canceling subscription:", action.payload)
+      .addCase(cancelSubscription.rejected, (state, action) => {
+        state.error = action.payload ?? "An error occurred"
       })
   },
 })
