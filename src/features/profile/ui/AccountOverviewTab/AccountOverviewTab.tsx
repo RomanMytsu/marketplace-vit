@@ -38,13 +38,14 @@ const AccountOverviewTab = () => {
 
   const handleSubmit = (
     values: ProfileFormFields,
-    { resetForm }: { resetForm: () => void },
+    {
+      resetForm,
+    }: { resetForm: (nextState?: { values: ProfileFormFields }) => void },
   ) => {
     if (!currentUserId) {
       toast.error("User ID not found. Please re-login.")
       return
     }
-
     toast.promise(
       dispatch(
         saveProfileInfo({ uid: currentUserId, fields: values }),
@@ -52,7 +53,7 @@ const AccountOverviewTab = () => {
       {
         loading: "Saving profile changes...",
         success: () => {
-          resetForm()
+          resetForm({ values })
           return "Profile successfully saved!"
         },
         error: "Could not save changes. Try again.",
