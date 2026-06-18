@@ -5,8 +5,17 @@ import s from "./Button.module.scss"
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode
 }
-const Button = ({ children, className }: ButtonProps) => {
-  return <button className={clsx(s.button, className)}>{children}</button>
+const Button = ({
+  children,
+  className,
+  type = "button",
+  ...props
+}: ButtonProps) => {
+  return (
+    <button type={type} className={clsx(s.button, className)} {...props}>
+      {children}
+    </button>
+  )
 }
 
 export default Button

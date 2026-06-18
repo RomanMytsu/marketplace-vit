@@ -1,9 +1,3 @@
-$color-bg-input: #fbf9f7;
-$color-text-main: #111111;
-$color-text-muted: #707070;
-$color-border: #e8e4e1;
-$color-btn-disabled: #d6d0cb;
-
 .overview {
   width: 100%;
   max-width: 920px;
@@ -36,92 +30,54 @@ $color-btn-disabled: #d6d0cb;
     width: 100%;
   }
 
+  &__input {
+    width: 100%;
+  }
+
   &__inputWrapper {
     display: flex;
-    gap: 32px;
+    gap: globalFunctions.fluidValue(16px, 32px, 320px, 1800px);
   }
 
   &__formWrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  &__selectWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  &__selectLabel {
-    font-size: 12px;
-    color: $color-text-muted;
-    font-weight: 400;
-  }
-
-  &__selectContainer {
-    position: relative;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 30px 32px;
     width: 100%;
-    height: 44px;
-  }
-
-  &__selectInput {
-    width: 100%;
-    height: 100%;
-    padding: 0 36px 0 16px;
-    background-color: $color-bg-input;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    font-size: 14px;
-    color: $color-text-main;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    cursor: pointer;
-    outline: none;
-    transition: border-color 0.2s ease;
-
-    &:focus {
-      border-color: darken($color-border, 15%);
+    @include globalMixins.max-width(laptop) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
     }
   }
 
-  &__selectIcon {
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: rgba(0, 0, 0, 0.5);
-    pointer-events: none;
+  &__label {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  &__zipInput {
+    width: globalFunctions.fluidValue(132px, 206px, 320px, 1800px);
   }
 
   &__submitBtn {
-    grid-column: span 12;
-    justify-self: start; 
-    height: 40px;
-    padding: 0 24px;
-    background-color: $color-btn-disabled; 
-    color: #ffffff;
+    width: globalFunctions.fluidValue(280px, 154px, 320px, 1800px);
+    height: 50px;
+    font-size: 16px;
+    background-color: #c3bdb6;
     border: none;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
+    margin-top: globalFunctions.fluidValue(35px, 40px, 320px, 1800px);
     transition:
-      background-color 0.2s ease,
-      opacity 0.2s ease;
+      background-color 0.4s ease,
+      opacity 0.4s ease;
 
-    &:hover:not(:disabled) {
-      background-color: darken($color-btn-disabled, 10%);
-    }
+    &_active {
+      background-color: globalVariables.$main-orange;
 
-    &:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    @media (max-width: 768px) {
-      width: 100%;
-      justify-self: stretch;
+      &:hover:not(:disabled) {
+        background-color: globalVariables.$main-orange;
+      }
     }
   }
 }

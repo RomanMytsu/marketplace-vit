@@ -1,0 +1,98 @@
+.selectWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.selectLabel {
+  font-size: 14px;
+  color: #000;
+  opacity: 0.5;
+}
+
+.selectContainer {
+  position: relative;
+  width: 100%;
+}
+
+.selectInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: globalFunctions.fluidValue(132px, 206px, 320px, 1800px);
+  height: 56px;
+  padding: 0 24px;
+  background-color: #faf8f6;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-size: 18px;
+  color: #111111;
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:focus,
+  &_open {
+    border-color: #e8e4e1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
+
+  &_error {
+    border-color: #ff4d4f;
+  }
+}
+
+.selectIcon {
+  color: rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease;
+  pointer-events: none;
+
+  &_rotated {
+    transform: rotate(180deg);
+  }
+}
+
+.selectDropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 100%;
+  max-height: 220px;
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+  background-color: #ffffff;
+  border: 1px solid #e8e4e1;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  z-index: 50;
+  overflow-y: auto;
+}
+
+.selectOption {
+  padding: 10px 24px;
+  font-size: 16px;
+  color: #111111;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+
+  &:hover {
+    background-color: #faf8f6;
+  }
+
+  &_selected {
+    background-color: #f5f0eb;
+    font-weight: 500;
+  }
+}
+
+.selectError {
+  font-size: 12px;
+  color: #ff4d4f;
+  margin-top: 2px;
+}

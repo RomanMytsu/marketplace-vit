@@ -1,5 +1,8 @@
 .profilePage {
   padding: 160px 0 100px;
+  @include globalMixins.max-width(laptop) {
+    padding: 120px 0 60px;
+  }
 
   &__wrapper {
     display: flex;

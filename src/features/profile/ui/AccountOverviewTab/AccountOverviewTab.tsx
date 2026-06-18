@@ -4,10 +4,13 @@ import { selectUser } from "@/entities/auth/model/selectors"
 import { saveProfileInfo } from "@/entities/profile/model/profileSlice"
 import toast from "react-hot-toast"
 import { Form, Formik } from "formik"
-import { profileValidationSchema } from "./profileValidation"
+import {
+  formatInternationalPhone,
+  profileValidationSchema,
+} from "./profileValidation"
 import Input from "@/shared/ui/Input"
 import Button from "@/shared/ui/Button"
-import Icon from "@/shared/ui/Icon/Icon"
+import Select from "@/shared/ui/Select/Select"
 import s from "./AccountOverviewTab.module.scss"
 
 const initialValues: ProfileFormFields = {
@@ -75,6 +78,10 @@ const AccountOverviewTab = () => {
           handleChange,
           handleBlur,
           isSubmitting,
+          isValid,
+          dirty,
+          setFieldValue,
+          setFieldTouched,
         }) => (
           <Form className={s.overview__form}>
             <div className={s.overview__formWrapper}>
@@ -90,6 +97,8 @@ const AccountOverviewTab = () => {
                     ? errors.firstName
                     : undefined
                 }
+                labelClassName={s.overview__label}
+                className={s.overview__input}
               />
               <Input
                 label="Last Name"
@@ -103,6 +112,8 @@ const AccountOverviewTab = () => {
                     ? errors.lastName
                     : undefined
                 }
+                labelClassName={s.overview__label}
+                className={s.overview__input}
               />
               <Input
                 label="Address Line 1"
@@ -116,6 +127,8 @@ const AccountOverviewTab = () => {
                     ? errors.addressLine1
                     : undefined
                 }
+                labelClassName={s.overview__label}
+                className={s.overview__input}
               />
               <Input
                 label="Address Line 2"
@@ -129,6 +142,8 @@ const AccountOverviewTab = () => {
                     ? errors.addressLine2
                     : undefined
                 }
+                labelClassName={s.overview__label}
+                className={s.overview__input}
               />
               <Input
                 label="City"
@@ -138,34 +153,27 @@ const AccountOverviewTab = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 error={touched.city && errors.city ? errors.city : undefined}
+                labelClassName={s.overview__label}
+                className={s.overview__input}
               />
+
               <div className={s.overview__inputWrapper}>
-                <div className={s.overview__selectWrapper}>
-                  <label className={s.overview__selectLabel} htmlFor="state">
-                    State / Province
-                  </label>
-                  <div className={s.overview__selectContainer}>
-                    <select
-                      id="state"
-                      name="state"
-                      value={values.state}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      className={s.overview__selectInput}
-                    >
-                      <option value="NY">NY</option>
-                      <option value="CA">CA</option>
-                      <option value="TX">TX</option>
-                      <option value="FL">FL</option>
-                    </select>
-                    <Icon
-                      name="select_arrow"
-                      className={s.overview__selectIcon}
-                      width={15}
-                      height={9}
-                    />
-                  </div>
-                </div>
+                <Select
+                  label="State / Province"
+                  name="state"
+                  value={values.state}
+                  options={[
+                    { value: "NY", label: "NY" },
+                    { value: "CA", label: "CA" },
+                    { value: "TX", label: "TX" },
+                    { value: "FL", label: "FL" },
+                  ]}
+                  onChange={(name, val) => setFieldValue(name, val)}
+                  onBlur={(name) => setFieldTouched(name, true)}
+                  error={
+                    touched.state && errors.state ? errors.state : undefined
+                  }
+                />
                 <Input
                   label="ZIP / Postal Code"
                   name="zipCode"
@@ -178,6 +186,8 @@ const AccountOverviewTab = () => {
                       ? errors.zipCode
                       : undefined
                   }
+                  className={s.overview__zipInput}
+                  labelClassName={s.overview__label}
                 />
               </div>
               <Input
@@ -188,24 +198,33 @@ const AccountOverviewTab = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 error={touched.email && errors.email ? errors.email : undefined}
+                labelClassName={s.overview__label}
+                className={s.overview__input}
               />
               <Input
                 label="Phone Number"
                 type="tel"
                 name="phoneNumber"
                 value={values.phoneNumber}
-                onChange={handleChange}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  const formattedValue = formatInternationalPhone(
+                    e.target.value,
+                  )
+                  setFieldValue("phoneNumber", formattedValue)
+                }}
                 onBlur={handleBlur}
                 error={
                   touched.phoneNumber && errors.phoneNumber
                     ? errors.phoneNumber
                     : undefined
                 }
+                labelClassName={s.overview__label}
+                className={s.overview__input}
               />
             </div>
             <Button
               type="submit"
-              className={s.overview__submitBtn}
+              className={`${s.overview__submitBtn} ${isValid && dirty ? s.overview__submitBtn_active : ""}`}
               disabled={isSubmitting}
             >
               Save
