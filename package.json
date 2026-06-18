@@ -43,8 +43,8 @@
     "rollup-plugin-visualizer": "^7.0.1",
     "sass": "^1.100.0",
     "typescript": "~6.0.2",
-    "typescript-eslint": "^8.59.2",
-    "vite": "^8.0.12",
+    "typescript-eslint": "^8.61.1",
+    "vite": "^8.0.16",
     "vite-plugin-svg-icons": "^2.0.1"
   }
 }

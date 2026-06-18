@@ -57,7 +57,6 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           const normalizedId = id.toLowerCase().replace(/\\/g, "/")
-
           if (!normalizedId.includes("node_modules")) return
           if (
             normalizedId.includes("node_modules/react/") ||
@@ -74,6 +73,16 @@ export default defineConfig({
             normalizedId.includes("node_modules/redux/")
           ) {
             return "redux-state"
+          }
+          if (
+            normalizedId.includes("node_modules/@firebase/") ||
+            normalizedId.includes("node_modules/firebase/")
+          ) {
+            return "firebase-backend"
+          }
+
+          if (normalizedId.includes("node_modules/libphonenumber-js/")) {
+            return "phone-utils"
           }
           if (normalizedId.includes("node_modules/swiper/")) {
             return "swiper-slider"
