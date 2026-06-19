@@ -14,7 +14,7 @@ const initialState: ProfileState = {
   error: null,
 }
 
-export const saveProfileInfo = createAsyncThunk<
+export const saveOverviewInfo = createAsyncThunk<
   ProfileFormFields,
   { uid: string; fields: ProfileFormFields },
   { rejectValue: string }
@@ -29,24 +29,24 @@ export const saveProfileInfo = createAsyncThunk<
   }
 })
 
-const profileSlice = createSlice({
+const overviewSlice = createSlice({
   name: "profile",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(saveProfileInfo.pending, (state) => {
+      .addCase(saveOverviewInfo.pending, (state) => {
         state.isSaving = true
         state.error = null
       })
-      .addCase(saveProfileInfo.fulfilled, (state) => {
+      .addCase(saveOverviewInfo.fulfilled, (state) => {
         state.isSaving = false
       })
-      .addCase(saveProfileInfo.rejected, (state, action) => {
+      .addCase(saveOverviewInfo.rejected, (state, action) => {
         state.isSaving = false
         state.error = action.payload ?? "An unexpected error occurred"
       })
   },
 })
 
-export default profileSlice.reducer
+export default overviewSlice.reducer

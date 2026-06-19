@@ -21,6 +21,9 @@ const OrdersTab = lazy(
 const AccountOverviewTab = lazy(
   () => import("@/features/profile/ui/AccountOverviewTab/AccountOverviewTab"),
 )
+const PaymentMethodsTab = lazy(
+  () => import("@/features/profile/ui/PaymentMethodsTab/PaymentMethodsTab"),
+)
 
 const router = createHashRouter([
   {
@@ -61,6 +64,10 @@ const router = createHashRouter([
           {
             path: "overview",
             element: <AccountOverviewTab />,
+          },
+          {
+            path: "payments",
+            element: <PaymentMethodsTab />,
           },
         ],
       },

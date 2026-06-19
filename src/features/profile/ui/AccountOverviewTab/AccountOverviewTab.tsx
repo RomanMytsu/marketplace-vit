@@ -1,7 +1,7 @@
 import type { ProfileFormFields } from "@/entities/profile/api/profileApi"
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks"
 import { selectUser } from "@/entities/auth/model/selectors"
-import { saveProfileInfo } from "@/entities/profile/model/profileSlice"
+import { saveOverviewInfo } from "@/entities/profile/model/overviewSlice"
 import toast from "react-hot-toast"
 import { Form, Formik } from "formik"
 import {
@@ -48,7 +48,7 @@ const AccountOverviewTab = () => {
     }
     toast.promise(
       dispatch(
-        saveProfileInfo({ uid: currentUserId, fields: values }),
+        saveOverviewInfo({ uid: currentUserId, fields: values }),
       ).unwrap(),
       {
         loading: "Saving profile changes...",

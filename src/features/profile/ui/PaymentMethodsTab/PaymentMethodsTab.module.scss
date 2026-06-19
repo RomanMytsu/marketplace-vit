@@ -1,0 +1,109 @@
+.payment {
+  width: 100%;
+
+  &__title {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: globalFunctions.fluidValue(24px, 36px, 320px, 1800px);
+    margin-bottom: globalFunctions.fluidValue(30px, 40px, 320px, 1800px);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &__cardsVisual {
+    position: relative;
+    max-width: 674px;
+    max-height: 336px;
+
+    @include globalMixins.max-width(laptop) {
+      width: 100%;
+      height: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+  }
+
+  &__img {
+    pointer-events: none;
+    @include globalMixins.max-width(laptop) {
+      display: none;
+    }
+  }
+
+  &__frontCard {
+    position: absolute;
+    top: 53px;
+    left: 40px;
+    width: 330px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    @include globalMixins.max-width(laptop) {
+      display: contents;
+    }
+  }
+
+  &__input,
+  &__input_short,
+  &__input_cvc {
+    background: #fff;
+    width: globalFunctions.fluidValue(280px, 410px, 320px, 1800px);
+
+    &_short {
+      width: globalFunctions.fluidValue(131px, 104px, 320px, 1800px);
+    }
+    &_cvc {
+      width: globalFunctions.fluidValue(131px, 104px, 320px, 1800px);
+    }
+  }
+
+  &__label {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  &__row {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+  }
+
+  &__backCard {
+    position: absolute;
+    bottom: 27px;
+    right: 41px;
+    @include globalMixins.max-width(laptop) {
+      display: contents;
+    }
+  }
+
+  &__cvcWrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__submitBtn {
+    width: globalFunctions.fluidValue(280px, 154px, 320px, 1800px);
+    height: 50px;
+    background: #c3bdb6;
+    cursor: not-allowed;
+    border: 1px solid transparent;
+    font-size: 16px;
+
+    &:disabled:hover {
+      background: #c3bdb6; 
+      opacity: 1;
+      cursor: not-allowed;
+    }
+
+    &_active {
+      background: globalVariables.$main-orange;
+      cursor: pointer;
+    }
+  }
+}

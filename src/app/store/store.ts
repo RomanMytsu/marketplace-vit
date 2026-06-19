@@ -3,6 +3,8 @@ import { configureStore } from "@reduxjs/toolkit"
 import authReducer from "@/entities/auth/model/authSlice"
 import quizReducer from "@/features/Quiz/model/quizSlice"
 import subscriptionReducer from "@/entities/profile/model/subscriptionSlice"
+import overviewReducer from "@/entities/profile/model/overviewSlice"
+import paymentReducer from "@/entities/profile/model/paymentSlice"
 import {
   loadContractedState,
   saveContractedState,
@@ -15,6 +17,8 @@ export const store = configureStore({
     auth: authReducer,
     quiz: quizReducer,
     subscription: subscriptionReducer,
+    overview: overviewReducer,
+    payment: paymentReducer,
     [productApi.reducerPath]: productApi.reducer,
   },
   preloadedState,

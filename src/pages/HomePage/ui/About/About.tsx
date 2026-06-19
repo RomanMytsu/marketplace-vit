@@ -53,10 +53,15 @@ const About = () => {
         </div>
       </div>
       <div className={s.about__contentImg1}>
-        <img src={productsImg} alt="Products Images " />
+        <img
+          src={productsImg}
+          alt="Products Images "
+          width={530}
+          height={450}
+        />
       </div>
       <div className={s.about__contentImg2}>
-        <img src={capsuleImg} alt="Products Images " />
+        <img src={capsuleImg} alt="Products Images " width={801} height={470} />
       </div>
     </section>
   )
