@@ -1,0 +1,1 @@
+import{t as e}from"./react-core-DRjrpHGB.js";import{o as t}from"./vendor-DHEyDUPc.js";var n={button:`_button_dc94c_1`},r=e(),i=({children:e,className:i,type:a=`button`,...o})=>(0,r.jsx)(`button`,{type:a,className:t(n.button,i),...o,children:e});export{i as t};
