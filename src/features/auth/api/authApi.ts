@@ -1,3 +1,4 @@
+import type { ChangePasswordFields } from "@/entities/auth/model/types"
 import { auth, db } from "@/shared/firebase/firebase"
 export interface UserProfile {
   firstName: string
@@ -31,4 +32,25 @@ export const createUserProfileInFirestore = async (
 ) => {
   const { doc, setDoc } = await import("firebase/firestore")
   return setDoc(doc(db, "users", uid), profile)
+}
+
+export const changePasswordInFirebase = async (
+  data: Omit<ChangePasswordFields, "confirmPassword">,
+): Promise<void> => {
+  const user = auth.currentUser
+
+  if (!user || !user.email) {
+    throw new Error("User session not found. Please re-login.")
+  }
+
+  const { EmailAuthProvider, reauthenticateWithCredential, updatePassword } =
+    await import("firebase/auth")
+
+  const credential = EmailAuthProvider.credential(
+    user.email,
+    data.currentPassword,
+  )
+
+  await reauthenticateWithCredential(user, credential)
+  await updatePassword(user, data.newPassword)
 }

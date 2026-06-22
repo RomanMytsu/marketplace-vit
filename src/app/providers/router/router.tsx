@@ -24,6 +24,9 @@ const AccountOverviewTab = lazy(
 const PaymentMethodsTab = lazy(
   () => import("@/features/profile/ui/PaymentMethodsTab/PaymentMethodsTab"),
 )
+const ChangePasswordTab = lazy(
+  () => import("@/features/profile/ui/ChangePasswordTab/ChangePasswordTab"),
+)
 
 const router = createHashRouter([
   {
@@ -68,6 +71,10 @@ const router = createHashRouter([
           {
             path: "payments",
             element: <PaymentMethodsTab />,
+          },
+          {
+            path: "change-password",
+            element: <ChangePasswordTab />,
           },
         ],
       },

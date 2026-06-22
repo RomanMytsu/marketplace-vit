@@ -2,9 +2,10 @@
   border-radius: 12px !important;
   padding: 17px 50px 17px 40px !important;
   color: #fff !important;
-  line-height: 0 !important;
+  // line-height: 0 !important;
   width: globalFunctions.fluidValue(320px, 336px, 320px, 1800px) !important;
-  height: globalFunctions.fluidValue(70px, 56px, 320px, 1800px);
+  min-height: globalFunctions.fluidValue(70px, 56px, 320px, 1800px);
+  height: auto !important;
   gap: 15px;
   font-family: globalVariables.$font-family;
   @include globalMixins.max-width(laptop) {
@@ -17,6 +18,7 @@
     color: #fff;
     margin: 0;
     padding: 0;
+    white-space: normal !important;
   }
 
   &.success {

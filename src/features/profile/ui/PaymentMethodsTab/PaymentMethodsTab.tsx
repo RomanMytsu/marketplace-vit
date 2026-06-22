@@ -95,7 +95,6 @@ const PaymentMethodsTab = () => {
                   label="Card Number"
                   name="cardNumber"
                   type="text"
-                  placeholder="6477 1693 3042 6031"
                   value={values.cardNumber}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     setFieldValue(
@@ -118,7 +117,6 @@ const PaymentMethodsTab = () => {
                     label="Expiration"
                     name="expiration"
                     type="text"
-                    placeholder="12/21"
                     value={values.expiration}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       setFieldValue(
@@ -141,7 +139,6 @@ const PaymentMethodsTab = () => {
                         label="CVC"
                         name="cvc"
                         type="password"
-                        placeholder="***"
                         value={values.cvc}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                           setFieldValue(

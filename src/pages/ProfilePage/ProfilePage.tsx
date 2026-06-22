@@ -3,6 +3,7 @@ import s from "./ProfilePage.module.scss"
 import { NavLink, Outlet, useNavigate } from "react-router-dom"
 import { logoutUser } from "@/features/auth/api/authApi"
 import clsx from "clsx"
+import toast from "react-hot-toast"
 
 interface NavigationItem {
   name: string
@@ -24,9 +25,11 @@ const ProfilePage = () => {
   const handleLogout = async (): Promise<void> => {
     try {
       await logoutUser()
+      toast.success("Signed out successfully!")
+
       navigate("/", { replace: true })
-    } catch (error) {
-      console.error("Failed to log out:", error)
+    } catch {
+      toast.error("Failed to sign out. Please try again.")
     }
   }
   return (
