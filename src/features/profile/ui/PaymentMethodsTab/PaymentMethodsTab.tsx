@@ -135,27 +135,29 @@ const PaymentMethodsTab = () => {
                     className={s.payment__input_short}
                     labelClassName={s.payment__label}
                   />
-                </div>
-              </div>
-              <div className={s.payment__backCard}>
-                <div className={s.payment__cvcWrapper}>
-                  <Input
-                    label="CVC"
-                    name="cvc"
-                    type="password"
-                    placeholder="***"
-                    value={values.cvc}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      setFieldValue(
-                        "cvc",
-                        formatCVC(e.target.value, values.cardNumber),
-                      )
-                    }}
-                    onBlur={handleBlur}
-                    error={touched.cvc && errors.cvc ? errors.cvc : undefined}
-                    className={s.payment__input_cvc}
-                    labelClassName={s.payment__label}
-                  />
+                  <div className={s.payment__backCard}>
+                    <div className={s.payment__cvcWrapper}>
+                      <Input
+                        label="CVC"
+                        name="cvc"
+                        type="password"
+                        placeholder="***"
+                        value={values.cvc}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                          setFieldValue(
+                            "cvc",
+                            formatCVC(e.target.value, values.cardNumber),
+                          )
+                        }}
+                        onBlur={handleBlur}
+                        error={
+                          touched.cvc && errors.cvc ? errors.cvc : undefined
+                        }
+                        className={s.payment__input_cvc}
+                        labelClassName={s.payment__label}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
