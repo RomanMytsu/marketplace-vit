@@ -63,8 +63,40 @@ export const productApi = createApi({
         }
       },
     }),
+    getCatalogProducts: builder.query<Product[], void>({
+      async queryFn() {
+        try {
+          const { collection, getDocs } = await import("firebase/firestore")
+          const querySnapshot = await getDocs(collection(db, "product-catalog"))
+          const products: Product[] = []
+          querySnapshot.forEach((doc) => {
+            const data = doc.data()
+            products.push({
+              id: doc.id,
+              name: data.name || "",
+              title: data.title || data.name || "",
+              category: data.category || "",
+              img: data.img || "",
+              price: typeof data.price === "number" ? data.price : 0,
+              oldPrice:
+                typeof data.oldPrice === "number" ? data.oldPrice : undefined,
+            })
+          })
+          return { data: products }
+        } catch (error) {
+          return {
+            error: {
+              message: error instanceof Error ? error.message : "Unknown error",
+            },
+          }
+        }
+      },
+    }),
   }),
 })
 
-export const { useGetSwiperProductsQuery, useGetPersonalizedPackQuery } =
-  productApi
+export const {
+  useGetSwiperProductsQuery,
+  useGetPersonalizedPackQuery,
+  useGetCatalogProductsQuery,
+} = productApi

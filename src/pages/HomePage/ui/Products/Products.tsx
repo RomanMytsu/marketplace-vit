@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react"
 import { useGetSwiperProductsQuery } from "@/entities/products/api/productApi"
 import { Link } from "react-router-dom"
-import ProductCard from "@/entities/products/ui/ProductCard/ProductCard"
+import ProductCard from "@/shared/ui/ProductCard/ProductCard"
 import productsImg from "@/shared/assets/images/products-img.webp"
 import Icon from "@/shared/ui/Icon/Icon"
 import "swiper/css"

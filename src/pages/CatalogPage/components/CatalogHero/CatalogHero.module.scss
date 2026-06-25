@@ -1,0 +1,109 @@
+.hero {
+  position: relative;
+  &__sliderContainer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 28px 0 0;
+  }
+
+  &__swiperTrack {
+    width: 100%;
+    max-width: 1396px;
+    overflow: visible;
+    margin: 0 auto;
+  }
+
+  &__swiperSlide {
+    background: #8172dd;
+    border-radius: 24px;
+    opacity: 0.2;
+    transition:
+      opacity 0.4s ease,
+      background-color 0.4s ease;
+
+    & > * {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    &:global(.swiper-slide-active) {
+      opacity: 1;
+      background: transparent;
+
+      & > * {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__navBtn {
+    position: absolute;
+    top: 54%;
+    transform: translateY(-50%);
+    width: 70px;
+    height: 70px;
+    background: #fff;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      background: #f8fafc;
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    @include globalMixins.max-width(laptop) {
+      display: none;
+    }
+  }
+
+  &__prev {
+    left: calc(50% - 698px - 35px);
+    // @media (max-width: 1400px) {
+    //   left: 16px;
+    // }
+  }
+
+  &__next {
+    right: calc(50% - 698px - 35px);
+
+    svg {
+      transform: rotate(180deg);
+    }
+    @media (max-width: 1400px) {
+      right: 16px;
+    }
+  }
+
+  &__pagination {
+    display: none;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 30px;
+
+    @include globalMixins.max-width(tablet) {
+      display: flex;
+    }
+  }
+
+  :global {
+    .swiper-pagination-bullet {
+      width: 8px;
+      height: 8px;
+      border-radius: 100%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.4s ease;
+      opacity: 1;
+
+      &-active {
+        background: #fff;
+      }
+    }
+  }
+}
