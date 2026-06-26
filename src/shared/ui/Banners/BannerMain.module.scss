@@ -4,15 +4,12 @@
   padding: 94px 70px;
   width: 100%;
   max-width: 1396px;
-  height: 100%;
-  max-height: 472px;
+  height: 472px;
   overflow-x: clip;
   @include globalMixins.max-width(laptop) {
     border-radius: 0;
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
     padding: 30px 20px;
+    height: 464px;
   }
 
   &--quiz {
@@ -22,11 +19,28 @@
       right: -110px;
       top: -237px;
       @include globalMixins.max-width(laptop) {
+        left: 300px;
+        top: 15px;
         margin-bottom: 15px;
         img {
           width: 347px;
           height: 145px;
         }
+      }
+      @include globalMixins.max-width(tablet) {
+        left: 180px;
+      }
+      @include globalMixins.max-width(mobile) {
+        left: 0;
+      }
+      @include globalMixins.max-width(mobile-small) {
+        left: -42px;
+      }
+    }
+
+    .bannerMain__content {
+      @include globalMixins.max-width(laptop) {
+        margin-top: 165px;
       }
     }
   }
@@ -34,26 +48,79 @@
   &--vitamins {
     background: globalVariables.$goods-purple;
     padding: 73px 70px;
+    @include globalMixins.max-width(laptop) {
+      height: 521px;
+      padding: 30px 20px;
+    }
 
     .bannerMain__imgWrapper {
       right: 0;
       top: 0;
+      @include globalMixins.max-width(laptop) {
+        right: 385px;
+        top: 20px;
+        img {
+          width: 238px;
+          height: 220px;
+        }
+      }
+      @include globalMixins.max-width(tablet) {
+        right: 265px;
+      }
+
+      @include globalMixins.max-width(mobile) {
+        right: 43px;
+        top: 20px;
+      }
+    }
+    .bannerMain__content {
+      @include globalMixins.max-width(laptop) {
+        margin-top: 230px;
+      }
     }
   }
 
   &--painRelief {
     background: globalVariables.$goods-blue-text;
     padding: 105px 70px;
+    @include globalMixins.max-width(laptop) {
+      height: 492px;
+      padding: 30px 20px;
+    }
 
     .bannerMain__imgWrapper {
       right: 0;
       top: 0;
+      @include globalMixins.max-width(laptop) {
+        right: 385px;
+        top: 20px;
+        img {
+          width: 238px;
+          height: 220px;
+        }
+      }
+      @include globalMixins.max-width(tablet) {
+        right: 265px;
+      }
+      @include globalMixins.max-width(mobile) {
+        right: 43px;
+      }
+    }
+
+    .bannerMain__content {
+      @include globalMixins.max-width(laptop) {
+        margin-top: 230px;
+      }
     }
   }
 
   &__content {
     display: flex;
     flex-direction: column;
+    @include globalMixins.max-width(laptop) {
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   &__label {
@@ -72,6 +139,9 @@
     margin-bottom: globalFunctions.fluidValue(15px, 20px, 320px, 1800px);
     width: 100%;
     max-width: 660px;
+    @include globalMixins.max-width(laptop) {
+      text-align: center;
+    }
   }
 
   &__subTitle {
@@ -80,6 +150,9 @@
     margin-bottom: globalFunctions.fluidValue(20px, 30px, 320px, 1800px);
     width: 100%;
     max-width: 425px;
+    @include globalMixins.max-width(laptop) {
+      text-align: center;
+    }
   }
 
   &__link {
@@ -89,8 +162,7 @@
     font-weight: 700;
     font-size: globalFunctions.fluidValue(16px, 20px, 320px, 1800px);
     text-align: center;
-    width: 100%;
-    max-width: 255px;
+    width: globalFunctions.fluidValue(154px, 255px, 320px, 1800px);
     padding: 20px 0;
     @include globalMixins.max-width(laptop) {
       padding: 15px 0;
@@ -99,9 +171,9 @@
 
   &__imgWrapper {
     position: absolute;
-    @include globalMixins.max-width(laptop) {
-      position: static;
-    }
+    // @include globalMixins.max-width(laptop) {
+    //   position: static;
+    // }
   }
 }
 

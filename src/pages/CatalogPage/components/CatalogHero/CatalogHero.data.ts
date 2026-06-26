@@ -1,4 +1,4 @@
-import type { BannerVariant } from "@/shared/ui/Banners/BannerMain/BannerMain"
+import type { BannerVariant } from "@/shared/ui/Banners/BannerMain"
 import heroImg from "@/shared/assets/images/hero-img.webp"
 import vitaminsImg from "@/shared/assets/images/products-catalog/img-1.webp"
 import painImg from "@/shared/assets/images/products-catalog/img-22.webp"

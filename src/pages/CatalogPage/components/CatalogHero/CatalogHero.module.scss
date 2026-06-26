@@ -5,6 +5,9 @@
     width: 100%;
     overflow: hidden;
     padding: 28px 0 0;
+    @include globalMixins.max-width(laptop) {
+      padding: 0;
+    }
   }
 
   &__swiperTrack {
@@ -19,12 +22,12 @@
     border-radius: 24px;
     opacity: 0.2;
     transition:
-      opacity 0.4s ease,
-      background-color 0.4s ease;
+      opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+      background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 
     & > * {
       opacity: 0;
-      transition: opacity 0.4s ease;
+      transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     &:global(.swiper-slide-active) {
@@ -64,19 +67,20 @@
 
   &__prev {
     left: calc(50% - 698px - 35px);
-    // @media (max-width: 1400px) {
-    //   left: 16px;
-    // }
+    @include globalMixins.max-width(desktop-sm) {
+      left: -1px;
+    }
   }
 
   &__next {
     right: calc(50% - 698px - 35px);
 
+    @include globalMixins.max-width(desktop-sm) {
+      right: -1px;
+    }
+
     svg {
       transform: rotate(180deg);
-    }
-    @media (max-width: 1400px) {
-      right: 16px;
     }
   }
 
@@ -84,10 +88,14 @@
     display: none;
     justify-content: center;
     gap: 24px;
-    margin-top: 30px;
 
     @include globalMixins.max-width(tablet) {
+      position: absolute;
+      bottom: 85px !important;
+      left: 125px !important;
+      z-index: 10;
       display: flex;
+
     }
   }
 

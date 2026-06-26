@@ -1,4 +1,4 @@
-import BannerMain from "@/shared/ui/Banners/BannerMain/BannerMain"
+import BannerMain from "@/shared/ui/Banners/BannerMain"
 import { Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { SLIDER_DATA } from "./CatalogHero.data"
@@ -17,13 +17,23 @@ const CatalogHero = () => {
       <div className={s.hero__sliderContainer}>
         <Swiper
           modules={[Navigation, Pagination]}
-          spaceBetween={50}
           slidesPerView={1}
           centeredSlides={true}
           loop={true}
           grabCursor={true}
           speed={400}
           watchSlidesProgress={true}
+          breakpoints={{
+            320: {
+              spaceBetween: 16,
+            },
+            768: {
+              spaceBetween: 24,
+            },
+            1200: {
+              spaceBetween: 50,
+            },
+          }}
           navigation={{
             nextEl,
             prevEl,
