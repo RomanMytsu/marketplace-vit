@@ -1,0 +1,1 @@
+import{t as e}from"./react-core-Bn8iK_Ae.js";var t={},n=e(),r=()=>(0,n.jsx)(`h2`,{className:t.title,children:`ProductDetailsPage`});export{r as default};

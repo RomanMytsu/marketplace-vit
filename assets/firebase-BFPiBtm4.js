@@ -1,0 +1,1 @@
+import{i as e,n as t,o as n}from"./firebase-backend-BXEJ0r3Z.js";var r=n({apiKey:`AIzaSyB7uq9KZycSQmRqcjf8pBEjcPDS3hMRIGQ`,authDomain:`vitamin-3d146.firebaseapp.com`,projectId:`vitamin-3d146`,storageBucket:`vitamin-3d146.firebasestorage.app`,messagingSenderId:`1087169679656`,appId:`1:1087169679656:web:d2a2bcf2a56cce663e801d`}),i=t(r),a=e(r);export{i as n,a as t};
