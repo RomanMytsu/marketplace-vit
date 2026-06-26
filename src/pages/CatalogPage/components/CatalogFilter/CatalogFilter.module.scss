@@ -1,0 +1,107 @@
+.filter {
+  max-width: 206px;
+  margin-top: 32px;
+
+  &__dropdownToggle {
+    display: none;
+    width: 100%;
+    padding: 14px 20px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1e293b;
+    text-align: left;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    @include globalMixins.max-width(tablet) {
+      display: flex;
+    }
+
+    &_active {
+      border-color: #8172dd;
+      background: #fff;
+
+      .filter__arrowIcon {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  &__arrowIcon {
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
+    color: #8172dd;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+
+    @include globalMixins.max-width(tablet) {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      z-index: 50;
+      max-height: 300px;
+      overflow-y: auto;
+      padding: 8px;
+      gap: 4px;
+
+      &_open {
+        display: flex;
+      }
+    }
+  }
+
+  &__item {
+    width: 100%;
+  }
+
+  &__btn {
+    width: 100%;
+    font-family: globalVariables.$second-family;
+    font-weight: 400;
+    font-size: 22px;
+    text-align: left;
+
+    &_active {
+      color: globalVariables.$main-orange;
+      font-weight: 600;
+    }
+
+    &_sale {
+      color: globalVariables.$red;
+
+      &.filter__btn_active {
+        color: globalVariables.$red;
+        font-weight: 600;
+      }
+    }
+
+    @include globalMixins.max-width(tablet) {
+      padding: 12px 16px;
+      border-radius: 8px;
+
+      &:hover {
+        background: #f1f5f9;
+      }
+
+      &_active {
+        background: rgba(129, 114, 221, 0.1);
+        color: #8172dd;
+      }
+    }
+  }
+}

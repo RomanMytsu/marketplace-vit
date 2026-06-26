@@ -1,0 +1,53 @@
+.catalogGridContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.catalogGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.catalogGrid__pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.catalogGrid__viewMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 335px; 
+  padding: 14px;
+  background-color: #fafdff;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1c1c1c;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #f0f5f8;
+  }
+}
+
+.catalogGrid__arrowIcon {
+  transform: rotate(-90deg);
+}

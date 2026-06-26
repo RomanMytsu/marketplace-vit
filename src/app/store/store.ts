@@ -5,6 +5,7 @@ import quizReducer from "@/features/Quiz/model/quizSlice"
 import subscriptionReducer from "@/entities/profile/model/subscriptionSlice"
 import overviewReducer from "@/entities/profile/model/overviewSlice"
 import paymentReducer from "@/entities/profile/model/paymentSlice"
+import catalogReducer from "@/entities/products/model/catalogSlice"
 import {
   loadContractedState,
   saveContractedState,
@@ -19,6 +20,7 @@ export const store = configureStore({
     subscription: subscriptionReducer,
     overview: overviewReducer,
     payment: paymentReducer,
+    catalog: catalogReducer,
     [productApi.reducerPath]: productApi.reducer,
   },
   preloadedState,

@@ -1,10 +1,14 @@
-import s from "./CatalogPage.module.scss"
 import CatalogHero from "./components/CatalogHero/CatalogHero"
+import Catalog from "./components/Catalog/Catalog"
+import { useTitle } from "@/shared/lib/hooks/useTitle"
+import s from "./CatalogPage.module.scss"
 
 const CatalogPage = () => {
+  useTitle("Catalog")
   return (
-    <div className={s.catalog}>
-        <CatalogHero />
+    <div className={s.catalogPage}>
+      <CatalogHero />
+      <Catalog />
     </div>
   )
 }

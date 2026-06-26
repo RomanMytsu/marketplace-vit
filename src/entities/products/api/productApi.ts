@@ -1,6 +1,11 @@
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react"
-import type { Product } from "../model/types"
 import { db } from "@/shared/firebase/firebase"
+import type { Product } from "../model/types"
+
+interface GetCatalogProductsParams {
+  category: string
+  limitCount?: number
+}
 
 export const productApi = createApi({
   reducerPath: "productApi",
@@ -63,12 +68,30 @@ export const productApi = createApi({
         }
       },
     }),
-    getCatalogProducts: builder.query<Product[], void>({
-      async queryFn() {
+    getCatalogProducts: builder.query<Product[], GetCatalogProductsParams>({
+      async queryFn({ category, limitCount }) {
         try {
-          const { collection, getDocs } = await import("firebase/firestore")
-          const querySnapshot = await getDocs(collection(db, "product-catalog"))
+          const { collection, getDocs, query, where, limit } =
+            await import("firebase/firestore")
+
+          let catalogQuery = query(collection(db, "product-catalog"))
+
+          if (category === "Sale%") {
+            catalogQuery = query(catalogQuery, where("sale", "==", true))
+          } else if (category && category !== "All categories") {
+            catalogQuery = query(
+              catalogQuery,
+              where("category", "==", category),
+            )
+          }
+
+          if (limitCount && limitCount > 0) {
+            catalogQuery = query(catalogQuery, limit(limitCount))
+          }
+
+          const querySnapshot = await getDocs(catalogQuery)
           const products: Product[] = []
+
           querySnapshot.forEach((doc) => {
             const data = doc.data()
             products.push({
@@ -80,8 +103,12 @@ export const productApi = createApi({
               price: typeof data.price === "number" ? data.price : 0,
               oldPrice:
                 typeof data.oldPrice === "number" ? data.oldPrice : undefined,
+              sale: typeof data.sale === "boolean" ? data.sale : false,
+              discount:
+                typeof data.discount === "number" ? data.discount : undefined,
             })
           })
+
           return { data: products }
         } catch (error) {
           return {

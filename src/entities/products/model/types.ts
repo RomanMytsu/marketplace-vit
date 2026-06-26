@@ -6,4 +6,6 @@ export interface Product {
   img: string
   price?: number
   oldPrice?: number
+  sale?: boolean
+  discount?: number
 }
