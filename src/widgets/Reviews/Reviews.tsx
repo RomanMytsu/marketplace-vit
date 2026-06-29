@@ -1,25 +1,44 @@
 import { Swiper, SwiperSlide } from "swiper/react"
 import type { Review } from "./model/reviewsMock"
-import s from "./Reviews.module.scss"
 import ReviewCard from "./ReviewCard/ReviewCard"
+import s from "./Reviews.module.scss"
+import clsx from "clsx"
 
 interface ReviewsProps {
   reviews: Review[]
   title: string
   subTitle?: string
   iconSrc?: string
+  classContent?: string
+  classTitle?: string
+  classSection?: string
 }
-const Reviews = ({ reviews, title, subTitle, iconSrc }: ReviewsProps) => {
+const Reviews = ({
+  reviews,
+  title,
+  subTitle,
+  iconSrc,
+  classContent,
+  classTitle,
+  classSection,
+}: ReviewsProps) => {
   if (!reviews || reviews.length === 0) return null
 
   return (
-    <section className={s.reviews}>
+    <section className={clsx(s.reviews, classSection)}>
       <div className="container">
-        {(title || subTitle || iconSrc) && (
-          <div className={s.reviews__content}>
-            <img src={iconSrc} alt="icon" className={s.reviews__icon} />
-            <h2 className={s.reviews__title}>{title}</h2>
-            <p className={s.reviews__subTitle}>{subTitle}</p>
+        {title && (
+          <div className={clsx(s.reviews__content, classContent)}>
+            {iconSrc && (
+              <img
+                src={iconSrc}
+                alt=""
+                className={s.reviews__icon}
+                aria-hidden="true"
+              />
+            )}
+            <h2 className={clsx(s.reviews__title, classTitle)}>{title}</h2>
+            {subTitle && <p className={s.reviews__subTitle}>{subTitle}</p>}
           </div>
         )}
         <div className={s.reviews__sliderBlock}>

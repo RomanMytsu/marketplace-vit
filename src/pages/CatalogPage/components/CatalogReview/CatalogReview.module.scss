@@ -1,0 +1,18 @@
+.catalogReview {
+  padding: 0 0 100px;
+  @include globalMixins.max-width(laptop) {
+    padding: 0 0 60px;
+  }
+
+  &__content {
+    align-items: baseline;
+    margin-bottom: globalFunctions.fluidValue(30px, 50px, 320px, 1800px);
+  }
+
+  &__title {
+    font-size: globalFunctions.fluidValue(20px, 30px, 320px, 1800px);
+    max-width: 446px;
+    margin-bottom: 0;
+    text-align: left;
+  }
+}
