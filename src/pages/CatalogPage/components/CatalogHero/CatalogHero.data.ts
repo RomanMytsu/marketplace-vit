@@ -37,7 +37,7 @@ export const SLIDER_DATA: SlideItem[] = [
     subTitle:
       "Answer a few simple questions and automatically get a personalazed list of vitamins in minutes",
     btnText: "View category",
-    btnLink: "/catalog?category=vitamins",
+    btnLink: "/catalog?category=Vitamins+%26+Dietary+Supplements",
     imgSrc: vitaminsImg,
     width: "510",
     height: "472",
@@ -50,7 +50,7 @@ export const SLIDER_DATA: SlideItem[] = [
     subTitle:
       "Answer a few simple questions and automatically get a personalazed list of vitamins in minutes",
     btnText: "View category",
-    btnLink: "/catalog?category=pain-relief",
+    btnLink: "/catalog?category=Pain+Relief",
     imgSrc: painImg,
     width: "510",
     height: "472",

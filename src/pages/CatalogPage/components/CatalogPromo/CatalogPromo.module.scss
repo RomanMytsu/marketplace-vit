@@ -1,0 +1,15 @@
+.catalogPromo {
+  padding-bottom: 100px;
+  @include globalMixins.max-width(laptop) {
+    padding-bottom: 60px;
+  }
+  &__container {
+    max-width: 1800px;
+    width: 100%;
+    padding-inline: globalFunctions.fluidValue(20px, 202px, 320px, 1800px);
+    margin: 0 auto;
+    @include globalMixins.max-width(mobile) {
+      padding-inline: 0;
+    }
+  }
+}
