@@ -52,8 +52,8 @@ const CatalogFilter = ({
         <span>{selectedCategory}</span>
         <Icon
           name="back_arrow"
-          width={10}
-          height={6}
+          width={19}
+          height={11}
           className={s.filter__arrowIcon}
         />
       </button>

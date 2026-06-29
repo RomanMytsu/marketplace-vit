@@ -94,18 +94,34 @@ export const productApi = createApi({
 
           querySnapshot.forEach((doc) => {
             const data = doc.data()
+
+            const basePrice = typeof data.price === "number" ? data.price : 0
+            const isSale = typeof data.sale === "boolean" ? data.sale : false
+            const discountPercent =
+              typeof data.discount === "number" ? data.discount : 0
+
+            const price =
+              isSale && discountPercent > 0
+                ? Number((basePrice * (1 - discountPercent / 100)).toFixed(2))
+                : basePrice
+
+            const oldPrice =
+              isSale && discountPercent > 0
+                ? basePrice
+                : typeof data.oldPrice === "number"
+                  ? data.oldPrice
+                  : undefined
+
             products.push({
               id: doc.id,
               name: data.name || "",
               title: data.title || data.name || "",
               category: data.category || "",
               img: data.img || "",
-              price: typeof data.price === "number" ? data.price : 0,
-              oldPrice:
-                typeof data.oldPrice === "number" ? data.oldPrice : undefined,
-              sale: typeof data.sale === "boolean" ? data.sale : false,
-              discount:
-                typeof data.discount === "number" ? data.discount : undefined,
+              price,
+              oldPrice,
+              sale: isSale,
+              discount: data.discount,
             })
           })
 

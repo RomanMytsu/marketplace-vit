@@ -83,35 +83,4 @@
       transform: rotate(180deg);
     }
   }
-
-  &__pagination {
-    display: none;
-    justify-content: center;
-    gap: 24px;
-
-    @include globalMixins.max-width(tablet) {
-      position: absolute;
-      bottom: 85px !important;
-      left: 125px !important;
-      z-index: 10;
-      display: flex;
-
-    }
-  }
-
-  :global {
-    .swiper-pagination-bullet {
-      width: 8px;
-      height: 8px;
-      border-radius: 100%;
-      background: rgba(255, 255, 255, 0.3);
-      cursor: pointer;
-      transition: all 0.4s ease;
-      opacity: 1;
-
-      &-active {
-        background: #fff;
-      }
-    }
-  }
 }

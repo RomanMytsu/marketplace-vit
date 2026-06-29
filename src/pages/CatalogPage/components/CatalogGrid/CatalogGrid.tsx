@@ -15,7 +15,7 @@ const CatalogGrid = () => {
   const selectedCategory = searchParams.get("category") || "All categories"
   const mobileLimit = useAppSelector(selectMobileLimit)
 
-  const isMobile = useMediaQuery("(max-width: 768px)")
+  const isMobile = useMediaQuery("(max-width: 1024px)")
 
   const { data: products = [] } = useGetCatalogProductsQuery({
     category: selectedCategory,
@@ -28,8 +28,8 @@ const CatalogGrid = () => {
 
   const hasMore = isMobile && products.length === mobileLimit
   return (
-    <div className={s.catalogGridContainer}>
-      <div className={s.catalogGrid}>
+    <div className={s.catalogGrid}>
+      <div className={s.catalogGrid__catalogGridContainer}>
         {products.map((product) => (
           <ProductCard key={product.id} product={product} variant="catalog" />
         ))}
@@ -46,7 +46,7 @@ const CatalogGrid = () => {
             <Icon
               name="back_arrow"
               width={10}
-              height={6}
+              height={15}
               className={s.catalogGrid__arrowIcon}
             />
           </button>
