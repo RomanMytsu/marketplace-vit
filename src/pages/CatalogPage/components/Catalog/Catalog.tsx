@@ -1,9 +1,9 @@
 import { useAppDispatch } from "@/app/store/hooks"
 import CatalogFilter from "../CatalogFilter/CatalogFilter"
 import CatalogGrid from "../CatalogGrid/CatalogGrid"
-import s from "./Catalog.module.scss"
 import { resetMobileLimit } from "@/entities/products/model/catalogSlice"
 import { useSearchParams } from "react-router-dom"
+import s from "./Catalog.module.scss"
 
 const CATEGORIES = [
   "All categories",

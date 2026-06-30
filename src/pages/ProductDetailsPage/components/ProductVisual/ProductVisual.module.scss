@@ -1,0 +1,16 @@
+.visual {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  height: auto;
+
+  &__image {
+    position: sticky;
+    width: 608px;
+    height: 562px;
+    top: 12.5%;
+    margin-bottom: 169px;
+  }
+
+  
+}

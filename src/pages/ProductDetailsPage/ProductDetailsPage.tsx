@@ -1,7 +1,13 @@
-import s from "./ProductDetailsPage.module.scss"
+import ProductMain from "./components/ProductMain/ProductMain"
+import ProductRecommendations from "./components/ProductRecommendations/ProductRecommendations"
 
 const ProductDetailsPage = () => {
-  return <h2 className={s.title}>ProductDetailsPage</h2>
+  return (
+    <>
+      <ProductMain />
+      <ProductRecommendations />
+    </>
+  )
 }
 
 export default ProductDetailsPage

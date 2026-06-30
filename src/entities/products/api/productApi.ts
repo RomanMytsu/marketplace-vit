@@ -135,6 +135,57 @@ export const productApi = createApi({
         }
       },
     }),
+    getProductById: builder.query<Product | null, string>({
+      async queryFn(id) {
+        try {
+          const { doc, getDoc } = await import("firebase/firestore")
+          const docRef = doc(db, "product-catalog", id)
+          const docSnap = await getDoc(docRef)
+
+          if (!docSnap.exists()) {
+            return { data: null }
+          }
+
+          const data = docSnap.data()
+
+          const basePrice = typeof data.price === "number" ? data.price : 0
+          const isSale = typeof data.sale === "boolean" ? data.sale : false
+          const discountPercent =
+            typeof data.discount === "number" ? data.discount : 0
+
+          const price =
+            isSale && discountPercent > 0
+              ? Number((basePrice * (1 - discountPercent / 100)).toFixed(2))
+              : basePrice
+
+          const oldPrice =
+            isSale && discountPercent > 0
+              ? basePrice
+              : typeof data.oldPrice === "number"
+                ? data.oldPrice
+                : undefined
+
+          const product: Product = {
+            id: docSnap.id,
+            name: data.name || "",
+            category: data.category || "",
+            img: data.img || "",
+            price,
+            oldPrice,
+            sale: isSale,
+            discount: data.discount,
+          }
+
+          return { data: product }
+        } catch (error) {
+          return {
+            error: {
+              message: error instanceof Error ? error.message : "Unknown error",
+            },
+          }
+        }
+      },
+    }),
   }),
 })
 
@@ -142,4 +193,5 @@ export const {
   useGetSwiperProductsQuery,
   useGetPersonalizedPackQuery,
   useGetCatalogProductsQuery,
+  useGetProductByIdQuery,
 } = productApi
