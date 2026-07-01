@@ -1,1 +1,0 @@
-import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{p as t}from"./react-core-Ckdo4jbF.js";var n=e(t(),1),r=e=>{(0,n.useEffect)(()=>{let t=document.title;return document.title=`${e}`,()=>{document.title=t}},[e])};export{r as t};
