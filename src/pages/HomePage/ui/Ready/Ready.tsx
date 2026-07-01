@@ -16,7 +16,7 @@ const Ready = () => {
             more that help you feel your best today and support you long-term.
           </p>
           <QuizLink variant="secondary" size="lg" />
-          <Link to="/catalog" className={s.ready__shopLink}>
+          <Link to="/catalog" className={s.ready__shopLink} viewTransition>
             Go to the shop{" "}
             <Icon
               name="arrow-shop"

@@ -35,7 +35,11 @@ const ProductCard = ({ product, variant = "slider" }: ProductCardProps) => {
 
   return (
     <article className={cardClasses}>
-      <Link to={`/catalog/${product.id}`} className={s.card__link}>
+      <Link
+        to={`/catalog/${product.id}`}
+        className={s.card__link}
+        viewTransition
+      >
         <div className={s.card__imageWrapper}>
           <img src={imgSrc} alt={product.name} className={s.card__image} />
           {showFullInfo && product.oldPrice && product.price && (

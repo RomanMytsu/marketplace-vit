@@ -86,3 +86,28 @@ body {
   padding-inline: globalFunctions.fluidValue(20px, 202px, 320px, 1800px);
   margin: 0 auto;
 }
+
+::view-transition-old(root) {
+  animation: fade-out 0.25s ease-in-out forwards;
+}
+::view-transition-new(root) {
+  animation: fade-in 0.25s ease-in-out forwards;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

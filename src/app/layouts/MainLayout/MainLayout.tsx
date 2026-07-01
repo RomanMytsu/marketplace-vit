@@ -1,5 +1,4 @@
-import { Outlet } from "react-router-dom"
-import "./MainLayout.scss"
+import { Outlet, ScrollRestoration } from "react-router-dom"
 import { useEffect } from "react"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "@/shared/firebase/firebase"
@@ -8,9 +7,12 @@ import { useAppDispatch } from "@/app/store/hooks"
 import { CustomToaster } from "@/shared/ui/CustomToaster"
 import Header from "@/widgets/Header/Header"
 import Footer from "@/widgets/Footer/Footer"
+import "./MainLayout.scss"
 
 const MainLayout = () => {
   const dispatch = useAppDispatch()
+
+  
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
@@ -37,6 +39,7 @@ const MainLayout = () => {
         <Outlet />
       </main>
       <Footer />
+      <ScrollRestoration />
     </div>
   )
 }

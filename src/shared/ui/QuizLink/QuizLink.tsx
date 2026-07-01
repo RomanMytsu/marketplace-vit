@@ -10,7 +10,11 @@ interface QuizLinkProps {
 
 const QuizLink = ({ variant = "primary", size = "md" }: QuizLinkProps) => {
   return (
-    <Link className={clsx(s.quizLink, s[variant], s[size])} to="/quiz">
+    <Link
+      className={clsx(s.quizLink, s[variant], s[size])}
+      to="/quiz"
+      viewTransition
+    >
       Take the quiz
     </Link>
   )

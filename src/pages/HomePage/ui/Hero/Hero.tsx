@@ -21,7 +21,7 @@ const Hero = () => {
           </p>
           <div className={s.heroBtnWrapper}>
             <QuizLink variant="secondary" size="lg" />
-            <Link to="/catalog" className={s.shopLink}>
+            <Link to="/catalog" className={s.shopLink} viewTransition>
               Go to the shop{" "}
               <Icon
                 name="arrow-shop"
@@ -33,11 +33,7 @@ const Hero = () => {
           </div>
         </div>
         <div className={s.heroImgWrapper}>
-          <img
-            src={heroImg}
-            alt="Hero Img"
-            className={s.heroImg}
-          />
+          <img src={heroImg} alt="Hero Img" className={s.heroImg} />
         </div>
         <Ellipse className={s.ellipseYellow} />
         <Ellipse className={s.heroEllipse} />

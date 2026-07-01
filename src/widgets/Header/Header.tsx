@@ -64,7 +64,12 @@ const Header = () => {
             />
           </button>
           <div className={s.logoWrapper}>
-            <Link to="/" className={s.link} aria-label="Go to homepage">
+            <Link
+              to="/"
+              className={s.link}
+              aria-label="Go to homepage"
+              viewTransition
+            >
               <img src={Logo} alt="Logo" className={s.logo} />
             </Link>
           </div>
@@ -77,7 +82,12 @@ const Header = () => {
                 className={s.iconProfile}
               />
             </button>
-            <Link to="/cart" className={s.cart} aria-label="Cart">
+            <Link
+              to="/cart"
+              className={s.cart}
+              aria-label="Cart"
+              viewTransition
+            >
               <Icon name="cart" width={32} height={32} className={s.iconCart} />
             </Link>
             <QuizLink />
