@@ -1,0 +1,40 @@
+.description {
+  font-size: globalFunctions.fluidValue(14px, 16px, 320px, 1800px);
+  margin-bottom: globalFunctions.fluidValue(60px, 90px, 320px, 1800px);
+
+  &__title {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: globalFunctions.fluidValue(20px, 26px, 320px, 1800px);
+    margin-bottom: 30px;
+  }
+
+  &__text {
+    line-height: 175%;
+    margin-bottom: 30px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  &__listItem {
+    position: relative;
+    padding-left: 53px;
+    @include globalMixins.max-width(laptop) {
+      padding-left: 40px;
+    }
+
+    &::before {
+      position: absolute;
+      content: "";
+      top: 10px;
+      left: -1px;
+      width: globalFunctions.fluidValue(20px, 30px, 320px, 1800px);
+      height: 2px;
+      background: globalVariables.$main-orange;
+    }
+  }
+}

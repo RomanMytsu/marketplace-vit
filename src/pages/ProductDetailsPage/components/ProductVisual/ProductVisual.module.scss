@@ -3,14 +3,19 @@
   justify-content: center;
   width: 50%;
   height: auto;
+  @include globalMixins.max-width(laptop) {
+    width: 100%;
+    padding: 70px 0 20px;
+  }
 
   &__image {
     position: sticky;
-    width: 608px;
-    height: 562px;
+    width: globalFunctions.fluidValue(320px, 608px, 320px, 1800px);
+    height: globalFunctions.fluidValue(296px, 562px, 320px, 1800px);
     top: 12.5%;
     margin-bottom: 169px;
+    @include globalMixins.max-width(laptop) {
+      margin-bottom: 0;
+    }
   }
-
-  
 }

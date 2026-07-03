@@ -1,0 +1,25 @@
+.importantInfo {
+  &__title {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: globalFunctions.fluidValue(20px, 26px, 320px, 1800px);
+    margin-bottom: globalFunctions.fluidValue(30px, 40px, 320px, 1800px);
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: globalFunctions.fluidValue(10px, 80px, 320px, 1800px);
+    margin-bottom: 60px;
+    font-size: globalFunctions.fluidValue(14px, 16px, 320px, 1800px);
+    line-height: 1.75;
+    @include globalMixins.max-width(laptop) {
+      grid-template-columns: 1fr;
+      line-height: 1.71;
+    }
+  }
+
+  &__key {
+    font-weight: 600;
+  }
+}

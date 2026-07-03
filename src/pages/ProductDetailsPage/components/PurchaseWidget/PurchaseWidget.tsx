@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent } from "react"
+import { useEffect, useRef, useState, type ChangeEvent } from "react"
 import srcIcon from "@/shared/assets/images/bottle.svg"
 import s from "./PurchaseWidget.module.scss"
 import Icon from "@/shared/ui/Icon/Icon"
@@ -10,10 +10,15 @@ interface PurchaseWidgetProps {
   discount?: number
 }
 
+const AUTOSHIP_OPTIONS = [30, 60, 90]
+
 const PurchaseWidget = ({ price, oldPrice, discount }: PurchaseWidgetProps) => {
   const [quantity, setQuantity] = useState<number>(1)
   const [isAutoship, setIsAutoship] = useState<boolean>(false)
   const [autoshipDays, setAutoshipDays] = useState<number>(30)
+  const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false)
+
+  const selectRef = useRef<HTMLDivElement>(null)
 
   const handleIncrement = () => setQuantity((prev) => prev + 1)
   const handleDecrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))
@@ -29,13 +34,32 @@ const PurchaseWidget = ({ price, oldPrice, discount }: PurchaseWidgetProps) => {
     }
   }
 
-  const handleAutoshipDaysChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setAutoshipDays(Number(e.target.value))
+  const handleAutoshipToggle = (e: ChangeEvent<HTMLInputElement>) => {
+    const checked = e.target.checked
+    setIsAutoship(checked)
+    if (!checked) {
+      setIsSelectOpen(false)
+    }
   }
 
-  const handleAutoshipToggle = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsAutoship(e.target.checked)
+  const handleOptionClick = (days: number) => {
+    setAutoshipDays(days)
+    setIsSelectOpen(false)
   }
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        selectRef.current &&
+        !selectRef.current.contains(event.target as Node)
+      ) {
+        setIsSelectOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
   const currentTotal = (price * quantity).toFixed(2)
   const oldTotal = oldPrice ? (oldPrice * quantity).toFixed(2) : null
@@ -82,7 +106,6 @@ const PurchaseWidget = ({ price, oldPrice, discount }: PurchaseWidgetProps) => {
           </div>
         </div>
       </div>
-
       <div className={s.purchaseWidget__actionRow}>
         <div className={s.purchaseWidget__autoshipWrapper}>
           <div
@@ -91,52 +114,78 @@ const PurchaseWidget = ({ price, oldPrice, discount }: PurchaseWidgetProps) => {
             })}
           >
             <p className={s.purchaseWidget__autoshipLabel}>
-              Autoship this item every
+              <span className={s.purchaseWidget__autoshipLabelDes}>
+                Autoship this item every
+              </span>
+
+              <span className={s.purchaseWidget__autoshipLabelMob}>
+                Deliver every
+              </span>
             </p>
-            <div className={s.purchaseWidget__selectWrapper}>
-              <Icon
-                name="select_arrow"
-                width={10}
-                height={6}
-                className={s.purchaseWidget__selectIcon}
-              />
-              <select
-                value={autoshipDays}
-                onChange={handleAutoshipDaysChange}
+            <div className={s.purchaseWidget__selectWrapper} ref={selectRef}>
+              <button
+                type="button"
                 disabled={!isAutoship}
-                className={s.purchaseWidget__select}
+                onClick={() => setIsSelectOpen((prev) => !prev)}
+                className={clsx(s.purchaseWidget__selectTrigger, {
+                  [s.purchaseWidget__selectTrigger_open]: isSelectOpen,
+                })}
               >
-                <option value={30}>30</option>
-                <option value={60}>60</option>
-                <option value={90}>90</option>
-              </select>
+                <span>{autoshipDays}</span>
+                <Icon
+                  name="select_arrow"
+                  width={10}
+                  height={6}
+                  className={s.purchaseWidget__selectIcon}
+                />
+              </button>
+              {isSelectOpen && isAutoship && (
+                <ul className={s.purchaseWidget__selectDropdown}>
+                  {AUTOSHIP_OPTIONS.map((days) => (
+                    <li
+                      key={days}
+                      onClick={() => handleOptionClick(days)}
+                      className={clsx(s.purchaseWidget__selectOption, {
+                        [s.purchaseWidget__selectOption_active]:
+                          autoshipDays === days,
+                      })}
+                    >
+                      {days}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
             <p className={s.purchaseWidget__autoshipDays}>days</p>
           </div>
-          <label className={s.toggleSwitch}>
+          <label className={s.purchaseWidget__toggleSwitch}>
             <input
               type="checkbox"
               checked={isAutoship}
               onChange={handleAutoshipToggle}
-              className={s.toggleSwitch__input}
+              className={s.purchaseWidget__input}
             />
-            <span className={s.toggleSwitch__slider} />
+            <span className={s.purchaseWidget__slider} />
           </label>
         </div>
-
         <div className={s.purchaseWidget__priceBlock}>
           {oldTotal ? (
             <div className={s.purchaseWidget__discountedPrices}>
               <div className={s.purchaseWidget__oldPriceRow}>
-                <span className={s.purchaseWidget__oldPrice}>${oldTotal}</span>
-                <span className={s.purchaseWidget__discountBadge}>
-                  -{discount}%
-                </span>
+                <p className={s.purchaseWidget__oldPrice}>${oldTotal}</p>
+                <p className={s.purchaseWidget__discountBadge}> -{discount}%</p>
               </div>
-              <span className={s.purchaseWidget__price}>${currentTotal}</span>
+              <p
+                className={clsx(
+                  s.purchaseWidget__price,
+                  s.purchaseWidget__price_discounted,
+                )}
+              >
+                ${currentTotal}
+              </p>
             </div>
           ) : (
-            <span className={s.purchaseWidget__price}>${currentTotal}</span>
+            <p className={s.purchaseWidget__price}>${currentTotal}</p>
           )}
           <button type="button" className={s.purchaseWidget__submitBtn}>
             Add to cart
