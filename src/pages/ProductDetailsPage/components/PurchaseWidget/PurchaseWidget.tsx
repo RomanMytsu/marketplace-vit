@@ -1,10 +1,15 @@
 import { useEffect, useRef, useState, type ChangeEvent } from "react"
 import srcIcon from "@/shared/assets/images/bottle.svg"
-import s from "./PurchaseWidget.module.scss"
 import Icon from "@/shared/ui/Icon/Icon"
 import clsx from "clsx"
+import { useAppDispatch } from "@/app/store/hooks"
+import { addToCart } from "@/entities/cart/model/cartSlice"
+import s from "./PurchaseWidget.module.scss"
 
 interface PurchaseWidgetProps {
+  id: string
+  name: string
+  img: string
   price: number
   oldPrice?: number
   discount?: number
@@ -12,7 +17,15 @@ interface PurchaseWidgetProps {
 
 const AUTOSHIP_OPTIONS = [30, 60, 90]
 
-const PurchaseWidget = ({ price, oldPrice, discount }: PurchaseWidgetProps) => {
+const PurchaseWidget = ({
+  id,
+  name,
+  img,
+  price,
+  oldPrice,
+  discount,
+}: PurchaseWidgetProps) => {
+  const dispatch = useAppDispatch()
   const [quantity, setQuantity] = useState<number>(1)
   const [isAutoship, setIsAutoship] = useState<boolean>(false)
   const [autoshipDays, setAutoshipDays] = useState<number>(30)
@@ -45,6 +58,20 @@ const PurchaseWidget = ({ price, oldPrice, discount }: PurchaseWidgetProps) => {
   const handleOptionClick = (days: number) => {
     setAutoshipDays(days)
     setIsSelectOpen(false)
+  }
+
+  const handleAddToCartClick = () => {
+    dispatch(
+      addToCart({
+        id,
+        name,
+        price,
+        img,
+        quantity,
+        isAutoship,
+        autoshipDays,
+      }),
+    )
   }
 
   useEffect(() => {
@@ -187,7 +214,11 @@ const PurchaseWidget = ({ price, oldPrice, discount }: PurchaseWidgetProps) => {
           ) : (
             <p className={s.purchaseWidget__price}>${currentTotal}</p>
           )}
-          <button type="button" className={s.purchaseWidget__submitBtn}>
+          <button
+            type="button"
+            className={s.purchaseWidget__submitBtn}
+            onClick={handleAddToCartClick}
+          >
             Add to cart
           </button>
         </div>

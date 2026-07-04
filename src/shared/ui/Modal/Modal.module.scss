@@ -1,13 +1,8 @@
 .backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #faf8f6;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
   display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 999;
 }
 
@@ -15,5 +10,10 @@
   display: flex;
   flex-direction: column;
   background: #fff;
-  padding: 60px 119px;
+  height: 100vh;
+  width: 100%;
+  max-width: 375px;
+  margin-left: auto;
 }
+
+

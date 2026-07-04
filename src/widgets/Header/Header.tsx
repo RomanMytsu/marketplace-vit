@@ -8,12 +8,14 @@ import s from "./Header.module.scss"
 import clsx from "clsx"
 import { useAppSelector } from "@/app/store/hooks"
 import { selectUser } from "@/entities/auth/model/selectors"
+import { Cart } from "../Cart/Cart"
 
 const HEADER_HEIGHT = 55
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isCartOpen, setIsCartOpen] = useState(false)
 
   const user = useAppSelector(selectUser)
   const navigate = useNavigate()
@@ -82,19 +84,19 @@ const Header = () => {
                 className={s.iconProfile}
               />
             </button>
-            <Link
-              to="/cart"
+            <button
+              onClick={() => setIsCartOpen(true)}
               className={s.cart}
-              aria-label="Cart"
-              viewTransition
+              aria-label="Open cart"
             >
               <Icon name="cart" width={32} height={32} className={s.iconCart} />
-            </Link>
+            </button>
             <QuizLink />
           </nav>
         </div>
       </div>
       <MobileMenu isOpen={isMenuOpen} onClose={handleCloseMenu} />
+      <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </header>
   )
 }

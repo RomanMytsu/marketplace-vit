@@ -6,6 +6,7 @@ import subscriptionReducer from "@/entities/profile/model/subscriptionSlice"
 import overviewReducer from "@/entities/profile/model/overviewSlice"
 import paymentReducer from "@/entities/profile/model/paymentSlice"
 import catalogReducer from "@/entities/products/model/catalogSlice"
+import cartReducer from "@/entities/cart/model/cartSlice"
 import {
   loadContractedState,
   saveContractedState,
@@ -21,6 +22,7 @@ export const store = configureStore({
     overview: overviewReducer,
     payment: paymentReducer,
     catalog: catalogReducer,
+    cart: cartReducer,
     [productApi.reducerPath]: productApi.reducer,
   },
   preloadedState,
@@ -33,6 +35,7 @@ export const store = configureStore({
 store.subscribe(() => {
   saveContractedState({
     quiz: store.getState().quiz,
+    cart: store.getState().cart,
   })
 })
 

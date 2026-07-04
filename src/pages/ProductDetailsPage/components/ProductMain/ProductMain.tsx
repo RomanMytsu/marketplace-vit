@@ -42,6 +42,9 @@ const ProductMain = () => {
           </p>
           <h3 className={s.detailsPage__title}>{product.name}</h3>
           <PurchaseWidget
+            id={product.id}
+            name={product.name}
+            img={product.img}
             price={Number(product.price ?? 0)}
             oldPrice={product.oldPrice}
             discount={product.discount}
