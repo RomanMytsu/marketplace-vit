@@ -1,1 +1,0 @@
-import{t as e}from"./react-core-CM-98R2y.js";var t={},n=e(),r=()=>(0,n.jsx)(`section`,{className:t.orders,children:(0,n.jsx)(`h2`,{children:`Orders`})});export{r as default};
