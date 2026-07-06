@@ -48,6 +48,7 @@ const ProductMain = () => {
             price={Number(product.price ?? 0)}
             oldPrice={product.oldPrice}
             discount={product.discount}
+            category={product.category}
           />
           <ProductDescription productName={product.name} />
           <ProductImportantInfo />

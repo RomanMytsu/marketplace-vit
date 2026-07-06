@@ -31,6 +31,7 @@ const CatalogPage = lazy(() => import("@/pages/CatalogPage/CatalogPage"))
 const ProductDetailsPage = lazy(
   () => import("@/pages/ProductDetailsPage/ProductDetailsPage"),
 )
+const CheckoutPage = lazy(() => import("@/pages/Checkout/CheckoutPage"))
 
 const router = createHashRouter([
   {
@@ -111,6 +112,10 @@ const router = createHashRouter([
   {
     path: "/quiz",
     element: <QuizPage />,
+  },
+  {
+    path: "/checkout",
+    element: <CheckoutPage />,
   },
 ])
 

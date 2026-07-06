@@ -5,6 +5,7 @@ import clsx from "clsx"
 import { useAppDispatch } from "@/app/store/hooks"
 import { addToCart } from "@/entities/cart/model/cartSlice"
 import s from "./PurchaseWidget.module.scss"
+import toast from "react-hot-toast"
 
 interface PurchaseWidgetProps {
   id: string
@@ -13,6 +14,7 @@ interface PurchaseWidgetProps {
   price: number
   oldPrice?: number
   discount?: number
+  category: string
 }
 
 const AUTOSHIP_OPTIONS = [30, 60, 90]
@@ -24,6 +26,7 @@ const PurchaseWidget = ({
   price,
   oldPrice,
   discount,
+  category,
 }: PurchaseWidgetProps) => {
   const dispatch = useAppDispatch()
   const [quantity, setQuantity] = useState<number>(1)
@@ -70,8 +73,12 @@ const PurchaseWidget = ({
         quantity,
         isAutoship,
         autoshipDays,
+        category,
+        oldPrice,
+        discount,
       }),
     )
+    toast.success(`${name} added to cart`)
   }
 
   useEffect(() => {
@@ -144,7 +151,6 @@ const PurchaseWidget = ({
               <span className={s.purchaseWidget__autoshipLabelDes}>
                 Autoship this item every
               </span>
-
               <span className={s.purchaseWidget__autoshipLabelMob}>
                 Deliver every
               </span>

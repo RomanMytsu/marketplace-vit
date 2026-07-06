@@ -72,3 +72,32 @@
     }
   }
 }
+
+.cart {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+
+  .iconCart {
+    display: block;
+  }
+
+  &_hasItems {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 10px;
+      height: 10px;
+      background-color: globalVariables.$main-orange;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+  }
+}

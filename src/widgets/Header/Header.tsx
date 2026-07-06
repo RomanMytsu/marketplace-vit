@@ -18,6 +18,8 @@ const Header = () => {
   const [isCartOpen, setIsCartOpen] = useState(false)
 
   const user = useAppSelector(selectUser)
+  const cartItems = useAppSelector((state) => state.cart.items)
+  const hasItems = cartItems.length > 0
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -86,7 +88,7 @@ const Header = () => {
             </button>
             <button
               onClick={() => setIsCartOpen(true)}
-              className={s.cart}
+              className={clsx(s.cart, hasItems && s.cart_hasItems)}
               aria-label="Open cart"
             >
               <Icon name="cart" width={32} height={32} className={s.iconCart} />
