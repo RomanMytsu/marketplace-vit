@@ -1,1 +1,0 @@
-import{t as e}from"./react-core-BFnpYRYO.js";var t={},n=e(),r=()=>(0,n.jsx)(`section`,{className:t.checkoutPage,children:(0,n.jsx)(`div`,{className:`container`,children:(0,n.jsx)(`h1`,{children:`CheckoutPage`})})});export{r as default};
