@@ -30,37 +30,6 @@
     width: 100%;
   }
 
-  &__input {
-    width: 100%;
-  }
-
-  &__inputWrapper {
-    display: flex;
-    gap: globalFunctions.fluidValue(16px, 32px, 320px, 1800px);
-  }
-
-  &__formWrapper {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 30px 32px;
-    width: 100%;
-    @include globalMixins.max-width(laptop) {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 25px;
-    }
-  }
-
-  &__label {
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
-
-  &__zipInput {
-    width: globalFunctions.fluidValue(132px, 206px, 320px, 1800px);
-  }
-
   &__submitBtn {
     width: globalFunctions.fluidValue(280px, 154px, 320px, 1800px);
     height: 50px;

@@ -10,8 +10,8 @@ import { getProductImageUrl } from "@/shared/lib/helpers/getImage"
 import Icon from "@/shared/ui/Icon/Icon"
 import { getCategoryClass } from "@/shared/lib/helpers/categoryStyles"
 import { Link } from "react-router-dom"
-import s from "./CartItem.module.scss"
 import clsx from "clsx"
+import s from "./CartItem.module.scss"
 
 interface CartItemProps {
   item: CartItemType

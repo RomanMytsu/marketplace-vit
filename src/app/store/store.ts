@@ -7,6 +7,7 @@ import overviewReducer from "@/entities/profile/model/overviewSlice"
 import paymentReducer from "@/entities/profile/model/paymentSlice"
 import catalogReducer from "@/entities/products/model/catalogSlice"
 import cartReducer from "@/entities/cart/model/cartSlice"
+import checkoutReducer from "@/features/Checkout/model/checkoutSlice"
 import {
   loadContractedState,
   saveContractedState,
@@ -23,6 +24,7 @@ export const store = configureStore({
     payment: paymentReducer,
     catalog: catalogReducer,
     cart: cartReducer,
+    checkout: checkoutReducer,
     [productApi.reducerPath]: productApi.reducer,
   },
   preloadedState,

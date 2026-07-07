@@ -10,7 +10,7 @@ import {
   formatCardNumber,
   formatExpiration,
   formatCVC,
-} from "./paymentValidation"
+} from "../../../../entities/profile/model/paymentValidation"
 import { savePaymentInfo } from "@/entities/profile/model/paymentSlice"
 import srcImg from "@/shared/assets/images/payment-card.webp"
 import s from "./PaymentMethodsTab.module.scss"

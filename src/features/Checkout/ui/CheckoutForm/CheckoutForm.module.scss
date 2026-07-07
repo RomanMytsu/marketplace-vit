@@ -1,0 +1,70 @@
+.checkoutLayout {
+  display: grid;
+  grid-template-columns: 1fr 444px;
+  gap: 32px;
+  align-items: start;
+  @include globalMixins.max-width(laptop) {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 60px;
+  }
+
+  &__formSide {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 920px;
+  }
+
+  &__title {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: globalFunctions.fluidValue(20px, 36px, 320px, 1800px);
+    margin-bottom: globalFunctions.fluidValue(30px, 40px, 320px, 1800px);
+  }
+
+  &__billingGrid {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    @include globalMixins.max-width(laptop) {
+      flex-direction: column;
+      gap: 25px;
+    }
+  }
+
+  &__inputWrapper {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    @include globalMixins.max-width(laptop) {
+      gap: 16px;
+    }
+  }
+
+  &__label {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  &__input {
+    width: 100%;
+    max-width: 206px;
+  }
+
+  .checkoutLayout__mobileSubmitBtn {
+    display: none;
+
+    @include globalMixins.max-width(laptop) {
+      display: block;
+      width: 100%;
+      margin-top: 40px;
+    }
+  }
+
+  &__summarySide {
+    width: 100%;
+    
+
+  }
+}

@@ -49,6 +49,9 @@ export const cartSlice = createSlice({
         item.autoshipDays = action.payload.autoshipDays
       }
     },
+    clearCart: (state) => {
+      state.items = []
+    },
   },
 })
 
@@ -57,5 +60,6 @@ export const {
   removeFromCart,
   updateCartItemQuantity,
   updateCartItemAutoship,
+  clearCart,
 } = cartSlice.actions
 export default cartSlice.reducer

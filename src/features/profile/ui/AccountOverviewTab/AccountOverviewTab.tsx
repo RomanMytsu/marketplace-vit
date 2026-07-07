@@ -4,13 +4,9 @@ import { selectUser } from "@/entities/auth/model/selectors"
 import { saveOverviewInfo } from "@/entities/profile/model/overviewSlice"
 import toast from "react-hot-toast"
 import { Form, Formik } from "formik"
-import {
-  formatInternationalPhone,
-  profileValidationSchema,
-} from "./profileValidation"
-import Input from "@/shared/ui/Input"
+import { profileValidationSchema } from "../../../../entities/profile/model/profileValidation"
 import Button from "@/shared/ui/Button"
-import Select from "@/shared/ui/Select/Select"
+import { DeliveryFormFields } from "@/entities/profile/ui/DeliveryFormFields/DeliveryFormFields"
 import s from "./AccountOverviewTab.module.scss"
 
 const initialValues: ProfileFormFields = {
@@ -85,144 +81,15 @@ const AccountOverviewTab = () => {
           setFieldTouched,
         }) => (
           <Form className={s.overview__form}>
-            <div className={s.overview__formWrapper}>
-              <Input
-                label="First Name"
-                name="firstName"
-                type="text"
-                value={values.firstName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={
-                  touched.firstName && errors.firstName
-                    ? errors.firstName
-                    : undefined
-                }
-                labelClassName={s.overview__label}
-                className={s.overview__input}
-              />
-              <Input
-                label="Last Name"
-                name="lastName"
-                type="text"
-                value={values.lastName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={
-                  touched.lastName && errors.lastName
-                    ? errors.lastName
-                    : undefined
-                }
-                labelClassName={s.overview__label}
-                className={s.overview__input}
-              />
-              <Input
-                label="Address Line 1"
-                name="addressLine1"
-                type="text"
-                value={values.addressLine1}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={
-                  touched.addressLine1 && errors.addressLine1
-                    ? errors.addressLine1
-                    : undefined
-                }
-                labelClassName={s.overview__label}
-                className={s.overview__input}
-              />
-              <Input
-                label="Address Line 2"
-                name="addressLine2"
-                type="text"
-                value={values.addressLine2}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={
-                  touched.addressLine2 && errors.addressLine2
-                    ? errors.addressLine2
-                    : undefined
-                }
-                labelClassName={s.overview__label}
-                className={s.overview__input}
-              />
-              <Input
-                label="City"
-                name="city"
-                type="text"
-                value={values.city}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={touched.city && errors.city ? errors.city : undefined}
-                labelClassName={s.overview__label}
-                className={s.overview__input}
-              />
-
-              <div className={s.overview__inputWrapper}>
-                <Select
-                  label="State / Province"
-                  name="state"
-                  value={values.state}
-                  options={[
-                    { value: "NY", label: "NY" },
-                    { value: "CA", label: "CA" },
-                    { value: "TX", label: "TX" },
-                    { value: "FL", label: "FL" },
-                  ]}
-                  onChange={(name, val) => setFieldValue(name, val)}
-                  onBlur={(name) => setFieldTouched(name, true)}
-                  error={
-                    touched.state && errors.state ? errors.state : undefined
-                  }
-                />
-                <Input
-                  label="ZIP / Postal Code"
-                  name="zipCode"
-                  type="text"
-                  value={values.zipCode}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={
-                    touched.zipCode && errors.zipCode
-                      ? errors.zipCode
-                      : undefined
-                  }
-                  className={s.overview__zipInput}
-                  labelClassName={s.overview__label}
-                />
-              </div>
-              <Input
-                label="Email"
-                type="email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={touched.email && errors.email ? errors.email : undefined}
-                labelClassName={s.overview__label}
-                className={s.overview__input}
-              />
-              <Input
-                label="Phone Number"
-                type="tel"
-                name="phoneNumber"
-                value={values.phoneNumber}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  const formattedValue = formatInternationalPhone(
-                    e.target.value,
-                  )
-                  setFieldValue("phoneNumber", formattedValue)
-                }}
-                onBlur={handleBlur}
-                error={
-                  touched.phoneNumber && errors.phoneNumber
-                    ? errors.phoneNumber
-                    : undefined
-                }
-                labelClassName={s.overview__label}
-                className={s.overview__input}
-              />
-            </div>
+            <DeliveryFormFields
+              values={values}
+              errors={errors}
+              touched={touched}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              setFieldValue={setFieldValue}
+              setFieldTouched={setFieldTouched}
+            />
             <Button
               type="submit"
               className={`${s.overview__submitBtn} ${isValid && dirty ? s.overview__submitBtn_active : ""}`}
