@@ -38,18 +38,22 @@ export const placeOrder = createAsyncThunk<
     }, 0)
     const todayTotal = subtotal + SHIPPING_PRICE
 
+    const rawOrderData = {
+      userId: user.uid,
+      deliveryAndBilling: formValues,
+      items: cartItems,
+      pricing: {
+        subtotal,
+        discount: totalDiscount,
+        shipping: SHIPPING_PRICE,
+        total: todayTotal,
+      },
+    }
+
+    const sanitizedOrderData = JSON.parse(JSON.stringify(rawOrderData))
+
     try {
-      const orderId = await createOrderInFirebase({
-        userId: user.uid,
-        deliveryAndBilling: formValues,
-        items: cartItems,
-        pricing: {
-          subtotal,
-          discount: totalDiscount,
-          shipping: SHIPPING_PRICE,
-          total: todayTotal,
-        },
-      })
+      const orderId = await createOrderInFirebase(sanitizedOrderData)
 
       dispatch(clearCart())
 

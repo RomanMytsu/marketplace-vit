@@ -6,14 +6,14 @@ import { useAppSelector } from "@/app/store/hooks"
 import { getProductImageUrl } from "@/shared/lib/helpers/getImage"
 import { getCategoryClass } from "@/shared/lib/helpers/categoryStyles"
 import clsx from "clsx"
-import s from "./CheckoutSummary.module.scss"
 import Icon from "@/shared/ui/Icon/Icon"
+import s from "./CheckoutSummary.module.scss"
 
 const SHIPPING_PRICE = 9.2
 
 export const CheckoutSummary = () => {
-  // Хук автоматически забирает стейт из ближайшего контекста <Formik>
-  const { isValid, dirty } = useFormikContext<CheckoutFormFields>()
+  const { isValid, dirty, isSubmitting } =
+    useFormikContext<CheckoutFormFields>()
   const cartItems = useAppSelector((state) => state.cart.items)
 
   const [isMobileExpanded, setIsMobileExpanded] = useState(false)
@@ -23,7 +23,6 @@ export const CheckoutSummary = () => {
     0,
   )
 
-  // Вычисляем общую скидку, если у товаров есть oldPrice
   const totalDiscount = cartItems.reduce((sum, item) => {
     if (item.oldPrice && item.oldPrice > item.price) {
       return sum + (item.oldPrice - item.price) * item.quantity
@@ -39,7 +38,6 @@ export const CheckoutSummary = () => {
         [s.summaryCard_expanded]: isMobileExpanded,
       })}
     >
-      {/* Мобильный триггер-шапка: виден только на разрешениях < 1024px */}
       <button
         type="button"
         className={s.summaryCard__mobileToggle}
@@ -145,9 +143,9 @@ export const CheckoutSummary = () => {
         <Button
           type="submit"
           className={s.summaryCard__placeOrderBtn}
-          disabled={!isValid || !dirty}
+          disabled={!isValid || !dirty || isSubmitting}
         >
-          Place order
+          {isSubmitting ? "Processing..." : "Place order"}
         </Button>
       </div>
     </div>
