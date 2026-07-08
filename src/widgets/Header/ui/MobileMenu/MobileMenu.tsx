@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from "react"
-import { Link } from "react-router-dom"
-import { disablePageScroll, enablePageScroll } from "scroll-lock"
+import { useCallback, useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import clsx from "clsx"
-
 import Icon from "@/shared/ui/Icon/Icon"
-
-import s from "./MobileMenu.module.scss"
 import { SUB_MENUS, type MenuScreen } from "../../model/menuConfig"
+import { Modal } from "@/shared/ui/Modal/Modal"
+import { logoutUser } from "@/features/auth/api/authApi"
+import toast from "react-hot-toast"
+import s from "./MobileMenu.module.scss"
 
 interface MobileMenuProps {
   isOpen: boolean
@@ -15,41 +15,45 @@ interface MobileMenuProps {
 
 export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
   const [activeTab, setActiveTab] = useState<MenuScreen>("main")
-  const menuRef = useRef<HTMLDivElement>(null)
+  const navigate = useNavigate()
+
+  const handleClose = useCallback(() => {
+    setActiveTab("main")
+    onClose()
+  }, [onClose])
 
   useEffect(() => {
-    const menuElement = menuRef.current
-    if (!menuElement) return
-
-    if (isOpen) {
-      disablePageScroll(menuElement)
-    } else {
-      enablePageScroll(menuElement)
-    }
-
     const handleResize = () => {
-      if (window.innerWidth >= 768) onClose()
+      if (window.innerWidth >= 768) {
+        handleClose()
+      }
     }
 
     window.addEventListener("resize", handleResize)
-    return () => {
-      enablePageScroll(menuElement)
-      window.removeEventListener("resize", handleResize)
-    }
-  }, [isOpen, onClose])
+    return () => window.removeEventListener("resize", handleResize)
+  }, [handleClose])
 
-  if (!isOpen) return null
+  const handleLogout = async (): Promise<void> => {
+    try {
+      await logoutUser()
+      toast.success("Signed out successfully!")
+      handleClose()
+      navigate("/", { replace: true })
+    } catch {
+      toast.error("Failed to sign out. Please try again.")
+    }
+  }
 
   const goBack = () => setActiveTab("main")
 
   return (
-    <div className={s.mobileMenu} ref={menuRef}>
+    <Modal isOpen={isOpen} onClose={handleClose} className={s.mobileMenu}>
       {activeTab === "main" && (
         <div className={s.inner}>
           <div className={s.header}>
             <button
               className={s.close}
-              onClick={onClose}
+              onClick={handleClose}
               aria-label="Close menu"
             >
               <Icon name="close" width={18} height={18} />
@@ -77,7 +81,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
             </button>
             <Link
               to="/quiz"
-              onClick={onClose}
+              onClick={handleClose}
               className={clsx(s.item, s.itemAccent)}
             >
               Take the quiz
@@ -118,7 +122,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                       item.isAccent && s.subitemAccent,
                     )}
                     to={item.to}
-                    onClick={onClose}
+                    onClick={handleClose}
                   >
                     {item.text}
                   </Link>
@@ -126,7 +130,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                 {activeTab === "profile" && (
                   <button
                     className={clsx(s.subitem, s.subitemAccent)}
-                    onClick={onClose}
+                    onClick={handleLogout}
                   >
                     Sign Out
                   </button>
@@ -141,7 +145,11 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                     Answer a few simple questions and automatically get a
                     personalized list of vitamins in minutes
                   </p>
-                  <Link to="/quiz" className={s.bannerBtn} onClick={onClose}>
+                  <Link
+                    to="/quiz"
+                    className={s.bannerBtn}
+                    onClick={handleClose}
+                  >
                     Take the quiz
                   </Link>
                 </div>
@@ -149,6 +157,6 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
             </div>
           )
         })()}
-    </div>
+    </Modal>
   )
 }
