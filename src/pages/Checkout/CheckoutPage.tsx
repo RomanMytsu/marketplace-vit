@@ -41,12 +41,12 @@ const CheckoutPage = () => {
           <div className={s.footer__wrapper}>
             <ul className={s.footer__list}>
               <li className={s.footer__item}>
-                <Link to="/terms" className={s.footer__link}>
+                <Link to="/terms" className={s.footer__link} viewTransition>
                   Return Policy
                 </Link>
               </li>
               <li className={s.footer__item}>
-                <Link to="/terms" className={s.footer__link}>
+                <Link to="/terms" className={s.footer__link} viewTransition>
                   Privacy Policy
                 </Link>
               </li>

@@ -2,7 +2,6 @@ import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 import path from "path"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
-import { visualizer } from "rollup-plugin-visualizer"
 
 export default defineConfig({
   base: "/marketplace-vit/",
@@ -29,11 +28,6 @@ export default defineConfig({
           },
         ],
       },
-    }),
-    visualizer({
-      filename: "dist/bundle-analysis.html",
-      open: true,
-      gzipSize: true,
     }),
   ],
   css: {

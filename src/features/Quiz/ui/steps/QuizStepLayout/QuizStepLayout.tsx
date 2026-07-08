@@ -31,7 +31,7 @@ export const QuizStepLayout = ({
     <div className={clsx(s.layout, s[`layout--step-${currentStep}`])}>
       <div className={s.layout__sidebarBg} aria-hidden="true" />
       <div className={s.layout__topBar}>
-        <Link to="/" className={s.layout__logoLink}>
+        <Link to="/" className={s.layout__logoLink} viewTransition>
           <picture>
             <source media="(max-width: 768px)" srcSet={logo} />
             <img

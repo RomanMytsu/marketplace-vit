@@ -41,7 +41,7 @@ const BannerMain = ({
         {label && <span className={s.bannerMain__label}>{label}</span>}
         <h3 className={s.bannerMain__title}>{title}</h3>
         <p className={s.bannerMain__subTitle}>{subTitle}</p>
-        <Link to={btnLink} className={s.bannerMain__link}>
+        <Link to={btnLink} className={s.bannerMain__link} viewTransition>
           {btnText}
         </Link>
       </div>

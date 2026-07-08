@@ -12,7 +12,7 @@ const RegisterPage = () => {
       <div className={s.register__container}>
         <div className={s.register__content}>
           <div className={s.register__header}>
-            <Link to="/" className={s.register__logoLink}>
+            <Link to="/" className={s.register__logoLink} viewTransition>
               <img
                 src={logoSrc}
                 alt="Logo images"
@@ -28,12 +28,9 @@ const RegisterPage = () => {
                 type="button"
                 className={s.register__backButton}
                 aria-label="Go to home page"
+                viewTransition
               >
-                <Icon
-                  name="back_arrow"
-                  width={11}
-                  height={20}
-                />
+                <Icon name="back_arrow" width={11} height={20} />
               </Link>
               <span className={s.register__backText}>Account</span>
             </div>
@@ -43,7 +40,7 @@ const RegisterPage = () => {
           </div>
           <div className={s.register__pageFooter}>
             Already have an account?
-            <Link to="/login" className={s.register__footerLink}>
+            <Link to="/login" className={s.register__footerLink} viewTransition>
               Sign in
             </Link>
           </div>

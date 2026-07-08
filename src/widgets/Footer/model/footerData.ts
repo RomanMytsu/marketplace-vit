@@ -15,14 +15,14 @@ export const shopLinks: FooterSection = {
     {
       id: "1",
       label: "Vitamins & Dietary Supplements",
-      href: "/shop/vitamins",
+      href: "/catalog?category=Vitamins+%26+Dietary+Supplements&+Dietary+Supplements=",
     },
-    { id: "2", label: "Weight Loss", href: "/shop/weight-loss" },
-    { id: "3", label: "Minerals", href: "/shop/minerals" },
-    { id: "4", label: "Antioxidants", href: "/shop/antioxidants" },
-    { id: "5", label: "Probiotics", href: "/shop/probiotics" },
-    { id: "6", label: "Pain Relief", href: "/shop/pain-relief" },
-    { id: "7", label: "Prenatal Vitamins", href: "/shop/prenatal" },
+    { id: "2", label: "Weight Loss", href: "/catalog?category=Weight Loss" },
+    { id: "3", label: "Minerals", href: "/catalog?category=Minerals" },
+    { id: "4", label: "Antioxidants", href: "/catalog?category=Antioxidants" },
+    { id: "5", label: "Probiotics", href: "/catalog?category=Probiotics" },
+    { id: "6", label: "Pain Relief", href: "/catalog?category=Pain Relief" },
+    { id: "7", label: "Prenatal Vitamins", href: "/catalog?category=Prenatal Vitamins" },
   ],
 }
 

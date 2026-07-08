@@ -83,6 +83,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
               to="/quiz"
               onClick={handleClose}
               className={clsx(s.item, s.itemAccent)}
+              viewTransition
             >
               Take the quiz
             </Link>
@@ -123,6 +124,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                     )}
                     to={item.to}
                     onClick={handleClose}
+                    viewTransition
                   >
                     {item.text}
                   </Link>
@@ -149,6 +151,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
                     to="/quiz"
                     className={s.bannerBtn}
                     onClick={handleClose}
+                    viewTransition
                   >
                     Take the quiz
                   </Link>

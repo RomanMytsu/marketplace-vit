@@ -63,7 +63,11 @@ const LoginForm = () => {
               onBlur={handleBlur}
               error={touched.password ? errors.password : undefined}
             />
-            <Link to="/forgot-password" className={s.loginForm__forgotLink}>
+            <Link
+              to="/forgot-password"
+              className={s.loginForm__forgotLink}
+              viewTransition
+            >
               Forgot password?
             </Link>
           </div>

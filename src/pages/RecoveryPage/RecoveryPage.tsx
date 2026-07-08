@@ -12,7 +12,7 @@ const RecoveryPage = () => {
       <div className={s.recoveryPage__container}>
         <div className={s.recoveryPage__content}>
           <div className={s.recoveryPage__header}>
-            <Link to="/" className={s.recoveryPage__link}>
+            <Link to="/" className={s.recoveryPage__link} viewTransition>
               <img
                 src={logoSrc}
                 alt="Logo images"
@@ -27,6 +27,7 @@ const RecoveryPage = () => {
                 type="button"
                 className={s.recoveryPage__backButton}
                 aria-label="Go to home page"
+                viewTransition
               >
                 <Icon name="back_arrow" width={11} height={20} />
               </Link>
@@ -38,7 +39,11 @@ const RecoveryPage = () => {
           </div>
           <div className={s.recoveryPage__pageFooter}>
             Remember your password?
-            <Link to="/register" className={s.recoveryPage__footerLink}>
+            <Link
+              to="/register"
+              className={s.recoveryPage__footerLink}
+              viewTransition
+            >
               Back to login
             </Link>
           </div>

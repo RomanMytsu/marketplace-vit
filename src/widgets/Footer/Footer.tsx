@@ -17,6 +17,7 @@ const Footer = () => {
               to="/"
               className={s.footer__logoLink}
               aria-label="Go to homepage"
+              viewTransition
             >
               <img src={logoSrc} alt="Logo" className={s.footer__logo} />
             </Link>
@@ -30,7 +31,11 @@ const Footer = () => {
               <ul className={`${s.footer__list} ${s.footer__shopList}`}>
                 {shopLinks.links.map((link) => (
                   <li key={link.id} className={s.footer__item}>
-                    <Link to={link.href} className={s.footer__link}>
+                    <Link
+                      to={link.href}
+                      className={s.footer__link}
+                      viewTransition
+                    >
                       {link.label}
                     </Link>
                   </li>
@@ -42,7 +47,11 @@ const Footer = () => {
               <ul className={s.footer__list}>
                 {infoLinks.links.map((link) => (
                   <li key={link.id} className={s.footer__item}>
-                    <Link to={link.href} className={s.footer__link}>
+                    <Link
+                      to={link.href}
+                      className={s.footer__link}
+                      viewTransition
+                    >
                       {link.label}
                     </Link>
                   </li>

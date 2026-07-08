@@ -22,7 +22,7 @@ const NotFoundPage = () => {
         <p className={s.notFound__subtitle}>
           Unfortunately, the page you requested is out of date or does not exist
         </p>
-        <Link to="/" className={s.notFound__link}>
+        <Link to="/" className={s.notFound__link} viewTransition>
           Go to main page
         </Link>
       </div>

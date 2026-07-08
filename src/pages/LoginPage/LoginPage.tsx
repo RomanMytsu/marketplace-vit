@@ -12,7 +12,7 @@ const LoginPage = () => {
       <div className={s.login__container}>
         <div className={s.login__content}>
           <div className={s.login__header}>
-            <Link to="/" className={s.login__link}>
+            <Link to="/" className={s.login__link} viewTransition>
               <img
                 src={logoSrc}
                 alt="Logo images"
@@ -27,6 +27,7 @@ const LoginPage = () => {
                 type="button"
                 className={s.login__backButton}
                 aria-label="Go to home page"
+                viewTransition
               >
                 <Icon name="back_arrow" width={11} height={20} />
               </Link>
@@ -38,7 +39,7 @@ const LoginPage = () => {
           </div>
           <div className={s.login__pageFooter}>
             Don't have an account?
-            <Link to="/register" className={s.login__footerLink}>
+            <Link to="/register" className={s.login__footerLink} viewTransition>
               Create one
             </Link>
           </div>

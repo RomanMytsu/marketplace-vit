@@ -44,7 +44,11 @@ const Products = () => {
                 and more that help you feel your best today and support you
                 long-term.
               </p>
-              <Link to="/catalog" className={s.products__shopLink}>
+              <Link
+                to="/catalog"
+                className={s.products__shopLink}
+                viewTransition
+              >
                 Go to the shop{" "}
                 <Icon
                   name="arrow-shop"

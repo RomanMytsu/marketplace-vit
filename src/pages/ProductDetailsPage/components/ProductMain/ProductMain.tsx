@@ -28,7 +28,11 @@ const ProductMain = () => {
           category={product.category}
         />
         <div className={s.detailsPage__content}>
-          <Link to="/catalog" className={s.detailsPage__backLink}>
+          <Link
+            to="/catalog"
+            className={s.detailsPage__backLink}
+            viewTransition
+          >
             <Icon
               name="back_arrow"
               width={9}
