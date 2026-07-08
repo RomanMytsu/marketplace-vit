@@ -1,0 +1,60 @@
+.checkoutSuccess {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    @include globalMixins.max-width(laptop) {
+      padding: 22px 20px;
+    }
+  }
+
+  &__logoLink {
+    margin-bottom: globalFunctions.fluidValue(30px, 80px, 320px, 1800px);
+  }
+
+  &__logoImg {
+    width: globalFunctions.fluidValue(84px, 168px, 320px, 1800px);
+    height: globalFunctions.fluidValue(100px, 200px, 320px, 1800px);
+  }
+
+  &__title {
+    font-family: globalVariables.$second-family;
+    font-weight: 500;
+    font-size: globalFunctions.fluidValue(24px, 26px, 320px, 1800px);
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  &__subTitle {
+    font-size: globalFunctions.fluidValue(14px, 16px, 320px, 1800px);
+    line-height: 1.75;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  &__homeLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    background: globalVariables.$main-orange;
+    border: 1px solid globalVariables.$main-orange;
+    font-family: globalVariables.$second-family;
+    font-weight: 700;
+    font-size: globalFunctions.fluidValue(16px, 20px, 320px, 1800px);
+    text-align: center;
+    color: #fff;
+    width: globalFunctions.fluidValue(279px, 330px, 320px, 1800px);
+    height: globalFunctions.fluidValue(56px, 65px, 320px, 1800px);
+    margin-bottom: globalFunctions.fluidValue(70px, 90px, 320px, 1800px);
+  }
+
+  &__text {
+    font-size: 14px;
+    text-align: center;
+    color: rgba(#000, 0.5);
+    max-width: 490px;
+  }
+}

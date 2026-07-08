@@ -32,6 +32,9 @@ const ProductDetailsPage = lazy(
   () => import("@/pages/ProductDetailsPage/ProductDetailsPage"),
 )
 const CheckoutPage = lazy(() => import("@/pages/Checkout/CheckoutPage"))
+const CheckoutSuccessPage = lazy(
+  () => import("@/pages/CheckoutSuccess/CheckoutSuccessPage"),
+)
 
 const router = createHashRouter([
   {
@@ -116,6 +119,10 @@ const router = createHashRouter([
   {
     path: "/checkout",
     element: <CheckoutPage />,
+  },
+  {
+    path: "/checkout/success",
+    element: <CheckoutSuccessPage />,
   },
 ])
 
