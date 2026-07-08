@@ -6,7 +6,10 @@ export const paymentValidationSchema = object().shape({
     .required("Card number is required")
     .test("test-number", "Card number is invalid", (value) => {
       if (!value) return false
-      return cardValidator.number(value).isValid
+
+      const clearValue = value.replace(/\D/g, "")
+
+      return clearValue.length >= 12 && clearValue.length <= 19
     }),
   expiration: string()
     .required("Expiration date is required")
@@ -28,6 +31,8 @@ export const formatCardNumber = (value: string): string => {
 
   const gaps = validation.card?.gaps ?? [4, 8, 12, 16]
 
+  const maxLength = validation.card?.lengths[0] ?? 19
+
   const parts: string[] = []
   let position = 0
 
@@ -45,7 +50,7 @@ export const formatCardNumber = (value: string): string => {
   return parts
     .filter(Boolean)
     .join(" ")
-    .slice(0, (validation.card?.lengths[0] ?? 16) + gaps.length)
+    .slice(0, maxLength + gaps.length)
 }
 
 export const formatExpiration = (value: string): string => {
@@ -59,6 +64,7 @@ export const formatExpiration = (value: string): string => {
 export const formatCVC = (value: string, cardNumber: string): string => {
   const clearValue = value.replace(/\D/g, "")
   const cardValidation = cardValidator.number(cardNumber)
-  const maxCvcLength = cardValidation.card?.code.size ?? 3
+
+  const maxCvcLength = cardValidation.card?.code.size ?? 4
   return clearValue.slice(0, maxCvcLength)
 }
