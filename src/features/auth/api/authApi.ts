@@ -1,5 +1,5 @@
 import type { ChangePasswordFields } from "@/entities/auth/model/types"
-import { auth, db } from "@/shared/firebase/firebase"
+import { db } from "@/shared/firebase/firebase"
 export interface UserProfile {
   firstName: string
   lastName: string
@@ -7,23 +7,28 @@ export interface UserProfile {
 }
 
 export const registerUser = async (email: string, password: string) => {
-  const { createUserWithEmailAndPassword } = await import("firebase/auth")
-  return createUserWithEmailAndPassword(auth, email, password)
+  const { createUserWithEmailAndPassword, getAuth } =
+    await import("firebase/auth")
+  const { app } = await import("@/shared/firebase/firebase")
+  return createUserWithEmailAndPassword(getAuth(app), email, password)
 }
 
 export const loginUser = async (email: string, password: string) => {
-  const { signInWithEmailAndPassword } = await import("firebase/auth")
-  return signInWithEmailAndPassword(auth, email, password)
+  const { signInWithEmailAndPassword, getAuth } = await import("firebase/auth")
+  const { app } = await import("@/shared/firebase/firebase")
+  return signInWithEmailAndPassword(getAuth(app), email, password)
 }
 
 export const recoverPassword = async (email: string) => {
-  const { sendPasswordResetEmail } = await import("firebase/auth")
-  return sendPasswordResetEmail(auth, email)
+  const { sendPasswordResetEmail, getAuth } = await import("firebase/auth")
+  const { app } = await import("@/shared/firebase/firebase")
+  return sendPasswordResetEmail(getAuth(app), email)
 }
 
 export const logoutUser = async (): Promise<void> => {
-  const { signOut } = await import("firebase/auth")
-  return signOut(auth)
+  const { signOut, getAuth } = await import("firebase/auth")
+  const { app } = await import("@/shared/firebase/firebase")
+  return signOut(getAuth(app))
 }
 
 export const createUserProfileInFirestore = async (
@@ -37,14 +42,20 @@ export const createUserProfileInFirestore = async (
 export const changePasswordInFirebase = async (
   data: Omit<ChangePasswordFields, "confirmPassword">,
 ): Promise<void> => {
+  const {
+    getAuth,
+    EmailAuthProvider,
+    reauthenticateWithCredential,
+    updatePassword,
+  } = await import("firebase/auth")
+  const { app } = await import("@/shared/firebase/firebase")
+
+  const auth = getAuth(app)
   const user = auth.currentUser
 
   if (!user || !user.email) {
     throw new Error("User session not found. Please re-login.")
   }
-
-  const { EmailAuthProvider, reauthenticateWithCredential, updatePassword } =
-    await import("firebase/auth")
 
   const credential = EmailAuthProvider.credential(
     user.email,

@@ -34,6 +34,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
           className={s.card__avatar}
           width={48}
           height={48}
+          loading="lazy"
         />
         <p className={s.card__authorName}>{review.author.name}</p>
       </div>

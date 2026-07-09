@@ -25,6 +25,8 @@ const Products = () => {
               watchSlidesProgress={true}
               loop={true}
               grabCursor={true}
+              observer={true}
+              observeParents={true}
               breakpoints={{
                 1024: { spaceBetween: 33 },
               }}

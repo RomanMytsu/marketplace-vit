@@ -41,7 +41,14 @@ const ProductCard = ({ product, variant = "slider" }: ProductCardProps) => {
         viewTransition
       >
         <div className={s.card__imageWrapper}>
-          <img src={imgSrc} alt={product.name} className={s.card__image} />
+          <img
+            src={imgSrc}
+            alt={product.name}
+            className={s.card__image}
+            width={265}
+            height={245}
+            loading="lazy"
+          />
           {showFullInfo && product.oldPrice && product.price && (
             <span className={s.card__discountBadge}>
               -

@@ -33,7 +33,13 @@ const Hero = () => {
           </div>
         </div>
         <div className={s.heroImgWrapper}>
-          <img src={heroImg} alt="Hero Img" className={s.heroImg} />
+          <img
+            src={heroImg}
+            alt="Hero Img"
+            className={s.heroImg}
+            fetchPriority="high"
+            loading="eager"
+          />
         </div>
         <Ellipse className={s.ellipseYellow} />
         <Ellipse className={s.heroEllipse} />
