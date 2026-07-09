@@ -93,6 +93,7 @@ export const CheckoutForm = () => {
                       : undefined
                   }
                   labelClassName={s.checkoutLayout__label}
+                  className={s.checkoutLayout__inputNum}
                 />
                 <div className={s.checkoutLayout__inputWrapper}>
                   <Input
@@ -116,6 +117,7 @@ export const CheckoutForm = () => {
                   <Input
                     label="CVC"
                     name="cvc"
+                    type="password"
                     placeholder="CVC"
                     value={values.cvc}
                     onChange={(e) => {
